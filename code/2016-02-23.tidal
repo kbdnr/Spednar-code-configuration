@@ -1,0 +1,34 @@
+d1 $ sound (samples "drumbd1*4?" (irand 200))
+
+
+--dont use this
+m1 $ slowcat [note "[35]", note "[40 38]", note "[40 83 32]", note "[87 40 83 33]"]
+
+m1 $ note "20"
+
+bpm 80
+
+--reg break
+d1 $ every 2 (0.25 <~) $ 
+   every 4 (jux (iter 4)) $ 
+   every 6 (|+| speed "[1,2,3,4,0.5]") $ 
+   sometimes (spin 2 . rev . degradeBy 0.1) $ 
+   slow 4 $ sound (samples "[drumbd1*4?, bpbrk*16]" (run 16))
+   |+| cut "0.5"
+
+--noisebrk
+d1 $ stack [every 2 (0.25 <~) $ 
+   every 4 (jux (iter 4)) $ 
+   every 6 (|+| speed "[1,2,3,4,0.5]") $ 
+   sometimes (spin 2 . rev . degradeBy 0.1) $ 
+   slow 4 $ sound (samples "[drumsd2*8?, drumbd1*4?, bpbrk*16]" (run 16))
+   |+| (slow 6 $ crush (scale 1 6 sawwave1))
+   |+| cut "0.5",
+   every 4 (degradeBy 0.2 . rev . spin 2) $ 
+   every 2 (|+| speed "[0.8, 0.5]") $
+   sound (samples "[dmo*8?, dmp*4?]" (irand 15)) 
+   |+| gain "0.6" 
+   |+| cut "0.8"
+   ]
+
+d2 $ slow 4 $ sound "[drugs:1]" |+| cut "1"

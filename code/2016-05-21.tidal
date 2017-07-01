@@ -1,0 +1,45 @@
+--assemble -- control/freak n 2
+
+bpm 160
+
+d1 $ stack [
+    sometimes (|+| speed "{0.8 0.7 0.5 2}%4") $
+    sound (samples "click*8" (irand 9)) |+| cut "1",
+    sometimes (|+| speed "[1, 2]") $ 
+    sometimes (|+| speed "{0.8 0.7 0.5 2}%4") $
+    sound (samples "clak*8?" (irand 9)) |+| cut "2",
+    sound (samples "d*16?" (run 1)) |+| cut "3"
+    ]
+    |+| gain "0.2"
+
+d2 $ stack [
+    sometimes (|+| speed "{0.8 0.7 0.5 2}%4") $
+    sound (samples "808rs*10" (irand 9)) |+| cut "1",
+    sometimes (|+| speed "[1, 2]") $ 
+    sometimes (|+| speed "{0.8 0.7 0.5 2}%4") $
+    sound (samples "808mt*6?" (irand 9)) |+| cut "2",
+    sound (samples "808lt*12?" (run 1)) |+| cut "3"
+    ]
+    |+| gain "0.5"
+
+
+d2 $ slow 8 $ sound "tmpl:8"
+   |+| cut "4"
+   |+| gain "0.5"
+   |+| delay "0.2"
+
+
+d1 $ slow 4 $ sometimes (spin 2) $ sometimes (density 2) $
+   sound (samples "think*16" (irand 16))
+   |+| gain "0.9"
+   |+| cut "1"
+
+d2 $  sometimes (spin 2) $ sometimes (density 2) $
+   sound (samples "session*4" (irand 16))
+   |+| gain "0.7"
+   |+| cut "2"
+
+k1 $ sometimes (spin 2) $ sometimes (rev . brak) $
+    note "[30 32 38 40, 60 ~ ~ ~, ~ ~ 75 ~, ~ 40 ~ ~]"
+
+k1 silence

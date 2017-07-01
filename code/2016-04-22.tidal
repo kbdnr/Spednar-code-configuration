@@ -1,0 +1,6 @@
+d1 $ slow 4 $ sound (samples "citytrain*4?" (irand 4)) |+| cut "1"
+
+bpm 80
+
+d1 $ slow 4 $ slowspread ($) [(|+| speed "[1,2]"), (|+| speed "[2,3]"), (|+| speed "[3,4]")]
+   $ sound (samples "notes" (run 1)) 

@@ -1,0 +1,28 @@
+bpm 90
+
+d1 $ slow 8 $ sound (samples "feedb*4" (irand 10))
+   |+| (slow 4 $ pan sinewave)
+   |+| gain "0.70"
+
+d2 $ slow 2 $ sound (samples "mall*3" (irand 10))
+   |+| gain "0.99"
+   |+| delay "0.05"
+   |+| delayfeedback "0.6"
+
+d3 $ slow 2 $ sometimes (density 2) $ sound (samples "lead2*8" (irand 40))
+   |+| (slow 2 $ pan sinewave1)
+   |+| speed "{1 2.3 0.2 0.3 1.4}%8"
+   |+| gain "0.70"
+   |+| delay "0.55"
+   |+| delayfeedback "0.3"
+
+--keep quieter
+d4 $ sometimes (spin 2) 
+   $ sometimes (chop 2) 
+   $ sometimes (rev)
+   $ sometimes (0.5 ~>) 
+   $ degradeBy 0.3 
+   $ sound (samples "beat*4" (irand 40))
+   |+| (slow 2 $ pan sinewave1)
+   |+| speed "{1 1.1 0.9 0.8}%6"
+   |+| gain "0.46"

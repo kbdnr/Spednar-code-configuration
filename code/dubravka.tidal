@@ -1,0 +1,16 @@
+bpm 128
+
+d1 $ slowspread ($) [(|+| speed "[2, 3, 4, 0.5]"), spin 2, degradeBy 0.4, density 2] $
+   stack [
+   slow 4 $ slowspread ($) 
+   [(|+| speed "0.4"), 
+   (|+| speed "0.75"), 
+   (|+| speed "[1.8, 1.4, 0.5]"), 
+   (|+| speed "[2]")] $
+   sometimes (density 2) $ sound (samples "pluck" (run 2)) |+| gain "1.0" |+| cut "4"
+   ]
+
+d2 $ rarely (|+| speed "[0.5, 2]") $ sometimes (spin 2) $ sound "[loop*1]"
+   |+| delay "0.5"
+   |+| delayfeedback (scale 0.1 0.5 sine)
+   |+| gain "0.1"

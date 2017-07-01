@@ -1,0 +1,30 @@
+--springs in a panning warehouse
+cps 1
+
+d1 $ slow 5 $ sometimes (spin 2) $ every 3 (0.25 <~) $ sound "[future:2, ~ future:3, ~ ~ future:4, ~ ~ ~ future:5, ~ ~ ~ ~ future:6, ~ ~ ~ ~ ~ future:7, ~ ~ ~ ~ ~ ~ future:8]"
+
+t1 xfade $ degradeBy 0.2 $ slow 4 $ sometimes (spin 2) $ every 3 (0.25 <~) $ swing 3 $ sound "[future:2, ~ future:3, ~ ~ future:4, ~ ~ ~ future:5, ~ ~ ~ ~ future:6, ~ ~ ~ ~ ~ future:7, ~ ~ ~ ~ ~ ~ future:8]"
+
+t1 xfade $ slow 2 $ degradeBy 0.2 $  jux (rev) $ sometimes (density 2) $ sometimes (0.5 ~>) $ slowspread ($) 
+   [sometimes (|+| speed "[1, 1.2, 1.4, 0.8]"), sometimes (spin 3), sometimes (|+| speed "[0.4 0.8 0.6, 0.2 0.3 0.5]"), sometimes (|+| speed "{1 1.1 1.2 1.3 0.95 0.9 0.93}%4")
+   ] $ sound "[future:2, ~ future:3, ~ ~ future:4, ~ ~ ~ future:5, ~ ~ ~ ~ future:6, ~ ~ ~ ~ ~ future:7, ~ ~ ~ ~ ~ ~ future:8]"
+   |+| (slow 6 $ pan sawwave)
+
+t2 xfade $ sometimes (|+| speed "{1 0.9 0.8 1.2 1.3}%4") $ slow 6 $ sound (samples "wh*4" (irand 50))
+   |+| (slow 5 $ pan sinewave1)
+
+d3 $ slow 8 $ sometimes (0.25 ~>) $ sound (samples "pluck*2" (irand 8))
+   |+| (slow 8 $ pan sinewave1)
+
+t3 xfade $ slow 12 $ sometimes (0.30 ~>) $ sound (samples "pluck*2" (irand 8))
+   |+| (slow 5 $ pan sinewave1)
+
+t3 xfade $ slow 5 $ sometimes (|+| speed "[1 1.001 1.003 1.007,1.009 1.22 1.35 1.6,0.6 0.59 0.55 0.56, 2.01 2.02 2.03 2.04]") $ sometimes (|+| speed "{1 0.9 0.87 0.84 0.79}%4") $ spin 2 $ swing 2 $ sometimes (0.125 ~>) $ sound (samples "pluck*4" (irand 12))
+   |+| (slow 7 $ pan sinewave1)
+
+d7 $ jux (iter 2) $ sometimes (spin 3) $ sound "[loop*8]"
+   |+| speed (scale 0.4 1 sine1)
+   |+| (slow 4 $ pan sinewave1)
+   |+| gain "1.8"
+   |+| resonance "0.6"
+   |+| delay "0.3"

@@ -1,0 +1,60 @@
+bpm 90
+
+d1 $ sound (samples "lighter*8?" (irand 10))
+
+d3 $ sound (samples "fur3*4" (run 4)) |+| cut "1"
+
+d3 $ sometimes (density 2) $ rarely (spin 2) 
+   $ sound (samples "fur3*4" (irand 4)) |+| cut "1"
+   |+| (slow 4 $ gain (scale 0.5 0.7 sinewave1))
+
+d4 $ sometimes (|+| speed "{1 0.8 0.7 0.5}%4") $ 
+   sound (samples "feelfx*4" (irand 4)) |+| cut "2"
+   |+| (slow 8 $ gain (scale 0.7 0.9 sinewave1))
+
+d5 $ sometimes (|+| speed "{1 0.8 0.7 0.5}%4") $ 
+   sound (samples "infinite*4" (irand 4)) |+| cut "2"
+   |+| (slow 8 $ gain (scale 0.9 1.0 sinewave1))
+
+d5 $ sometimes (spin 2) $ 
+   sometimes (|+| speed "{1 0.8 0.7 0.5}%4") $ 
+   sound (samples "infinite*4" (irand 8)) |+| cut "2"
+   |+| (slow 8 $ gain (scale 0.9 1.0 sinewave1))
+   |+| (slow 3 $ crush (scale 3 5 sinewave1))
+
+d6 $ sound (samples "handdrum*8?" (run 8)) |+| cut "3"
+   |+| (slow 4 $ gain (scale 0.5 0.7 sinewave1))
+
+
+--beatz
+d7 $ sound (samples "[snarez*8?]" (irand 15)) 
+   |+| cut "4"
+
+d8 $ sound (samples "[kickz*4?]" (irand 15)) 
+   |+| cut "5"
+
+d9 $ sound (samples "[Percz*3?]" (irand 15)) 
+   |+| cut "6"
+
+--jam 2
+d1 $ sound (samples "my909kit*4?" (run 4)) |+| cut "1"
+   |+| (slow 8 $ gain (scale 0.7 0.9 sinewave1))
+
+d2 $ sometimes (density 2) $ every 3 (|+| speed "[0.5, 4]") $
+     every 2 (|+| speed "[2, 3]") $
+   sound (samples "my909kit*8?" (irand 8)) |+| cut "2"
+
+d3 $ sound (samples "manglemidi*1" (irand 10)) |+| cut "3"
+   |+| (slow 4 $ speed (scale 0.5 2 sinewave1))
+   |+| gain "0.7"
+
+--jam 3
+d1 $ sometimes ((|+| speed "{ 0.8 0.7 0.5 0.3}%4") . spin 2) 
+   $ sound (samples "[snarez ~ ~ snarez ~ ~ snarez ~]" (irand 4)) |+| cut "1"
+   |+| gain "0.8"
+   |+| delay "0.4"
+   |+| delayfeedback "0.4"
+
+d2 $ sometimes ((|+| speed "{ 0.8 0.7 0.5 0.3}%4") . spin 2) 
+   $ sound (samples "[musicloop*4]" (irand 4)) |+| cut "2"
+   |+| gain "0.6"

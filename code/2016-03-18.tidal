@@ -1,0 +1,70 @@
+bpm 160
+
+d1 $ stack [
+   sound "[b18b, ~ ~ b18b:1/3]"
+   |+| cut "1",
+   sometimes (degradeBy 0.4) $ 
+   every 4 (|+| pan "1") $ sometimes (jux (#nudge "0.05")) $ 
+   sound (samples "dmo*16?" (irand 30)) |+| cut "2"
+   |+| gain "0.8"
+   |+| delay "0.2"
+   ]
+
+d2 $ degradeBy 0.5 $ sometimes (jux (iter 4)) $ sound (samples "bells*4" (run 4)) 
+   |+| cut "1"
+   |+| (slow 4 $ speed (scale 0.2 2 saw))
+
+--spazz track 1
+t1 xfade $ stack [
+   sound "[b18b, ~ ~ b18b:1/3]"
+   |+| cut "1",
+   every 4 (|+| pan "1") $ sometimes (jux (#nudge "0.05")) $ 
+   sound (samples "dmp*16?" (irand 30)) |+| cut "2"
+   |+| gain "0.8"
+   |+| delay "0.2",
+   slow 8 $ every 4 (jux (iter 4)) $ sound (samples "bpbrk*16" (run 16))
+   |+| speed (scale 1 0.5 sinewave1)
+   |+| accelerate (scale 0 0.5 sawwave)
+   |+| (slow 6 $ delay (scale 0 0.5 sinewave1))
+   |+| (slow 4 $ delayfeedback (scale 0 0.8 sinewave1))
+   ]
+
+d2 $ sometimes (jux (iter 4)) $ sound (samples "bells*4" (run 4)) 
+   |+| cut "1"
+   |+| (slow 4 $ speed (scale 0.2 2 saw))
+
+d2 $ stack [
+   sometimes (jux (iter 4)) $ sound (samples "bells*4" (run 4)) 
+   |+| cut "1"
+   |+| (slow 4 $ speed (scale 0.2 2 saw)),
+   every 2 (jux (iter 8)) $ sound (samples "nau*8" (run 8)) |+| cut "2"
+   |+| (slow 16 $ speed (scale 0.2 4 sinewave1))
+   ]
+
+--t2
+d1 $ sound "monst" |+| cut "1"
+
+d1 $ every 8 (jux (iter 8) . rev . density 2) $ sound (samples "monst*4" (run 4)) |+| cut "1"
+   |+| (slow 4 $ speed (scale 0.6 0.8 sine))
+
+d1 $ stack [every 4 (jux (iter 8) . rev . density 4) $ 
+   sound (samples "monst*4" (run 4)) |+| cut "1"
+   |+| (slow 4 $ speed (scale 0.6 0.8 sine)),
+   sound (samples "[xxlbd(3,8)]" (irand 10)) |+| cut "3"
+   ]
+
+d3 $ stack [
+   sound (samples "[digia*4?, digibd*4?]" (run 8)),
+   every 4 (jux (iter 4) . rev . (|+| speed "{3 2 1 0.5}%4")) $ 
+   sound (samples "dmsn*8?" (irand 10)) |+| cut "2",
+   sound (samples "discofunk*4?" (irand 8)) |+| cut "1"
+   |+| pan (scale 0.5 1 sinewave1)
+   |+| speed "0.3",
+   sound (samples "fk*8?" (irand 10)) |+| cut "1"
+   ]
+
+m1 $ note "[20*8?,40*8?]"
+m1 silence
+
+t3 anticipate $ 
+   sound (samples "fk*8?" (irand 10)) |+| cut "1"

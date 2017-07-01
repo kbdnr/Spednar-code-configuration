@@ -1,0 +1,4 @@
+--colundi test
+--
+d1 $ rarely (spin 2) $ rarely (foldEvery [2,3] (density 2)) $ sometimes (density 2 . (|+| speed "[1,0.5,1.5,3]")) $ sound "[loop]"
+   |+| gain "2.0"

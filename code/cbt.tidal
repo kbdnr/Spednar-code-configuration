@@ -1,0 +1,19 @@
+--cbt
+d5 $ slow 12 $ slowcat [
+   sound (samples "cbt1*4" (run 4)),
+   sound (samples "cbt1*4" (run 4)),
+   sound (samples "cbt2*4" (run 4)),
+   sound (samples "cbt2*4" (run 4)),
+   sound (samples "cbtb1*4" (run 4)),
+   sound (samples "cbtb2*4" (run 4)),
+   sound (samples "cbtb3*4" (run 4)),
+   sound (samples "cbtb4*4" (run 4)),
+   sound (samples "cbtb5*4" (run 4)),
+   sound (samples "cbtb6*4" (run 4)),
+   sound (samples "cbtf1*4" (run 4)),
+   sound (samples "cbtf2*4" (run 4)),
+   sound (samples "cbtf3*4" (run 4)),
+   sound (samples "cbtf4*4" (run 4))
+   ]
+   |+| cut "1"
+

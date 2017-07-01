@@ -1,0 +1,96 @@
+bpm 170
+
+--dat hc
+bpm 200
+
+--d1 $ sometimes (brak) $ sometimes (degradeBy 0.8) $ sound "[gab:0, ~ gab:1]"
+
+--these ones
+d3 $ degradeBy 0.7 $ sound (samples "if*4" (irand 8))
+
+t3 anticipate $ degradeBy 0.5 $ sometimes (spin 2) $ jux (iter 2) $ sound (samples "if*4" (irand 8))
+
+d4 $ degradeBy 0.5 $ slow 4 $ sound (samples "apedrumfrag*8" (irand 50))
+   |+| (slow 4 $ pan sinewave)
+
+--170 jam
+--circuitloop - 1,2,9,11
+
+d1 $ slow 8 $ sound "[circuitloop:9]"
+t1 xfade $ slow 8 $ sound "[circuitloop:9, mangleabuse:14]"
+
+d2 $ slow 4 $ sound "[circuitloop:11]"
+
+d3 $ slow 8 $ slowcat [sound "[mangleabuse:0]", sound "[mangleabuse:11 mangleabuse:11]"]
+
+
+--128
+bpm 128
+
+d1 $ slow 4 $ sound "[mangleabuse:12]"
+t1 xfade $ slow 4 $ sound "[mangleabuse:12, mangleabuse:10]"
+t1 xfade $ slow 4 $ sound "[mangleabuse:12, mangleabuse:9, mangleabuse:10]"
+
+t1 xfade $ slow 4 $ slowcat [sound "[mangleabuse:10]", sound "[mangleabuse:9]", sound "[mangleabuse:8]", sound "[mangleabuse:12]"]
+
+
+--footwerk
+bpm 160
+
+t1 anticipate $ slowcat [sound "[808bd ~ ~ 808bd ~ ~ 808bd ~, hh*7, 808rs ~ ~ 808rs ~ ~ 808rs]", 
+              sound "[808bd ~ ~ ~ 808bd ~ ~ ~, 808rs ~ ~ 808rs ~ ~ 808rs ~ ~, xxlef*5, hh*3]",
+              sound "[xxlbd:4 ~ ~ xxlbd:3 ~ ~ xxlbd ~, hh*5, 808rs*5]",
+              sound "[[xxlbd:2 ~]*3, xxlcp ~ ~ xxlcp:3 ~ ~ xxlcp:8 ~]"]
+
+d2 $ sound (samples "[diphone*2 diphone2*3 numbers*3 kurt*6]/4" (irand 16))
+
+t2 anticipate $ slow 4 $ sound "[spednar spednar:1 spednar:2 spednar:3]"
+
+bpm 135 
+
+d1 $ sound (samples "gottarack*8" (irand 64))
+   |+| (pan sawwave)
+
+t1 xfade $ sound (samples "gottarack*6" (irand 64))
+   |+| (pan sawwave)
+
+t1 xfade $ spin 2 $ sometimes (degradeBy 0.3) $ every 4 (0.25 ~>) $ sound (samples "gottarack*3" (irand 64))
+   |+| (pan sawwave)
+
+t1 anticipate $ sound (samples "gottarack*4" (irand 64))
+   |+| (pan sawwave)
+
+d1 $ sound (samples "[gottarack*8 inthemiddle*4 amencutup*8]/4" (irand 64))
+   |+| (pan sawwave)
+
+
+--j club
+bpm 120
+t1 anticipate $ slowcat [sound "[xxlbd:2, ~ hh ~ hh, ~ xxlcp:4]", sound "[xxlbd:2 ~ ~ xxlbd:3 ~ ~ xxlbd:2 ~ , ~ hh ~ hh, ~ xxlcp:4]"]
+
+d2 $ sometimes (degradeBy 0.5 . rev) $ sound (samples "gottarack*4" (irand 64))
+
+d5 $ slow 4 $ sound (samples "discolady" (irand 80))
+
+
+
+--remix 1
+--
+bpm 64
+
+d1 $ slow 2 $ sound (samples "beat*8" (irand 100))
+t1 xfade $ spin 2 $ degrade $ sometimes (density 2) $ slow 2 $ sound (samples "beat*8" (irand 100))
+
+d4 $ slow 6 $ sound "feedb:0 feedb:1 feedb:2"
+t4 anticipate $ slow 6 $ sound "feedb:3 feedb:2 feedb:1"
+
+d1 $ slow 2 $ sound (samples "beat*18" (irand 100))
+   |+| (slow 7 $ pan sinewave1)
+
+d2 $ slow 2 $ sound (samples "beat*6" (irand 100))
+   |+| (slow 4 $ pan sinewave1)
+
+d2 $ sometimes (density 2) $ sound (samples "beat*3" (irand 100))
+   |+| (slow 11 $ pan sinewave1)
+
+d1 $ spin 2 $ sound "loop"

@@ -1,0 +1,45 @@
+--1 cut amens
+
+bpm 87
+
+--first break
+d1 $ stack [
+   sound (samples "[808rs(4,8)?]" (irand 10)),
+   sound (samples "xxlbd ~ xxlbd ~ ~ ~ ~ ~ ~ ~ xxlbd xxlbd ~ ~ ~ ~]" (irand 10))
+   |+| cut "1",
+   every 4 (spin 2 . rev) $ sometimes (|+| speed "{0.8 2 0.7 0.5}%16") $
+   sound (samples "[~ ~ ~ ~ 99sn ~ ~ 99sn ~ 99sn ~ ~ 99sn ~ ~ 99sn]" (run 5))
+   |+| gain "0.9"
+   |+| cut "2"
+   |+| (density 4 $ pan sinewave1)
+   ]
+
+--brak hectic
+d1 $ stack [
+   sound (samples "[808rs(1,2)]" (irand 10)),
+   sound (samples "xxlbd ~ xxlbd ~ ~ ~ ~ ~ ~ ~ xxlbd xxlbd ~ ~ ~ ~]" (irand 10))
+   |+| cut "1",
+   every 2 (jux (iter 4)) $ sometimes (|+| speed "{0.8 2 0.7 0.5}%16") $
+   sound (samples "[~ ~ ~ ~ 99sn ~ ~ 99sn ~ 99sn ~ ~ 99sn ~ ~ 99sn]" (run 10))
+   |+| gain "0.9"
+   |+| cut "2"
+   ]
+
+--ftwrk/hh
+d1 $ every 4 (density 2) $ stack [
+   sound (samples "[808ch*16?]" (irand 10)),
+   sound (samples "[808rs*8?]" (irand 10)),
+   sound (samples "kickz ~ xxlbd ~ ~ ~ ~ ~ ~ ~ kickz kickz ~ ~ ~ ~]" (irand 10))
+   |+| cut "1",
+   every 4 (spin 2) $ sometimes (|+| speed "{0.8 2 0.7 0.5}%16") $
+   sound (samples "[snarez(3,8)]" (irand 10))
+   |+| cut "2"
+   |+| (density 4 $ pan sinewave1)
+   ]
+
+m1 $ every 3 (degradeBy 0.5) $
+   note "[20 25 30 32]"
+
+k1 $ every 4 (spin 2) $ slowcat [note "[~ ~ 73 75 ~ 76 ~ ~ 100]"]
+   |+| vel "0.01"
+   |+| (slow 4 $ dur (scale 0.01 0.2 sinewave1))

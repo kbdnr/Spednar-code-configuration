@@ -1,0 +1,127 @@
+<!DOCTYPE patchbay>
+<patchbay version="0.4.1" name="din saturator limit compress patchbayss">
+ <output-sockets>
+  <socket exclusive="off" client="system" type="jack-midi" name="Thru/Mpd In">
+   <plug>midi_capture_1</plug>
+  </socket>
+  <socket exclusive="off" client="Akai MPD32" type="alsa-midi" name="MPD32 In (ALSA)">
+   <plug>Akai MPD32 MIDI 1</plug>
+  </socket>
+  <socket exclusive="off" client="dirt" type="jack-audio" name="Tidal (dirt)">
+   <plug>output_0</plug>
+   <plug>output_1</plug>
+  </socket>
+  <socket exclusive="off" client="Calf Studio Gear" type="jack-audio" name="Tidal Saturator Out">
+   <plug>saturator Out #1</plug>
+   <plug>saturator Out #2</plug>
+  </socket>
+  <socket exclusive="off" client="RtApiJack" type="jack-audio" name="DIN">
+   <plug>outport 0</plug>
+   <plug>outport 1</plug>
+  </socket>
+  <socket exclusive="off" client="Calf Studio Gear" type="jack-audio" name="Crusher Out">
+   <plug>crusher Out #1</plug>
+   <plug>crusher Out #2</plug>
+  </socket>
+  <socket exclusive="off" client="Calf Studio Gear" type="jack-audio" name="Reverse Delay Out">
+   <plug>reversedelay Out #1</plug>
+   <plug>reversedelay Out #2</plug>
+  </socket>
+  <socket exclusive="off" client="Calf Studio Gear" type="jack-audio" name="Multiband Compressor Out">
+   <plug>multibandcompressor Out #1</plug>
+   <plug>multibandcompressor Out #2</plug>
+  </socket>
+  <socket exclusive="off" client="Calf Studio Gear" type="jack-audio" name="Compressor Out">
+   <plug>compressor Out #1</plug>
+   <plug>compressor Out #2</plug>
+  </socket>
+  <socket exclusive="off" client="Calf Studio Gear" type="jack-audio" name="Sidechain Limiter Out">
+   <plug>sidechainlimiter Out #1</plug>
+   <plug>sidechainlimiter Out #2</plug>
+  </socket>
+  <socket exclusive="off" client="Calf Studio Gear" type="jack-audio" name="Sidechain Compressor Out">
+   <plug>sidechaincompressor Out #1</plug>
+   <plug>sidechaincompressor Out #2</plug>
+  </socket>
+  <socket exclusive="off" client="Calf Studio Gear" type="jack-audio" name="Master Limiter Out">
+   <plug>limiter Out #1</plug>
+   <plug>limiter Out #2</plug>
+  </socket>
+ </output-sockets>
+ <input-sockets>
+  <socket exclusive="off" client="Calf Studio Gear" type="jack-midi" name="Calf Automation In">
+   <plug>Automation MIDI In</plug>
+  </socket>
+  <socket exclusive="off" client="Midi Through" type="alsa-midi" name="Midi Through (ALSA)">
+   <plug>Midi Through Port-0</plug>
+  </socket>
+  <socket exclusive="off" client="Calf Studio Gear" type="jack-audio" name="Tidal Saturator In">
+   <plug>saturator In #1</plug>
+   <plug>saturator In #2</plug>
+  </socket>
+  <socket exclusive="off" client="Calf Studio Gear" type="jack-audio" name="Sidechain Limiter In 2">
+   <plug>sidechainlimiter In #3</plug>
+   <plug>sidechainlimiter In #4</plug>
+  </socket>
+  <socket exclusive="off" client="Calf Studio Gear" type="jack-audio" name="Sidechain Compressor Main In">
+   <plug>sidechaincompressor In #1</plug>
+   <plug>sidechaincompressor In #2</plug>
+  </socket>
+  <socket exclusive="off" client="Calf Studio Gear" type="jack-audio" name="Sidechain Compressor SC In">
+   <plug>sidechaincompressor In #4</plug>
+   <plug>sidechaincompressor In #3</plug>
+  </socket>
+  <socket exclusive="off" client="Calf Studio Gear" type="jack-audio" name="Crusher In">
+   <plug>crusher In #1</plug>
+   <plug>crusher In #2</plug>
+  </socket>
+  <socket exclusive="off" client="Calf Studio Gear" type="jack-audio" name="Reverse Delay In">
+   <plug>reversedelay In #1</plug>
+   <plug>reversedelay In #2</plug>
+  </socket>
+  <socket exclusive="off" client="Calf Studio Gear" type="jack-audio" name="Multiband Compressor In">
+   <plug>multibandcompressor In #1</plug>
+   <plug>multibandcompressor In #2</plug>
+  </socket>
+  <socket exclusive="off" client="Calf Studio Gear" type="jack-audio" name="Sidechain Limiter In 1">
+   <plug>sidechainlimiter In #1</plug>
+   <plug>sidechainlimiter In #2</plug>
+  </socket>
+  <socket exclusive="off" client="system" type="jack-audio" name="Focusrite 3/4">
+   <plug>playback_3</plug>
+   <plug>playback_4</plug>
+  </socket>
+  <socket exclusive="off" client="Calf Studio Gear" type="jack-audio" name="Compressor In">
+   <plug>compressor In #1</plug>
+   <plug>compressor In #2</plug>
+  </socket>
+  <socket exclusive="off" client="Calf Studio Gear" type="jack-audio" name="Master Limiter In">
+   <plug>limiter In #1</plug>
+   <plug>limiter In #2</plug>
+  </socket>
+  <socket exclusive="off" client="system" type="jack-audio" name="Focusrite 1/2">
+   <plug>playback_1</plug>
+   <plug>playback_2</plug>
+  </socket>
+  <socket exclusive="off" client="QJackRcd" type="jack-audio" name="Stereo Record">
+   <plug>record_1</plug>
+   <plug>record_2</plug>
+  </socket>
+ </input-sockets>
+ <slots/>
+ <cables>
+  <cable output="Tidal (dirt)" input="Tidal Saturator In" type="jack-audio"/>
+  <cable output="Thru/Mpd In" input="Calf Automation In" type="jack-midi"/>
+  <cable output="MPD32 In (ALSA)" input="Midi Through (ALSA)" type="alsa-midi"/>
+  <cable output="Reverse Delay Out" input="Multiband Compressor In" type="jack-audio"/>
+  <cable output="Multiband Compressor Out" input="Sidechain Compressor Main In" type="jack-audio"/>
+  <cable output="Master Limiter Out" input="Focusrite 1/2" type="jack-audio"/>
+  <cable output="Master Limiter Out" input="Stereo Record" type="jack-audio"/>
+  <cable output="Tidal Saturator Out" input="Master Limiter In" type="jack-audio"/>
+  <cable output="Tidal Saturator Out" input="Sidechain Compressor SC In" type="jack-audio"/>
+  <cable output="Crusher Out" input="Reverse Delay In" type="jack-audio"/>
+  <cable output="DIN" input="Crusher In" type="jack-audio"/>
+  <cable output="Sidechain Compressor Out" input="Master Limiter In" type="jack-audio"/>
+ </cables>
+</patchbay>
+

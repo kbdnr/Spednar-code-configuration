@@ -1,0 +1,30 @@
+d3 $ retrig $ slow 4 $ every 4 (spin 2 . degradeBy 0.3 . rev) $ 
+   sound (samples "ywamen3*8" (run 8))
+   |+| gain "1.0"
+
+d4 $ slow 2 $ sometimes (spin 2 . (|+| speed "{1 0.9 0.8 0.7 0.6 0.5}%8")) $ sound (samples "fvox1*8" (run 8))
+   |+| gain "0.87"
+   |+| accelerate "-1"
+
+d5 $ slow 8 $ sound (samples "ywsb*2" (run 2))
+   |+| cut "3"
+
+d1 $ sometimes (0.125 ~>) $ every 2 (spin 2 . rev) $ sometimes (|+| speed "0.8") $
+   sound (samples "[808bd(3,8), 808rs*8?, verbhit*8?]" (irand 8))
+   |+| (density 7 $ pan (scale 0.1 0.7 sinewave1))
+   |+| gain "0.89"
+
+m1 $ density 2 $ note "[28*8?, 40*8?]"
+   |=| osc1shape "0.25"
+   |=| (slow 4 $ osc2shape (scale 0.2 0.8 sinewave1))
+   |=| lfo1sync rand
+   |=| lfo1shape rand
+   |=| lfo1rate rand
+   |=| (slow 2 $ lfo2sync rand)
+   |=| (slow 2 $ lfo2shape rand)
+   |=| (slow 3 $ lfo3sync rand)
+   |=| (slow 3 $ lfo3shape rand)
+   |=| (slow 8 $ hold (scale 0.0 1.0 tri))
+   |=| (slow 12 $ f2mode (scale 0.0 0.9 sinewave1))
+   |=| (slow 12 $ f1cutoff (scale 0.5 0.9 sinewave1))
+   |=| (density 7 $ f1res (scale 0.5 0.9 sinewave1))

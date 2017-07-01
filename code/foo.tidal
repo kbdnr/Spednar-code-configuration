@@ -1,0 +1,448 @@
+--new worksheet for samples n practice -- <inspiring quote>
+--
+d1 $ degradeBy 0.1 $ sometimes (spin 6) $ sometimes (chop 4) $ sound "[loop loop/2 loop/4]"
+   |+| (slow 4 $ pan sinewave1)
+   -- |+| speed "[0.43, 1.96 2.4 2.7, 3 0.6 0.9, 5 3 2]"
+   |+| gain "1.4"
+
+d1 $ slow 4 $ sound (samples "glimpact*4" (irand 25))
+   |+| (slow 3 $ pan sinewave1)
+   |+| speed "[1 2 0.5 0.8]"
+
+d3 $ slow 2 $ sound (samples "lfglitch*8" (irand 25))
+   |+| (slow 2 $ pan sinewave1)
+   |+| unit "c" |+| speed "4"
+
+t3 anticipate $ slowspread ($)
+   [chop 8, striate 4, jux (iter 2), (|+| speed "0.9 0.8 0.7 0.6")
+   ]
+   $ sound (samples "lfglitch*4" (irand 25))
+   |+| unit "c" |+| speed "4"
+
+d4 $ sound "[xxlsn:3 xxlsn:2 xxlsn:5, xxlcp:2 [xxlsh:2 ~ ~ xxlsh:5], xxlbd:4 ~ xxlbd:5]"
+   |+| gain "0.9"
+
+t3 xfade $ slowspread ($)
+   [chop 4, striate 16, jux (iter 4), (|+| speed "0.5 0.4 0.3 0.2")
+   ]
+   $ sound (samples "lfglitch*4" (irand 25))
+   |+| unit "c" |+| speed "4"
+
+t3 xfade $ slowspread ($)
+   [chop 4, striate 16, jux (iter 4), (|+| speed "0.5 0.4 0.3 0.2")
+   ]
+   $ slow 4 $ sound (samples "gransci*4" (irand 25))
+   |+| unit "c" |+| speed "3"
+
+--melodic stuff to impress kelse with
+
+d1 $ sound "[pitfall:0 pitfall:1]"
+   |+| (slow 8 $ pan sinewave1)
+
+t1 xfade $ sometimes (|+| (slow 8 $ speed "1 1.1 1.2 1.3 1.4 0.95 0.9 0.8")) 
+   $ slow 1.5 $ sound "[pitfall:0 pitfall:1]"
+
+t1 anticipate $ sound "[pitfall:0 pitfall:1]"
+   |+| (slow 4 $ speed "1 2 0.5 0.8")
+
+d2 $ sound "[pitfall:2 pitfall:7 pitfall:8 pitfall:9]"
+t2 xfade $ every 2 (brak) $ sound "[pitfall:2 pitfall:7 pitfall:8 pitfall:9]"
+
+t2 xfade $ sometimes (|+| (slow 4 $ speed "[1 2 3 4, 1 0.8 0.6 0.4]")) $ sound "[pitfall:2 pitfall:7 pitfall:8 pitfall:9]"
+   |+| (slow 3 $ pan sinewave1)
+
+t2 anticipate $ every 2 (0.5 <~) $ sometimes (|+| (slow 4 $ speed "[1 2 3 4, 1 0.8 0.6 0.4]")) $ sound "[pitfall:2 pitfall:7 pitfall:8 pitfall:9]"
+   |+| (slow 3 $ pan sinewave1)
+
+t2 anticipate $ every 2 (0.25 ~>) $ sometimes (|+| (slow 8 $ speed "1 0.95 0.9 0.85 0.8 2 3 5")) $ sound "[pitfall:2 pitfall:7 pitfall:8 pitfall:9]"
+   |+| (slow 2 $ pan sawwave)
+   |+| (slow 4 $ speed (scale 0.2 1 sine1))
+
+d4 $ sometimes ((|+| speed "2 2.5")) $ sound (samples "xxlbd*2" (irand 8))
+t4 anticipate  $ sometimes ((|+| speed "1.5 0.8")) $ sound (samples "xxlbd*3" (irand 8))
+
+d5 $ sound (samples "amencutup*8" (run 8))
+   |+| unit "c" |+| speed "8"
+
+d5 $ sound (samples "amencutup*8" (irand 16))
+   |+| unit "c" |+| speed "5"
+
+----
+
+d1 $ slow 5 $ sound "sprachen:0 sprachen:1 sprachen:2 sprachen:3 sprachen:4"
+t1 anticipate $ spin 3 $ sometimes (chop 3) slow 5 $ sound "sprachen:0 sprachen:1 sprachen:2 sprachen:3 sprachen:4"
+t1 anticipate $ every 2 (brak) $ every 3 (0.5 ~>) $ every 1 (0.25 <~) $ slow 5 $ sound "sprachen:0 sprachen:1 sprachen:2 sprachen:3 sprachen:4"
+
+t1 xfade $ sometimes (density 2) $ sound (samples "winston" (irand 10))
+  |+| (slow 4 $ pan sawwave1)
+  |+| delay "0.3"
+  |+| delayfeedback "0.3"
+
+t1 anticipate $ spin 4 $ every 2 (brak) $ every 3 (0.5 ~>) $ every 1 (0.25 <~) $ slow 3 $ sound "sprachen:0 sprachen:1 sprachen:2 sprachen:3 sprachen:4"
+  |+| (slow 2 $ pan sawwave)
+
+--s_p_e_d_
+
+t1 anticipate $ slow 2 $ sound "sprachen:18 sprachen:15 sprachen:4 sprachen:3"
+t1 anticipate $ slow 2 $ spin 3 $ sound "sprachen:18 sprachen:15 sprachen:4 sprachen:3"
+
+k1 $ note "[50 80, 60 60 60]"
+
+k1 silence
+
+d1 $ every 2 (0.5 <~) $ every 3 (0.25 ~>) $ slowcat [sound "bells:0", sound "bells:3", sound "bells:2", sound "bells:1"]
+   |+| (slow 2 $ pan sinewave1)
+   |+| (slow 4 $ pan sawwave)
+
+t1 xfade $ every 2 (0.5 <~) $ every 3 (0.25 ~>) $ slowcat [sound "bells:0", sound "bells:3", sound "bells:2", sound "bells:1"]
+   |+| (slow 2 $ pan sinewave1)
+   |+| (slow 4 $ pan sawwave)
+
+t1 anticipate $ every 2 (0.75 <~) $ every 4 (0.5 ~>) $ every 7 (0.125 <~) $ slowcat [sound "bells:5", sound "bells:2", sound "bells:3", sound "bells:7"]
+   |+| (slow 1 $ pan sinewave1)
+   |+| (slow 5 $ pan sawwave)
+
+t1 xfade $ slowspread ($) [
+   (|+| (slow 5 $ speed "1 2 1.5 0.5 0.75")),
+    chop 4
+   ] $ every 2 (0.75 <~) $ every 4 (0.5 ~>) $ every 7 (0.125 <~) $ slowcat [sound "bells:5", sound "bells:2", sound "bells:3", sound "bells:7"]
+   |+| (slow 1 $ pan sinewave1)
+   |+| (slow 5 $ pan sawwave)
+
+t1 anticipate $ slowspread ($) [
+   (|+| (slow 5 $ speed "[1 2 1.5 0.5 0.75, 1 2 3 4 5]")),
+   jux (iter 2),
+   striate 2
+   ] $ every 2 (0.75 <~) $ every 4 (0.5 ~>) $ every 7 (0.125 <~) $ slowcat [sound "bells:5", sound "bells:2", sound "bells:3", sound "bells:7"]
+
+t1 xfade $ slowspread ($) [
+   (|+| (slow 5 $ speed "[1 2 1.5 0.5 0.75, 1 2 3 4 5, 0.5 0.4 0.3 0.2 0.1]")),
+   chop 4
+   ] $ every 2 (0.75 <~) $ every 4 (0.5 ~>) $ every 7 (0.125 <~) $ slowcat [sound "bells:5", sound "bells:2", sound "bells:3", sound "bells:7"]
+   |+| (slow 5 $ pan sawwave)
+   |+| gain "0.01"
+
+d2 $ degradeBy 0.5 $ sometimes (density 3) $ every 2 (0.5 ~>) $ every 7 (0.25 <~) $ sometimes (spin 4) $ sometimes (density 3) $ sound "[loop]"
+   |+| gain "1.5"
+   |+| delay (scale 0.2 0.9 sine1)
+   |+| delayfeedback (scale 0.2 0.5 sine1)
+
+cps 1
+
+--full melody
+t1 anticipate $ slowspread ($) [
+   jux (iter 4), (|+| (slow 5 $ speed "[1 2 1.5 0.5 0.75, 1 2 3 4 5, 0.5 0.4 0.3 0.2 0.1]")),
+   chop 4
+   ] $ every 2 (0.75 <~) $ every 4 (0.5 ~>) $ every 7 (0.125 <~) $ slowcat [sound "bells:5", sound "bells:2", sound "bells:3", sound "bells:7"]
+   |+| (slow 5 $ pan sawwave)
+
+--breakbells
+t1 xfade $ sometimes (chop 3) $ sometimes (chop 4) $ sometimes (brak . rev) $ sometimes (|+| vowel "a i e o u") $ slowspread ($) [
+   jux (iter 4), (|+| (slow 5 $ speed "[1 2 1.5 0.5 0.75, 1 2 3 4 5, 0.5 0.4 0.3 0.2 0.1]"))
+   ] $ every 2 (0.75 <~) $ every 4 (0.5 ~>) $ every 7 (0.125 <~) $ slowcat [sound "bells:5", sound "bells:2", sound "bells:3", sound "bells:7"]
+   |+| (slow 5 $ pan sawwave)
+   |+| (resonance (scale 0.2 0.8 sine1))
+   |+| (delay (scale 0.1 0.5 sine1))
+   |+| (delayfeedback (scale 0.2 0.3 sine1))
+   |+| gain "0.1"
+
+d4 $ slow 2 $ sound (samples "xxlbd*2" (irand 4))
+
+d5 $ sound (samples "amencutup*8" (irand 8))
+   |+| unit "c" |+| speed "4"
+   |+| gain "1.3"
+
+d2 $ slow 3 $ sound "[lapharp:0, ~ lapharp:1, ~ ~ lapharp:2]"
+t2 anticipate $ slow 3 $ every 2 (chop 4) $ every 3 (striate 2) $ jux (striate 2) $  sound (samples "lapharp*8" (irand 15))
+
+t2 anticipate $ slow 2 $ every 2 (chop 4) $ every 3 (striate 2) $ jux (striate 2) $  sound (samples "lapharp*8" (irand 15)) 
+   |+| (slow 4 $ speed "[1 1.2 0.8 0.6 1.15]")
+
+t2 anticipate $ slow 2 $ every 2 (chop 4) $ sound (samples "lapharp*8" (irand 15)) 
+   |+| (slow 4 $ speed "[1 1.2 0.8 0.6, 0.8]")
+
+t2 xfade $ slow 2 $ every 2 (0.25 ~>) $ sound (samples "lapharp*8" (irand 15)) 
+   |+| (slow 4 $ speed "[1 1.2 0.8 0.6, 0.8, 0.6 0.5]")
+   |+| (slow 3 $ pan sinewave1)
+
+
+--808 cheat sheet
+--808bd/cb/ch/cl/cp/cy/hc/ht/lc/lt/ma/mc/mt/oh/rs/sd
+
+d1 $ spin 2 $ jux (iter 2) $ sound "{2001:0 2001:1 2001:2}%5"
+
+
+d1 $ sound (samples "ade*4" (irand 8))
+d1 $ slow 2 $ sometimes (|+| speed "{1 2 3, 1 0.9 0.9.5}%4") $ sound (samples "ade*4" (irand 8))
+t1 anticipate $ jux (iter 2) $ sometimes (chop 4) $ sometimes (|+| speed "{1 2 3, 1 0.9 0.9.5}%4") $ sound (samples "ade*4" (irand 8))
+t1 anticipate $ spin 3 $ jux (iter 2) $ sometimes (|+| speed "{1 2 3, 1 0.9 0.9.5}%4") $ sound (samples "ade*4" (irand 8))
+
+d2 $ sound "[casio:0, ~ ~ casio:1]"
+t2 anticipate $ spin 4 $ sound "[casio:0, ~ ~ casio:1]"
+t2 xfade $ jux (spin 4) $ sound "[casio:0, ~ ~ casio:1]"
+
+t2 xfade $ slowspread ($) [
+   (|+| (slow 4 $ speed "[1 0.7 0.8 1.2, 2.2 2.3 1 2.4]/2")),
+   chop 4
+   ] $ spin 2 $ sound "[casio:0, ~ ~ casio:1]"
+   |+| unit "c" |+| speed "[0.6, 0.8, 1, 3.8]"
+
+
+d1 $ sound (samples "ades2*4" (irand 8))
+t1 anticipate $ jux (spin 3) $ sound (samples "ades3*4" (irand 12))
+
+k1 $ spin 2 $ degradeBy 0.9 $ note "[70 [72 73 74] 68 67 [64 63 [58 57 56] 62] 65, 50*2 45*2, 20*2 25*3, 10*3 15*2]" |+| slow 3 (modwheel (scale 0.0 0.9 tri1)) |+| slow 4 (sustainpedal (scale 0.1 0.7 sinewave1))
+
+k1 $ spin 2 $ degradeBy 0.9 
+
+
+k1 $ slow 2 $ note "[0 1, 2 [9 10 11] 3 [12 13] 4 [14] 5 6 7 8]"
+   |+| slow 4 (sustainpedal (scale 0.1 0.7 sinewave1))
+
+k2 $ note "[~ 30 ~ ~ 50, 10 20 ~ ~ ~]"
+
+k1 $ note "[20 80, 40 50 60 70]"
+
+k1 silence
+
+d1 $ sound (samples "xxlbd*2" (irand 4))
+
+d2 $ sound (samples "xxlsn*5" (irand 10))
+
+d1 $ every 2 (|+| up "-1") $ slow 4 $ sound "[bells:3]"
+
+--staple lines
+cps 0.3
+cps 1
+
+d1 $ sometimes (spin 2) $ every 3 (0.5 ~>) $ sound "[808oh ~ 808ch ~ ~, 808lt ~ 808mt]"
+
+k1 $ note "50"
+
+d1 $ sound "xxlbd ~ ~ ~ xxlbd:3 ~ ~ ~ xxlbd:4 ~ ~ ~ xxlbd:2 ~ ~ ~"
+d1 $ sound "xxlbd:2 ~ xxlbd:3 ~ ~ ~ xxlbd:4 ~ ~ ~ xxlbd:5 ~ ~ xxlbd:1 ~ ~"
+d1 $ sound "xxlbd:4 ~ ~ ~ ~ ~ ~ ~ xxlbd:2 ~ xxlbd:3 ~ ~ ~ ~ ~"
+
+d1 $ slowcat [
+   sound "[xxlbd ~ ~ ~ xxlbd:3 ~ ~ ~ xxlbd:4 ~ ~ ~ xxlbd:2 ~ ~ ~]", 
+   sound "[xxlbd:2 ~ xxlbd:3 ~ ~ ~ xxlbd:4 ~ ~ ~ xxlbd:5 ~ ~ xxlbd:1 ~ ~]/2"]
+
+d2 $ sound "~ ~ ~ ~ 808sd:1 ~ ~ ~ ~ ~ ~ ~ 808sd:1 ~ ~ ~"
+d2 $ sound "~ ~ ~ ~ 808sd:1 ~ ~ 808sd:2 ~ 808sd:3 ~ 808sd:1 808sd:3 ~ ~ 808sd:4"
+d2 $ sound "~ ~ ~ ~ 808sd:1 ~ ~ 808sd ~ ~ ~ ~ 808sd:1 ~ ~ 808sd"
+
+d3 $ sometimes (|+|speed "1 0.8 0.7") $ sound "~ ~ 808ch ~ ~ ~ 808oh ~ ~ ~ 808ch ~ ~ ~ 808oh ~"
+
+d3 $ degradeBy 0.6 $ jux (iter 2) $  sound "808rs 808rs 808rs 808rs 808rs 808rs 808rs ~ 808rs 808rs 808rs 808rs 808rs ~ 808rs 808rs"
+   |+| (slow 3 $ pan sawwave)
+
+--boxing
+
+d1 $ degradeBy 0.4 $ slowspread ($) [
+     sometimes (0.5 <~),
+     sometimes (0.25 ~>),
+     sometimes (0.25 <~),
+     sometimes (0.5 ~>)
+     ] $ sound (samples "[ppglove*8 ppstick*8 ppglove2*8 ppbag*8]/4" (irand 8))
+     |+| gain "0.9"
+
+t1 xfade $ degradeBy 0.1 $ slowspread ($) [
+     chop 4,
+     jux (iter 2),
+     striate 4,
+     spin 4
+     ] $ sound (samples "[ppglove*8 ppstick*8 ppglove2*8 ppbag*8]/4" (irand 8))
+
+t1 xfade $ degradeBy 0.1 $ slowspread ($) [
+     sometimes (0.5 <~),
+     sometimes (0.25 ~>),
+     sometimes (0.25 <~),
+     sometimes (0.5 ~>)
+     ] $ sound (samples "[ppglove*8 ppstick*8 ppglove2*8 ppbag*8]/4" (irand 8))
+
+d2 $ sometimes (spin 2) $ degradeBy 0.3 $ sound (samples "[ppglove*4 ppglove2*5]/2" (irand 16)) 
+   |+| (slow 4 $ pan sinewave1)
+
+d3 $ sometimes (spin 2) $ degradeBy 0.3 $ sound (samples "[pphand*7 ppstick*5]/2" (irand 16))
+   |+| (slow 2 $ pan sawwave)
+
+k1 $ note "[15 30 45 60, 10 30 60 80, 120]"
+k1 silence
+
+k1 $ note "[50 ~ ~ ~ 50 ~ 50 ~, 20 ~ 20 ~, 30 30 ~ 30, 90 ~ 90 ~ 90 ~ ~ ~]"
+
+--new 9.3
+
+d1 $ spin 3 $ swing 2 $ slowcat [sound "xxlsn xxlsn xxlsn", sound "xxlsn:2 xxlsn:2 xxlsn:2", sound "xxlsn:3 xxlsn:3 xxlsn:3"]
+d1 $ spin 3 $ swing 2 $ slowcat [sound "xxlbd:3 xxlbd:4", sound "xxlsn:3 xxlsn:3 xxlsn:3"]
+
+d1 $ slowspread ($) [
+   chop 4, jux (0.25 ~>), jux (0.125 <~), jux (iter 2), spin 3, striate 2
+   ] $ spin 3 $ swing 2 $ slowcat [sound "xxlbd:3 xxlbd:4", sound "xxlsn:3 xxlsn:3 xxlsn:3"]
+
+d2 $ chop 4 $ degradeBy 0.4 $ sound (samples "[ppbag*4 ppglove*3]/2" (irand 20))
+
+--somefootwork
+cps 1.33333333333333333333333
+
+d1 $ slowcat [sound "loose:0 loose:1", sound "loose:2 loose:3", sound "loose:4 loose:5", sound "loose:6 loose:7"] |+| gain "1.5"
+t1 anticipate $ slowcat [sound "loose:0 loose:1", sound "loose:2 loose:3", sound "loose:4 loose:5", sound "loose:6 loose:7"]
+t1 xfade $ sound (samples "loose*4" (irand 16))
+t1 anticipate $ spin 2 $ sound (samples "loose*4" (irand 16))
+t1 xfade $ sound (samples "loose*8" (irand 16))
+
+t1 xfade $ spin 2 $ sound (samples "loose*8" (irand 16))
+   |+| gain "0.4"
+
+d3 $ degradeBy 0.8 $ sound "[hh*8, 808rs*16]/2"
+   |+| (slow 4 $ pan sinewave1)
+
+--t2
+
+d1 $ sound "808bd:4 ~ ~ 808bd:3 ~ ~ 808bd:3 ~"
+t1 xfade $ sound "[808bd:4 ~ ~ 808bd:3 ~ ~ 808bd:3 ~, ~ ~ 808rs ~ 808rs/2]"
+
+d2 $ slow 20 $ sound "[chatter:2]"
+t2 anticipate $ slow 20 $ sound "[chatter:2, chatter:3]"
+
+t1 anticipate $ degradeBy 0.5 $ sound "[808bd:4 ~ ~ 808bd:3 ~ ~ 808bd:3 ~, 808rs*8, hh*16, xxlbd:4*4]"
+
+--dat jam
+d1 $ sometimes (spin 2) $ sometimes (density 1.25 . rev . (|+| delay (scale 0.2 0.8 sinewave1)) . (|+| delayfeedback (scale 0.1 0.8 saw1))) $ sometimes (0.125 ~>) $ sound (samples "[mule*8]" (irand 8))
+   |+| gain (scale 0.8 1.2 saw1)
+
+t1 anticipate $ slowspread ($)
+   [jux (0.5 ~>), jux (0.25 <~), chop 4, (|+| speed "1 0.8 0.7 0.65")] $ sound (samples "[amencutup*8 [loose*4], amen*4 [mule*4]]/2" (irand 8))
+
+t1 anticipate $ spin 2 $ swing 4 $ sound (samples "[amencutup*8 [loose*4], amen*4 [mule*4]]/2" (irand 8))
+t1 anticipate $ spin 2 $ sound (samples "[amencutup*8 [loose*4], amen*4 [mule*4]]/2" (irand 8))
+
+t1 anticipate $ spin 2 $ slowspread ($)
+   [jux (0.5 ~>), jux (0.25 <~), chop 4, chop 8] $ sound (samples "[amencutup*8 [loose*4], amen*4 [mule*4]]/2" (irand 8))
+
+t1 xfade $ slowcat [sound (samples "[amencutup*4 [loose*4], amen*4 [mule*4]]/2" (irand 16)),
+              sound (samples "[loose*4 [amen*2], amencutup*4 [mule*2]]/2" (irand 16)),
+              sound (samples "[mule*4 [amen*3], loose*4 [mule*4]]/2" (irand 16))]
+
+t1 xfade $ slowcat [spin 2 $ sound (samples "[amencutup*4 [loose*4], amen*4 [mule*4]]/2" (irand 16)),
+              (0.5 <~) $ sound (samples "[loose*4 [amen*2], amencutup*4 [mule*2]]/2" (irand 16)),
+              (0.25 ~>) $ sound (samples "[mule*4 [amen*3], loose*4 [mule*4]]/2" (irand 16))]
+
+
+d1 $ slow 32 $ striate 32 (1/16) $ sound "[bev]"
+--
+
+d1 $ degradeBy 0.8 $ jux (rev) $ spin 2 $ slowcat [sound "xxlsn:3 xxlsn:4 xxlsn:5", sound "xxlsn:3 xxlsn:3 xxlsn:4 xxlsn:7", sound "xxlsn:3 xxlsn:3 xxlsn:4 xxlsn:2 xxlsn:6"]
+   |+| speed "[1,2,0.8 0.5]"
+
+bpm 109
+
+d1 $ stack [
+   sound "sine:6 sine:6 sine:6 sine:6 sine:6 sine:6 sine:6 sine:6"
+   |+| (slow 8 $ pan sawwave1)
+   |+| (slow 8 $ speed "[1 2 3 4 5 6 7 8, 7 8 6 5 4 2 3 1, 0.6 0.62 0.64 0.66 0.68 0.70 0.72 0.74]")
+   |+| gain (scale 0.2 1 sawwave1),
+   randcat [sound "[xxlbd:4 ~ ~ xxlbd:3 ~ ~ xxlbd:3 ~]" |+| gain (scale 0.5 1.2 sine1), sound "[xxlbd:4 ~ 808bd:3 ~]"],
+   randcat [sound "[xxlsn:4]", sound "[xxlsn:2 ~ xxlsn:5]", sound "[xxlcp:4]"] |+| (slow 4 $ gain (scale 0.7 1 saw1)),
+   swing 2 $ degradeBy 0.6 $ sometimes (density 2) $ sound "[~ xxlsh?, ~ ~ xxlsh:1*2 ~ xxlsh:3, ~ xxlsh:4,]" |+| delay "0.5" |+| delayfeedback "0.5",
+   degradeBy 0.6 $ sometimes (density 2 . spin 2) $ sound (samples "xxltm*4" (irand 10)) |+| (slow 3 $ pan sinewave) |+| speed "{1 1.2 0.8 0.7}%8",
+   degradeBy 0.6 $ sometimes (|+| speed "[2, 0.2]") $ sometimes (|+| speed "[1 3, 1 2 3 4, 0.9 0.8 0.7 0.6]") $ sound "808rs*8" |+| (slow 6 $ pan sawwave1)
+   ]
+
+--more remix attempts
+bpm 128
+
+d1 $ stack [ 
+   degradeBy 0.0 
+   $ sometimes (degradeBy 0.7) 
+   $ sometimes (slow 5) 
+   $ sound (samples "[beat*8 beat2*4 beat3*2]/3" (run 8))
+   |+| (slow 3 $ pan sinewave1),
+   degradeBy 0.0 
+   $ sometimes (degradeBy 0.5) 
+   $ sometimes (slow 4) 
+   $ sound (samples "[beat2*4 beat*8 beat3*4]/3" (run 8))
+   |+| (slow 9 $ pan sinewave1),
+   degradeBy 0.0
+   $ every 2 (0.5 ~>)
+   $ every 5 (0.25 <~)
+   $ sound (samples "[beat2*2 beat2*4 beat2*5]/3" (run 8))
+   ]
+   |+| gain "0.7"
+
+--remix 1
+--beats
+d1 $ degradeBy 0.5 $ sound (samples "[beat2*2 beat2*3 beat2*4]/3" (run 8))
+d1 $ sound (samples "[beat2*2 beat2*4 beat2*8]/3" (run 8))
+d1 $ sound (samples "[beat2*2 beat2*5 beat2*8]/3" (run 8))
+t1 xfade $ sound (samples "[beat2*2 beat2*3 beat2*8]/3" (irand 50))
+t1 anticipate $ sound (samples "[beat2*2 beat2*5 beat2*8]/3" (irand 50)) |+| (slow 2 $ pan sawwave) |+| delay "0.05" |+| delayfeedback "0.3"
+t1 anticipate $ sometimes (spin 2) $ sound (samples "[beat2*2 beat2*5 beat2*8]/3" (irand 50)) |+| (slow 3 $ pan sawwave) |+| delay "0.05" |+| delayfeedback "0.3"
+d1 $ sometimes (0.5 ~>) $ sometimes (0.25 ~>) $ sound (samples "[beat2*2 beat2*3 beat2*4]/3" (irand 50)) |+| delay "0.1" |+| delayfeedback "0.3"
+t1 anticipate $ sometimes (0.5 ~>) $ sometimes (0.25 ~>) $ sometimes (0.125 <~) $ sound (samples "[beat2*2 beat2*3 beat2*4]/3" (run 8)) |+| (slow 4 $ pan sinewave1) |+| delay "0.1" |+| delayfeedback "0.3"
+
+--secondary percussion
+
+d2 $ degradeBy 0.6 $ sometimes (spin 2) $  sound (samples "firstedit*4" (irand 25))
+   |+| (slow 2 $ pan sawwave1)
+   |+| gain "0.30"
+
+--pad
+
+d4 $ sometimes (density 2) $ sound (samples "thire*4" (irand 30))
+   |+| speed "[0.4]"
+   |+| gain "0.29"
+
+d5 $ sometimes (density 2) $ sound (samples "thire*4" (irand 40))
+   |+| speed "{2 3 3.2 0.3}%4"
+   |+| gain "0.7"
+
+--tsuku boshi remix 1
+--------------------
+d1 $ sometimes (spin 2) 
+   $ sometimes (chop 2) 
+   $ sometimes (rev)
+   $ sometimes (0.5 ~>) 
+   $ degradeBy 0.3 
+   $ sound (samples "beat*4" (irand 40))
+   |+| (slow 2 $ pan sinewave1)
+   |+| speed "{1 1.1 0.9 0.8}%6"
+   |+| gain "0.70"
+
+--these parts
+d1 $ slow 8 $ sound (samples "feedb*4" (irand 10))
+   |+| (slow 4 $ pan sinewave)
+   |+| gain "0.85"
+
+d5 $ slow 2 $ sound (samples "mall*3" (irand 10))
+   |+| gain "0.84"
+   |+| delay "0.05"
+   |+| delayfeedback "0.6"
+
+d3 $ slow 2 $ sometimes (density 2) $ sometimes (density 2) $ sound (samples "lead2*8" (irand 40))
+   |+| (slow 2 $ pan sinewave1)
+   |+| speed "{1 2.3 0.2 0.3 1.4}%8"
+   |+| gain "0.85"
+   |+| delay "0.81"
+   |+| delayfeedback "0.3"
+
+d1 $ sometimes (spin 3) $ sometimes (density 3) $ sound "[loop [~ ~ loop], xxlcp, ~ ~ xxlsh:6/3]"
+   |+| gain "0.9"
+   |+| delay "0.4"
+   |+| delayfeedback "0.4"
+   |+| speed "[1, 1.1,2.3, 0.7]"
+
+
+d1 $ sometimes (|+| speed "[1 2 3, 1 0.8 0.7, 2 0.5 0.4]") $ every 4 (density 2) $ sometimes (degradeBy 0.8) $ every 2 (spin 2) $ sound "[loop loop loop]"
+   |+| delay "0.2"
+   |+| resonance "0.3"
+   -- |+| shape sine
+   |+| (slow 4 $ pan sinewave1)
+
+d2 $ sound "[loop]"
+
+bpm 120
+
+k1 $ note "88 89 90 91 92 93 94 95 96 97 98 99"
+
+k1 $ note "96"

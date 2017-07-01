@@ -1,0 +1,68 @@
+--tsuku boshi concepts
+-----------------------
+--t1
+--
+--1 for AKM
+bpm 64
+
+let udg = degradeBy 0.4
+
+--rhythm
+d1 $ stack [
+   udg $ sometimes (jux (iter 2)) $ sound "[808cp*5]"
+   |+| resonance (scale 0.1 0.8 saw)
+   |+| (slow 5 $ delay (scale 0.1 0.8 saw))
+   |+| (slow 5 $ delayfeedback (scale 0.1 0.5 saw))
+   |+| (slow 15 $ pan sinewave1),
+   udg $ sometimes (density 3) $ sound "[808bd*3, ~ xxlbd:4]/2",
+   udg $ sometimes (density 2) $ sound "[808rs*7]"
+   |+| (slow 7 $ pan sawwave)
+   |+| (slow 4 $ gain (scale 0.65 0.85 sine)),
+   udg $ sometimes (spin 2) $ sound (samples "xxlsh*5?" (irand 30))
+   |+| (slow 4 $ pan sinewave1)]
+   |+| (slow 5 $ gain (scale 0.88 1.0 sine))
+
+--melodic span
+d2 $ udg $ sometimes (spin 5) $ sound "casio*5" 
+   |+| (slow 10 $ speed (scale 0.2 5 sine))
+   |+| (slow 10 $ delay (scale 0.2 0.9 sine))
+
+--melodic fill
+d3 $ udg $ sometimes (spin 3) $ sound "casio*10"
+   |+| speed "{1 0.8 0.7 0.6 0.4 0.2}%10"
+   |+| gain (scale 0.65 0.9 sine)
+
+-----------------------------
+--t2
+--
+--eastern
+bpm 50
+
+d1 $ randcat [sound (samples "lapharp*4" (run 10)), sound (samples "lapharp*4" (run 9)), sound (samples "lapharp*4" (run 7)), sound (samples "lapharp*4" (irand 30))]
+   |+| gain (scale 0.7 0.95 sine)
+   |+| (slow 33 $ speed (scale 1 0.8 sine))
+
+d1 $ slowspread ($) [sometimes (spin 4), sometimes (jux (iter 4)), sometimes (density 2), sometimes (density 2 . rev)] $
+   randcat [sound (samples "lapharp*4" (run 10)), sound (samples "lapharp*4" (run 9)), sound (samples "lapharp*4" (run 7)), sound (samples "lapharp*4" (irand 30))]
+   |+| pan sinewave1
+   |+| gain (scale 0.7 0.95 sine)
+   |+| (slow 33 $ speed (scale 1 0.8 sine))
+
+d2 $ slowspread ($) [sometimes (density 2), sometimes (jux (iter 2)), sometimes (rev), sometimes (spin 2)] $
+   slow 4 $ sound (samples "bangu*4" (irand 10))
+   |+| (slow 4 $ gain (scale 1 1.3 sine))
+   |+| cut "1"
+
+
+--separate
+d3 $ sometimes (spin 3) $ sound (samples "nau*4" (run 4))
+   |+| gain (scale 0.7 0.95 sine)
+   |+| delay "0.4"
+   |+| delayfeedback "0.4"
+   |+| speed "1.2"
+
+d3 $ sometimes (jux (iter 2)) $ sometimes (spin 3) $ sound (samples "nau*4" (irand 10))
+   |+| gain (scale 0.7 0.95 sine)
+   |+| delay "0.4"
+   |+| delayfeedback "0.4"
+   |+| speed "1.2"

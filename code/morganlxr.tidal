@@ -1,0 +1,47 @@
+--morgans lxr control
+--
+--88 - E7 - oh
+--89 - F7 - ch
+--90 - F#7 - cp
+--92 - G#7 - sn
+--93 - A7 - bd 
+--95 - C8 - tm1
+--96 - B7 - tm2
+
+bpm 80
+
+--sweep
+k1 $ every 2 (spin 2) $ slowcat [note "[93 95 96 92 90 88 89]", note "[93*4?, 88*2?, 89*3?]", note "[96 ~ ~ 96 [89 89 88] ~ 92]", note "[93 ~ ~ 93 ~ ~ 93 ~, ~ ~ 88 89 ~ ~ 88 ~, 96 96 ~ ~ 96 ~ ~]"]
+
+k1 $ rarely (degradeBy 0.8) $ rarely (density 2) $ sometimes (spin 2) $ note "[93 ~ ~ 93 ~ ~ 93 ~, 92*8?, 90*12?, 92*4?, 89*7?]"
+
+k1 $ rarely (density 2) $ sometimes (slow 2 . spin 3) $ note "[~ ~ 93, 95 96 96, 90*6?]"
+
+--
+k1 $ slow 2 $ rarely (brak) $ every 2 (0.5 ~>) $ every 4 (0.25 <~) $ rarely (degradeBy 0.8) $ rarely (density 2) $ sometimes (spin 2) $ 
+   slowcat [
+   note "[93 ~ ~ 93 ~ ~ 93 ~,92*8?, 90*12?,92*4?, 89*7?]", 
+   note "[93*4, 89*8?, 90*6]",
+   note "[93*8?, 95 ~ 96 95?, 92*3?, 88*8? 89*8?]"
+   ]
+
+d1 $ rarely (brak) $ sound "[xxlbd:3 ~ ~ xxlbd:2 ~ ~ xxlbd:2 ~, xxlsh*8?]"
+
+d2 $ slow 2 $ sound (samples "amencutup*16" (run 16))
+   |+| crush (scale 0.2 0.9 sine)
+   |+| delay "0.2"
+   |+| delayfeedback "0.2"
+   |+| gain "0.0"
+
+k1 $ sometimes (degradeBy 0.8) $ every 4 (rev) $ 
+     note "[93 ~ ~ 93 ~ ~ 93 ~,92*8?, 90*12?,92*4?, 89*7?]"
+
+d1 $ sound (samples "lapharp*4" (irand 25))
+   |+| accelerate "-0.1"
+   |+| gain "1.4"
+
+d3 $ sound "spednar:3"
+   |+| gain "1.5"
+
+d2 $ sound "[loop loop loop loop]"
+   |+| gain "1.9"

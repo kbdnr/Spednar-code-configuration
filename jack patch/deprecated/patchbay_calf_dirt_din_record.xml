@@ -1,0 +1,73 @@
+<!DOCTYPE patchbay>
+<patchbay version="0.3.10" name="patchbay_calf_dirt_din_record">
+ <output-sockets>
+  <socket exclusive="off" client="dirt" type="jack-audio" name="Tidal Stereo">
+   <plug>output_0</plug>
+   <plug>output_1</plug>
+  </socket>
+  <socket exclusive="off" client="din" type="jack-audio" name="DIN Stereo">
+   <plug>L</plug>
+   <plug>R</plug>
+  </socket>
+  <socket exclusive="off" client="calf" type="jack-audio" name="Limiter Output Stereo">
+   <plug>limiter_out_l</plug>
+   <plug>limiter_out_r</plug>
+  </socket>
+  <socket exclusive="off" client="calf" type="jack-audio" name="Compressor Output Stereo">
+   <plug>compressor_out_l</plug>
+   <plug>compressor_out_r</plug>
+  </socket>
+  <socket exclusive="off" client="calf" type="jack-audio" name="Stereo Output Stereo">
+   <plug>stereo_out_l</plug>
+   <plug>stereo_out_r</plug>
+  </socket>
+  <socket exclusive="off" client="system" type="jack-audio" name="System Capture Stereo">
+   <plug>capture_1</plug>
+   <plug>capture_2</plug>
+  </socket>
+  <socket exclusive="off" client="system" type="jack-audio" name="Monitor 1">
+   <plug>monitor_1</plug>
+  </socket>
+ </output-sockets>
+ <input-sockets>
+  <socket exclusive="off" client="QJackRcd" type="jack-audio" name="Record Stereo">
+   <plug>record_1</plug>
+   <plug>record_2</plug>
+  </socket>
+  <socket exclusive="off" client="dirt" type="jack-audio" name="Dirt Mono Input">
+   <plug>input</plug>
+  </socket>
+  <socket exclusive="off" client="system" type="jack-audio" name="Out 1/2 Stereo">
+   <plug>playback_1</plug>
+   <plug>playback_2</plug>
+  </socket>
+  <socket exclusive="off" client="system" type="jack-audio" name="Out 3/4 Stereo">
+   <plug>playback_3</plug>
+   <plug>playback_4</plug>
+  </socket>
+  <socket exclusive="off" client="calf" type="jack-audio" name="Limiter Input Stereo">
+   <plug>limiter_in_l</plug>
+   <plug>limiter_in_r</plug>
+  </socket>
+  <socket exclusive="off" client="calf" type="jack-audio" name="Compressor Input Stereo">
+   <plug>compressor_in_l</plug>
+   <plug>compressor_in_r</plug>
+  </socket>
+  <socket exclusive="off" client="projectM-jack" type="jack-audio" name="Input Socket 8">
+   <plug>input</plug>
+  </socket>
+  <socket exclusive="off" client="calf" type="jack-audio" name="Stereo Effect Input Stereo">
+   <plug>stereo_in_r</plug>
+   <plug>stereo_in_l</plug>
+  </socket>
+ </input-sockets>
+ <slots/>
+ <cables>
+  <cable output="Tidal Stereo" input="Limiter Input Stereo" type="jack-audio"/>
+  <cable output="Limiter Output Stereo" input="Compressor Input Stereo" type="jack-audio"/>
+  <cable output="Compressor Output Stereo" input="Record Stereo" type="jack-audio"/>
+  <cable output="Compressor Output Stereo" input="Out 1/2 Stereo" type="jack-audio"/>
+  <cable output="Compressor Output Stereo" input="Input Socket 8" type="jack-audio"/>
+ </cables>
+</patchbay>
+

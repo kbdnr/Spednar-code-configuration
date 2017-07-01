@@ -1,0 +1,30 @@
+d1 $ stack [
+   sound (samples "tok*4" (run 4)) 
+   |+| begin "0.02",
+   sound (samples "tink*3 ~ tink*2" (run 5)) 
+   |+| cut "2" 
+   |+| speed "0.3"
+   |+| (slow 16 $ delay (scale 0.01 0.5 sinewave1))
+   |+| (slow 16 $ delayfeedback (scale 0.01 0.5 sinewave)),
+   sound (samples "off*2" (run 2)) 
+   |+| cut "3" 
+   |+| gain "0.7" 
+   |+| (slow 4 $ speed "{1 0.8 0.7 0.5}%4")
+   ]
+
+d2 $ slow 2 $ sound (samples "terrorist*8" (run 8)) 
+   |+| cut "4"
+   |+| gain "0.8"
+
+d2 $ slowspread ($) [
+   foldEvery [3,8] (iter 2 . rev),
+   foldEvery [2,6] (brak),
+   foldEvery [1,4] (density 2 . degradeBy 0.5),
+   (|+| speed "0.5")
+   ] $
+   slow 2 $ sound (samples "terrorist*8" (run 8)) 
+   |+| cut "4"
+   |+| gain "0.8"
+
+
+d3 $ slow 2 $ sound (samples "miniyeah*8" (irand 30)) |+| gain "0.5"

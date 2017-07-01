@@ -1,0 +1,47 @@
+bpm 64
+
+d1 $ stack [
+   rarely (0.25 ~>) $
+   every 8 (spin 2) $
+   sometimes (|+| shape sinewave1) $ sound "bev"
+   |+| cut "1"
+   |+| (slow 4 $ begin (scale 0.2 0.6 sinewave1))
+   |+| speed "0.8",
+   sound (samples "808bd ~ ~ ~ xxlbd ~ ~ ~ 808bd ~" (run 4)) |+| gain "0.8",
+   every 4 (density 4) $ sound (samples "808rs*6?" (irand 1))
+   |+| (density 2 $ gain (scale 0.6 0.8 sawwave))
+   ]
+
+--slow intro cuts
+d2 $ sound (samples "amencutup*4" (run 4))
+
+--basic cuts
+d2 $ slowcat [
+     sound (samples "amencutup*4" (run 4)),
+     sound (samples "amencutup*8" (run 8)),
+     slow 2 $ sound (samples "amencutup*16" (run 16))
+     ]
+
+--gen breaks
+d2 $ slowcat [
+     sound (samples "amencutup*4" (irand 4)),
+     sound (samples "amencutup*8" (irand 8)),
+     slow 2 $ sound (samples "amencutup*16" (irand 16))
+     ]
+     |+| (density 13 $ pan (scale 0.3 0.8 sawwave1))
+
+d2 $ slowspread ($) [density 2, spin 2, iter 4] $
+     slowcat [
+     slow 2 $ sometimes (0.125 <~) $ sometimes (0.25 ~>) $ sound (samples "amencutup*16" (irand 16)),
+     slow 2 $ sometimes (density 2 . degradeBy 0.4 . rev) $ sound (samples "amencutup*16" (irand 16))
+     ]
+     |+| (slow 2 $ delay (scale 0.0 0.3 sinewave))
+     |+| (slow 3 $ delayfeedback (scale 0.1 0.5 sinewave))
+     |+| cut "2"
+     |+| (density 13 $ pan (scale 0.3 0.8 sawwave1))
+     |+| (density 3 $ speed (scale 0.9 1.1 saw))
+
+--static control
+d3 $ sometimes (|+| speed "0.5") $ every 3 (spin 2 . rev) $ sometimes (density 2) $ sound "loop*7?"
+   |+| cut "1"
+   |+| (slow 4 $ begin (scale 0.0 0.6 sawwave1))

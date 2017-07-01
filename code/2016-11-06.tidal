@@ -1,0 +1,69 @@
+bpm 80
+
+--in
+d1 $ slowcat [sound "music:0"]
+   |+| cut "1"
+
+d4 $ rarely (density 2) $ sound "spb1:2"
+   |+| (slow 4 $ speed "[0.48 0.625 0.72 0.841]")
+   |+| cut "3"
+   |+| gain "1.2"
+
+--b1
+d1 $ slowcat [sound "music:0", sound "music:1"]
+   |+| cut "1"
+
+--brk
+d1 $ slow 4 $ sound (samples "music*4" (run 11))
+   |+| cut "1"
+
+--vv
+d1 $ slow 2 $ sound "[music:11 music:8 ~ [~ music:5 ~] music:9]"
+   |+| (slow 5 $ bandf (scale 0.3 0.5 sinewave1))
+   --|+| bandq (scale 0.1 0.5 $ slow 4 sinewave1)
+   |+| cut "1"
+
+--basic drum
+d3 $ retrig $ sound "[bd:4(3,8), ~ ~ xxlsh*3?, 808rs*8?]"
+   |+| gain "0.9"
+
+d2 $ slow 8 $ sound (samples "ywamen1*8" (run 8))
+   |+| cut "2"
+
+d2 $ slow 2 $ sometimes (density 2 . rev . degradeBy 0.3) $ sound (samples "ywamen1*8" (irand 8))
+   |+| cut "2"
+
+d2 $ retrig $ sometimes (density 2 . rev . degradeBy 0.3) $ sound (samples "ywamen1*8" (run 8))
+   |+| cut "2"
+   |+| (slow 4 $ gain (scale 0.90 0.85 sinewave1))
+   |+| (density 5 $ pan (scale 0.1 0.9 sawwave))
+
+d2 $ slow 2 $ sound (samples "ywamen4*8" (run 16))
+   |+| cut "2"
+
+d2 $ every 4  (|+| speed "{1 0.98 0.97 0.95 0.88 0.82 0.75 0.7}%8") $ 
+   slow 2 $ sound (samples "ywamen4*8" (irand 16))
+   |+| cut "2"
+   |+| gain "0.9"
+
+--b2
+d1 $ slow 2 $ sound "music2:0 music2:1"
+   |+| begin "0.5"
+   |+| cut "1"
+
+d1 $ slow 2 $ sound "music2:1 ~ music2:2"
+   |+| cut "1"
+
+--shortbreak
+d1 $ slow 2 $ sound "music2:3 music2:5"
+   |+| begin "0.1 0"
+   |+| cut "1"
+
+--b3
+d1 $ retrig $ slow 2 $ sound "music3:5 ~ ~ [music2:5?] music3:4? ~ ~ ~ ~"
+   |+| cut "1"
+
+d5 $ sometimes (density 2) $ sound "spb1:2"
+   |+| (slow 4 $ speed "[1 0.5 0.5 0.85]")
+   |+| cut "4"
+   |+| gain "1.2"

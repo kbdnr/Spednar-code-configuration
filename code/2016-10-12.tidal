@@ -1,0 +1,7 @@
+bpm 80
+
+d1 $ stack [
+   sound (samples "xxlbd(3,8)?" (irand 10)) |+| gain "0.8",
+   every 2 (0.125 <~) $ sound (samples "sn*3?" (irand 10)),
+   every 2 (0.5 ~>) $ sound (samples "hh*5?" (irand 10))
+   ]

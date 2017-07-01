@@ -1,0 +1,24 @@
+--midi sans frontiers rmx
+
+bpm 80
+
+d1 $ slow 3 $ every 4 ((|+| speed "0.8") . spin 2) $ sound "xxlbd(3,8)" 
+   |+| cut "2"
+   |+| gain "0.6"
+
+d3 $ slow 6 $ 
+   sometimes (|+| speed "{0.95 0.9 0.88 0.87}%4") $ 
+   randcat [sound "808rs*8?", sound "~ ~ [808rs*6] ~", spin 3 $ sound "808rs*16?"]
+   |+| (density 4 $ pan sinewave1)
+   |+| cut "2"
+   |+| gain "0.5"
+
+d4 $ slow 4 $ sound (samples "spm1*16" (run 16))
+   |+| cut "1"
+   |+| delay "0.3"
+   |+| delayfeedback "0.6"
+
+d5 $ slow 4 $ sound (samples "spc1*16" (run 16))
+   |+| cut "3"
+   |+| delay "0.3"
+   |+| delayfeedback "0.6"

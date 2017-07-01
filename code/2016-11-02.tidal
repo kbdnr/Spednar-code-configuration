@@ -1,0 +1,24 @@
+bpm 80
+
+m1 $ slow 2 $ sometimes (density 3 . degradeBy 0.5) $ rarely (spin 2) $ slowspread ($) [
+    density 2, sometimes (0.25 ~>), sometimes (0.25 <~), rarely (brak . rev)
+    ] $ slowcat [
+    stack [
+      note "[40*4 38*4 20*2, 80*2? 76*2? 40*4?]"
+      |+| osc2shape (scale 0.40 0.1 sawwave)
+      |+| osc1shape (scale 0.01 0.8 sawwave)
+      |+| (slow 5 $ f1cutoff (scale 0.5 0.8 sinewave1))
+    ],
+    stack [
+      note "[20*3 24*2 32*3, 40 50 50 50]"
+      |+| (density 2 $ osc2shape (scale 0.40 0.1 sinewave1))
+      |+| (density 2 $ osc1shape (scale 0.01 0.8 sinewave))
+      |+| (slow 10 $ f1res (scale 0.01 0.5 sinewave1))
+    ]
+   ]
+   --|+| cut "1"
+
+m1 silence
+
+d1 $ sound "[808bd:5(3,8), ~ ~ 808mt, 808lt*2? 808lt:2*3]"
+   |+| cut "1"

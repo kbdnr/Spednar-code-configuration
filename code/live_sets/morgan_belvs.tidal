@@ -1,0 +1,346 @@
+--erica synths program
+bpm 87
+
+--first break
+d1 $ stack [
+   sound (samples "[808rs(4,8)?]" (irand 10)),
+   sound (samples "xxlbd ~ xxlbd ~ ~ ~ ~ ~ ~ ~ xxlbd xxlbd ~ ~ ~ ~]" (irand 10))
+   |+| cut "1",
+   every 4 (spin 2 . rev) $ sometimes (|+| speed "{0.8 2 0.7 0.5}%16") $
+   sound (samples "[~ ~ ~ ~ 99sn ~ ~ 99sn ~ 99sn ~ ~ 99sn ~ ~ 99sn]" (run 5))
+   |+| cut "2"
+   |+| (density 4 $ pan sinewave1)
+   ]
+
+--starter
+--
+d5 $ slow 4 $ sound (samples "uybns*8" (run 6))
+   |+| unit "c"
+   |+| speed "2"
+   |+| cut "3"
+   |+| gain "1"
+
+d5 $ slow 4 $ sometimes (density 2) $ sound (samples "uybns*8" (run 6))
+   |+| unit "c"
+   |+| speed "2"
+   |+| cut "3"
+   |+| gain "1"
+
+--dope
+d5 $ slow 4 $ every 4 (spin 2) $ sometimes (density 2) $ sound (samples "uybns*8" (run 16))
+   |+| unit "c"
+   |+| speed "2"
+   |+| cut "3"
+   |+| gain "1"
+
+d5 $ slow 4 $ sound (samples "uybns*8" (run 13))
+   |+| unit "c"
+   |+| speed "2"
+   |+| cut "3"
+   |+| gain "0.40"
+
+--goozebloop
+d1 $ slow 4 $ sound (samples "goozbass*4" (run 4))
+
+d2 $ slow 4 $ sound (samples "goozbloop*4" (run 4))
+   |+| gain "0.5"
+
+--t1
+--cbt
+d3 $ slow 4 $ sound (samples "cbtgl*8" (run 8))
+   |+| cut "6"
+   |+| gain "1.0"
+
+d5 $ slow 4 $ sound (samples "cbtjb1*8" (run 8))
+   |+| cut "5"
+
+--ftwrk drums
+d4 $ slowcat [
+   slow 4 $ sound (samples "cbtfw1*8" (run 8)),
+   slow 4 $ sound (samples "cbtfw2*8" (run 8))
+   ]
+   |+| unit "c"
+   |+| speed "2"
+   |+| cut "4"
+   |+| gain "0.4"
+
+d6 $ slow 4 $ sound (samples "cbtfw4*4" (run 4))
+   |+| unit "c"
+   |+| speed "2"
+   |+| gain "0.9"
+   |+| cut "4"
+
+d6 $ slowcat [slow 4 $ sound (samples "cbtfw3*4" (run 4)), slow 4 $ sound (samples "cbtfw4*4" (run 4))]
+   |+| unit "c"
+   |+| speed "2"
+   |+| gain "0.9"
+
+d6 $ slowcat [slow 4 $ sound (samples "cbtfw3*8" (irand 8)), slow 4 $ sound (samples "cbtfw4*8" (irand 8))]
+   |+| unit "c"
+   |+| speed "2"
+   |+| gain "0.9"
+   |+| cut "4"
+
+--sub breakdown
+d5 $ stack [
+   slow 8 $ sound (samples "cbtjb2*8" (run 8)),
+   slow 8 $ sound (samples "cbtsb1*4" (run 4))
+   ]
+
+d1 $ stack [
+   sound (samples "[808rs(3,8), 808rs*16?]/2" (run 4))
+   --sound (samples "[xxlbd(3,8)]" (run 4))
+   ]
+   |+| gain "0.8"
+
+--sb
+d5 $ slow 4 $ sound (samples "ywsb*2" (run 2))
+   |+| speed "[0.8 1.2]"
+   |+| cut "4"
+
+--t2
+--
+d3 $ slow 2 $ sound (samples "[710*8, 710*16]" (run 4))
+   |+| cut "2"
+
+d4 $ slowspread ($) [
+   (|+| speed "{1 0.8 0.7 1.2}%4"), density 2, jux (iter 4), brak, spin 2
+   ] $ stack [
+     sound (samples "710*8" (run 8)),
+     sound (samples "710*3?" (run 54)),
+     slow 4 $ sound (samples "710*16?" (irand 54)) |+| cut "2"
+   ]
+   |+| gain "0.87"
+
+d3 $ sound (samples "808bd 808rs*11? 808cb?" (irand 10))
+
+d1 $ sound (samples "akuma2*8" (run 8))
+   |+| cut "1"
+   |+| gain "0.85"
+
+d1 $ sometimes (density 2) $sound (samples "akuma3*8" (irand 8))
+   |+| cut "1"
+   |+| gain "0.85"
+
+
+d1 $ sometimes (density 4 . degradeBy 0.7) $ sound (samples "akuma2*8" (irand 8))
+   |+| cut "1"
+   |+| gain "0.85"
+
+--glitchwerks
+d2 $ slowspread ($) [
+   ((|+| speed "{1 0.9 0.8 0.7}%4"))
+   ]
+   $ stack [
+   sound (samples "digibd*2?" (run 4)),
+   sound (samples "digimrn*16?" (run 4)),
+   sound (samples "digihh(3,8)" (irand 8))
+   ]
+   |+| gain "0.8"
+
+d3 $ every 4 (0.125 <~) $ sound (samples "digicp(3,8)" (irand 10))
+   |+| (slow 7 $ speed (scale 1.2 2 sinewave1))
+   |+| cut "6"
+   |+| gain "0.8"
+
+d4 $ sound (samples "digishake*16?" (irand 10))
+   |+| (slow 4 $ speed (scale 0.5 2 sinewave1))
+   |+| gain "0.75"
+   |+| cut "7"
+
+--noises
+d4 $ slow 8 $ sound (samples "mfdoor(3,8)" (run 5))
+   |+| gain "0.8"
+   |+| cut "3"
+
+d1 $ stack [
+   sound (samples "[808rs(3,8), 808rs*16?]/2" (run 4)),
+   sound (samples "clink*8? clink*3?" (irand 30)),
+   sound (samples "wh*8?" (irand 30))
+   ]
+   |+| cut "1"
+   |+| (slow 2 $ crush (scale 2 4 sinewave1))
+   |+| gain "0.43"
+--
+
+d5 $ every 2 (0.25 <~) $ sound (samples "apedrumhats(3,8)" (run 5))
+   |+| gain "0.9"
+   |+| cut "5"
+
+--t2
+--ywnn
+d1 $ slowcat [
+   slow 4 $ sound (samples "reakt1*8" (run 8)),
+   slow 4 $ sound (samples "reakt2*8" (run 8))
+   ]
+   |+| gain "0.9"
+
+d2 $ slowcat [
+   sound (samples "ywamen1*8" (run 8)),
+   sound (samples "ywamen2*8" (run 8)),
+   slow 2 $ sound (samples "ywamen3*8" (run 8)),
+   slow 2 $ sound (samples "ywamen4*8" (run 8))
+   ]
+
+   |+| gain "0.90"
+
+t2 anticipate $ slowcat [
+   sound (samples "ywamen1*8" (run 8)),
+   sound (samples "ywamen2*8" (run 8)),
+   slow 2 $ sound (samples "ywamen3*8" (run 8)),
+   slow 2 $ sound (samples "ywamen4*8" (run 8))
+   ]
+   |+| gain "0.90"
+
+d3 $ slowcat [
+   slow 4 $ sound (samples "ftwrk1*8" (run 8)),
+   slow 4 $ sound (samples "ftwrk2*8" (run 8))
+   ]
+
+d4 $ slow 2 $ sound (samples "fvox1*8" (run 8))
+   |+| cut "3"
+
+d5 $ slow 4 $ sound (samples "ywsb*2" (run 2))
+   |+| cut "4"
+
+--randomized breaks
+d2 $ slowcat [
+   sound (samples "ywamen1*8" (irand 8)),
+   sound (samples "ywamen2*8" (irand 8)),
+   slow 2 $ sound (samples "ywamen3*8" (irand 8)),
+   slow 2 $ sound (samples "ywamen4*8" (irand 8))
+   ]
+   |+| gain "0.3"
+
+d4 $ slow 2 $ sometimes (density 2 . rev) $ sound (samples "fvox1*8" (irand 8))
+   |+| cut "3"
+
+d4 $ slow 2 $ sometimes (|+| speed "[1,1.5]") $ sometimes (density 2 . rev) $ sound (samples "fvox1*8" (irand 8))
+   |+| cut "3"
+
+
+d1 $ slow 4 $ sound (samples "folder*4" (run 4))
+   |+| cut "4"
+
+d2 $ slow 2 $ sound "[folder:2]"
+   |+| unit "c"
+   |+| speed "0.5"
+   |+| cut "2"
+
+d3 $ slow 3 $ sound "[folder:3]"
+   |+| cut "3"
+   |+| gain "1.5"
+
+d4 $ slow 3 $ sound "[folder:1*4]"
+   |+| cut "4"
+   |+| speed "{1 0.8 0.7 0.6}%4"
+   |+| gain "0.9"
+
+d5 $ slow 3 $ sound "[folder:4*4]"
+   |+| cut "5"
+   |+| speed "{1 0.8 0.7 0.6}%4"
+   |+| gain "0.7"
+
+d2 $ slow 2 $ sometimes (density 4 . every 2 (0.5 ~>)) $ sound "folder:2"
+   |+| unit "c"
+   |+| cut "2"
+   |+| speed "0.5"
+   |+| gain "1.2"
+
+--midi sans frontiers rmx
+
+--perc
+d1 $ slow 3 $ every 2 ((|+| speed "0.8") . spin 2) $ sound "xxlbd(3,8)" 
+   |+| cut "2"
+   |+| gain "0.7"
+
+d2 $ slow 2 $ every 4 (spin 2) $ sometimes (jux (density 2) . (0.25 ~>)) $
+   sometimes ((|+| speed "{1 0.98 0.96 0.92 0.87}%4") . rev) $
+   sound (samples "spcy1*4?" (run 4))
+   |+| cut "6"
+   |+| gain "0.7"
+
+d3 $ slow 6 $ 
+   sometimes (|+| speed "{0.95 0.9 0.88 0.87}%4") $ 
+   randcat [sound "808rs*8?", sound "~ ~ [808rs*6] ~", spin 3 $ sound "808rs*16?"]
+   |+| (density 4 $ pan sinewave1)
+   |+| cut "2"
+   |+| gain "0.6"
+
+--bass
+d6 $ slow 4 $ every 4 (|+| speed "0.8") $ sometimes (|+| cut "1") $
+   sound (samples "spb1*4" (irand 4))
+   |+| gain "0.8"
+
+--melody pt 1
+d4 $ slow 4 $ sound (samples "spm1*16" (run 16))
+   |+| cut "1"
+   |+| delay "0.3"
+   |+| delayfeedback "0.6"
+   |+| gain "0.5"
+
+d5 $ slow 4 $ sound (samples "spc1*16" (run 16))
+   |+| cut "3"
+   |+| delay "0.3"
+   |+| delayfeedback "0.6"
+
+--melody pt 2
+d4 $ slow 4 $ stack [
+   sound (samples "spm1*16" (run 16))
+   |+| cut "1"
+   |+| delay "0.3"
+   |+| delayfeedback "0.6",
+   slow 2 $ sound (samples "spm2*8" (run 8))
+   |+| cut "4"
+   |+| delay "0.3"
+   |+| gain "0.8"
+   ]
+
+d5 $ slow 4 $ stack [
+   sound (samples "spc1*16" (run 16))
+   |+| cut "3"
+   |+| delay "0.3"
+   |+| delayfeedback "0.6",
+   slow 2 $ sound (samples "spc2*8" (run 8))
+   |+| cut "5"
+   |+| delay "0.3"
+   |+| gain "0.7"
+   ]
+
+d8 $ sound "808bd:4"
+
+--midi program program
+m1 $ slow 8 $ note "[1 2 3 4 5 6 7 8]"
+
+--master midi clock
+m1 $ density 4 $ stack [
+   note "[1]",
+   slow 16 $ note "3"
+   ]
+
+m1 $ note "[1]"
+
+--double
+m1 $ density 8 $ note "[1]"
+
+--slow down
+m1 $ density 2 $ stack [
+   note "[1]",
+   sometimes (density 2 . spin 2) $ slow 7 $ note "3"
+   ]
+
+--breakdown
+m1 $ stack [
+   sometimes (degradeBy 0.4 . rev) $ density 2 $ note "[1 [2?] 1]",
+   swing 2 $ sometimes (density 2 . spin 2) $ slow 7 $ note "3"
+   ]
+
+m1 $ silence
+
+d1 $ sound (samples "chips*16?" (irand 10))
+   |+| cut "3"
+   |+| gain "0.85"
+
+d2 $ sound "bugbass"
+   |+| cut "2"
+   |+| gain "0.96"

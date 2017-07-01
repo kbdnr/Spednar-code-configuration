@@ -1,0 +1,51 @@
+bpm 60.55
+
+--feet & creaks
+d1 $ slow 6 $ stack [
+   randcat [
+   sound (samples "[footsteps*3? ~]" (irand 3)),
+   sound (samples "footsteps*5?" (irand 10)),
+   sound (samples "footsteps*3?" (run 3))
+   ],
+   randcat [
+   sound (samples "stairs*2?" (irand 6)),
+   sound (samples "stairs*2?" (irand 20)),
+   sometimes (jux (iter 2)) $ sound (samples "stairs*2?" (irand 20))
+   ]
+   ]
+   |+| (slow 4 $ pan (scale 0.35 0.65 sinewave1))
+   |+| (density 3 $ gain (scale 0.35 0.50 sinewave1))
+
+d4 $ slow 6 $ sound (samples "creaks*4" (irand 25))
+   |+| (slow 4 $ pan (scale 0.35 0.65 sinewave1))
+   |+| (slow 2 $ gain (scale 0.35 0.50 sinewave1))
+
+--musicbox
+d2 $ slow 12 $ 
+   --superimpose ((# speed "{1 1.09 0.75 2 0.8 3}%4") . (rev . (#speed "[1,2]"))) $ 
+   sound (samples "[musicbox*2? [musicbox*3?] ~ musicbox*4? [musicbox*4? musicbox*2?]]" (irand 200))
+   |+| cut "2"
+   |+| (slow 5 $ (speed (scale 0.5 2 sinewave1)))
+   |+| (density 3 $ delay (scale 0.4 0.7 sawwave))
+   |+| (density 7 $ delayfeedback (scale 0.4 0.7 sinewave1))
+   |+| (slow 3 $ gain (scale 0.60 0.70 sinewave1))
+
+--metal bits
+d3 $ stack [
+   slow 10 $ sound (samples "clink*4? clink*8? clink*3?" (irand 30)),
+   slow 50 $ sound (samples "~ ~ materials" (irand 2))
+   ]
+   |+| (slow 3 $ delay (scale 0.4 0.9 sawwave))
+   |+| (slow 7 $ delayfeedback (scale 0.4 0.9 sinewave1))
+   |+| (slow 4 $ (speed (scale 0.5 2 sinewave1)))
+   |+| (slow 4 $ pan (scale 0.35 0.65 sinewave1))
+   |+| (density 3 $ gain (scale 0.40 0.55 sinewave1))
+
+--piano coding
+d5 $ sound "[loop]"
+   |+| gain "0.7"
+
+--drone
+d9 $ slow 2 $ sound (samples "roomrumble" (run 1))
+   |+| (slow 3 $ gain (scale 0.4 0.6 sinewave))
+   |+| cut "1"

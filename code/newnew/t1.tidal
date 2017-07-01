@@ -1,0 +1,297 @@
+bpm 90
+
+--permanence
+d4 $ sometimes (rev) $ s "[rave:1]"
+   |+| speed "{1 0.8 0.95 1.2 1.5}%8"
+   |+| (slow 8 $ crush (scale 3 12 sine))
+   |=| gain "0.7"
+
+d4 $ sometimes (rev) $ s "[blip*8, rave:1]"
+   |+| speed "{1 0.8 0.95 1.2 1.5}%8"
+   |+| (slow 8 $ crush (scale 3 12 sine))
+   |=| gain "0.7"
+
+d4 $ sometimes (rev) $ s "[blip*8]"
+   |+| speed "{1 0.8 0.95 1.2 1.5}%8"
+   |+| (slow 8 $ crush (scale 3 12 sine))
+   |=| gain "0.7"
+
+--start here
+d2 $ retrig $ slow 6 $ s "[piano:0]"
+   |+| cut "2"
+
+d2 $ slow 2 $ s "[piano:0 piano:3]"
+   |+| cut "2"
+   |+| speed "[1]"
+   |+| gain "0.8"
+
+--dr
+d3 $ s "[xxlbd:4]"
+
+d3 $ s "[xxlbd:4, ~ perc:0 ~ [perc:5 perc:8]]"
+
+d3 $ sometimes (|+| crush "4") $ every 2 (stut 4 0.8 0.25) $ s "[xxlbd:4, ~ perc:0 ~ [perc:5 perc:8], xxlcp:3]"
+
+d3 $ sometimes (jux (0.25 ~>)) $ every 2 (stut 4 0.8 0.25) $ s "[xxlbd:4, ~ perc:0 ~ [perc:5 perc:8]]"
+
+d3 $ sometimes (jux (0.25 ~>)) $ every 2 (stut 4 0.8 0.25) $ s "[xxlbd:4, ~ perc:0 ~ [perc:5 perc:8], cp]"
+   |+| (slow 4 $ pan (scale 0.2 0.8 sine1))
+
+--無常--
+d6 $ slow 12 $ s "percussa*4" # n (run 6) |+| cut "2" |+| (slow 6 $ pan (scale 0.2 0.8 sinewave1))
+   |+| gain "0.7"
+   |+| speed "<1.1 1.5 0.9>"
+
+d5 $ slow 6 $ every 4 (# speed "0.6") $ every 3 (# speed "0.75") $ s "shakuhachi"
+   |+| speed "1"
+   |+| cut "5"
+   |+| gain "0.6"
+
+d2 $ jux ((0.125 ~>) . stut 6 1 0.7) $ sometimes (slow 2 . (#speed "0.5")) $ s "[wh  ~ [wh:2*3?] ~ wh:11, wh:4*5?]"
+   # (slow 7 $ pan (scale 0.1 0.9 tri))
+   |+| cut "3"
+
+d3 $ every 4 (stut 5 0.7 0.25) $ slow 3 $ s "[~ sea, ul:0 ul:3*2 [ul:0*8?] ul:3*2, tok:1]"
+   |+| cut "4"
+
+--苦--
+--
+d1 $ stack [
+    every 8 (stut 4 0.5 2) $ s "[~ uxay:2, ~ tink*3?]"
+    |+| cut "1",
+    every 5 (stut 4 0.8 0.5) $ s "[tink*4?]"
+    ]
+
+d1 $ stack [
+    every 8 (stut 4 0.5 2) $ s "[beakr, ~ uxay:2, ~ tink*3?]"
+    |+| cut "1",
+    every 5 (stut 4 0.8 0.5) $ s "[tink*4?]"
+    ]
+
+--mmmm
+d5 $ s "[710 710:2]"
+   |+| gain "1.1"
+
+d5 $ s "[710*4]"
+   # n (run 4)
+   |+| gain "1.2"
+
+d5 $ s "[710*8]"
+   # n (run 8)
+   |+| gain "1.2"
+
+d4 $ s "[sea]"
+
+d4 $ sometimes ((stut 4 0.8 0.5) . chop 4) $ 
+   every 2 (#speed "0.5") $ 
+   s "[sea]"
+
+d4 $ sometimes (rev . jux (0.25 <~)) $ sometimes ((stut 4 0.8 0.5) . chop 4) $ 
+   every 2 (#speed "{0.5 0.4 0.8 1.2}%4") $ 
+   s "[sea*2]"
+   |+| gain "0.8"
+
+--long mute out
+d6 $ s "[sheffield]"
+   |+| cut "2"
+   |+| gain "0.9"
+
+d6 $ s "[sheffield, ~ slipk]"
+   |+| cut "2"
+   |+| gain "0.9"
+
+d6 $ s "[~ slipk, ~ ~ ~ ~ 808rs, clap:6]"
+   |+| cut "2"
+
+d6 $ every 4 (stut 5 0.8 0.5) $ s "[~ slipk, ~ ~ ~ ~ 808rs, clap:6]"
+   |+| cut "2"
+
+d7 $ stack [slow 2 $ s "[feedb:0]"
+   |+| cut "4",
+   s "[~ feelfx, fk:0]"
+   ]
+
+d7 $ stack [slow 2 $ every 3 ((# speed "0.5") . stut 3 1.2 0.75) $ 
+   s "[feedb:0]"
+   |+| cut "4"
+   ]
+
+--m karl
+d1 $ density 1.5 $ every 8 ((stut 8 0.5 0.25) . rev . striate 12) $ every 8 (density 1.4) $ superimpose(#coarse(irand 5)) $ every 18(rev) $ 
+   every 4 (slow 2) $ s "flick ~ ~ drum glasstap feel"
+      # n (choose([1,2]++[5..7]))
+         #cut"{1,0}"
+            #pan saw1
+
+d3 $ slow 3 $ s "jungbass"
+   # n (choose([1..3]++[4..8]))
+
+d2 $ every 2 (0.15 ~>) $ s "flute*3? ~ fall"
+   # n (choose([1,3]++[1..8]))
+   # cut "8"
+   # gain "0.7"
+
+--alien rave
+d4 $ stack [
+     s "[rave2*8]"
+     # n (choose([1..11]))
+     # speed "{1 0.9 0.5 0.6}%4"
+     |+| cut "4"
+    ]
+
+d5 $ s "[rlab2*8]"
+     # n (run 8)
+     |+| cut "6"
+
+--break city
+d5 $ slowcat [
+s "[rlab2*8]"
+     # n (run 8),
+ s "[rlab2*8]"
+     # n (run 10),
+ s "[rlab2*8]"
+     # n (run 6),
+ s "[rlab2*8]"
+     # n (run 4)
+     ]
+     |+| cut "6"
+
+d4 $ sometimes (density 2 . rev . (0.25 ~>)) $ degradeBy 0.2 $ stack [
+     s "[rave2*8]"
+     # n (choose([1..11]))
+     # speed "{1 0.9 0.5 0.6}%4"
+     |+| cut "4",
+     s "gabba*4"
+     # n (irand 12)
+    ]
+
+d5 $ sometimes (jux (0.25 <~)) $ density 2 $ degradeBy 0.2 $ every 8 (# speed "0.5") $ 
+slowcat [
+s "[rlab2*8]"
+     # n (run 8),
+s "[rlab2*8]"
+     # n (run 10),
+s "[rlab2*8]"
+     # n (run 6),
+s "[rlab2*8]"
+     # n (run 4)
+     ]
+     |+| cut "6"
+
+d9 $ s "[~ jvbass*7, ~ cp]"
+   # n (run 8)
+
+d1 $ slow 8 $ s "malware*64"
+   # n (run 64)
+   |+| cut "1"
+
+d8 $ slowcat [
+   s "funky*8"
+   # n (run 10),
+   s "funky*8"
+   # n (run 7),
+   s "funky*8"
+   # n (run 8),
+   s "funky*8"
+   # n (run 13)
+   ]
+
+t8 anticipate $ sometimes (jux (iter 4) . rev) $ slowcat [
+   s "funky*8"
+   # n (run 10),
+   s "funky*8"
+   # n (run 7),
+   s "funky*8"
+   # n (run 8),
+   s "funky*8"
+   # n (run 13)
+   ]
+
+t8 anticipate $ every 4 ((|+| crush "3") . (|+| pan "0.2")) $ 
+   every 1 (density 2 . (# speed "{1 0.98 0.95 0.9}%8") . degradeBy 0.2) $ 
+   sometimes (jux (iter 4) . rev) $ slowcat [
+   s "funky*8"
+   # n (run 10),
+   s "funky*8"
+   # n (run 7),
+   s "funky*8"
+   # n (run 8),
+   s "funky*8"
+   # n (run 13)
+   ]
+   --|+| cut "2"
+   
+d9 $ s "[~ 808rs*3, ~ cp]"
+   # n (run 8)
+
+d2 $ randcat [
+  s "jungbass:2",
+  s "jungbass:5",
+  s "jungbass:6",
+  s "jungbass:7"
+]
+|+| cut "3"
+
+--
+bpm 11
+
+--
+bpm 80
+
+d9 $ stack [slow 2 $ s "[manglemidi:1]"
+   |+| cut "4"
+   ]
+
+d7 $ slow 2 $ s "ywsb"
+   # speed "0.8"
+
+d6 $ sometimes (# speed "0.5") $ slowcat [
+   s "ades2*7"
+   # n (run 7),
+   s "ade*8"
+   # n (run 8),
+   s "ades4*8"
+   # n (run 6),
+   s "ades3*8"
+   # n (run 11)
+   ]
+   |+| gain "0.9"
+   |+| cut "5"
+
+d6 $ sometimes (density 3 . degradeBy 0.3 . (0.25 ~>)) $ sometimes (# speed "0.5") $ slowcat [
+   s "ades2*7"
+   # n (run 7),
+   s "ade*8"
+   # n (run 8),
+   s "ades4*8"
+   # n (run 6),
+   s "ades3*8"
+   # n (run 11)
+   ]
+   |+| gain "0.9"
+   |+| cut "5"
+   |+| speed rand
+
+d8 $ stack [slow 4 $ s "[manglemidi:7]"
+   |+| cut "6"
+   |+| gain "0.9",
+   slow 4 $ s "[manglemidi:3]"
+   |+| speed "0.8"
+   |+| cut "7"
+   ]
+
+d9 $ every 2 (|+| speed rand) $ stack [slow 4 $ s "[manglemidi:1]"
+   |+| cut "4",
+   slow 2 $ s "[~ lfglitch:8, dmo*7]"
+   ]
+
+--spice it up
+d5 $ s "datamosh:3"
+   |+| begin rand
+   |+| cut "8"
+
+d4 $ s "pixcrush:0"
+   |+| begin rand
+   |+| cut "9"
+
+--空--

@@ -1,0 +1,29 @@
+
+d3 $ sound (samples "wh*12?" (irand 30))
+   |+| gain "0.78"
+   |+| (density 5 $ pan (scale 0.2 0.8 sinewave1))
+   |+| cut "1"
+
+d1 $ retrig $ sound (samples "ywamen2*8" (irand 8))
+   |+| gain "0.96"
+   |+| (density 4 $ pan (scale 0.1 0.9 sawwave))
+
+d2 $ retrig $ slow 2 $ sound (samples "fvox1*8" (run 8))
+   |+| gain "0.91"
+
+d3 $ slow 4 $ sound (samples "ywsb*2" (run 2))
+   |+| cut "2"
+
+m1 $ note "[28*8?, 40*8?]"
+   |+| osc1shape rand
+   |+| osc1detune rand
+   |+| osc2detune rand
+   |+| (slow 32 $ osc2shape (scale 0.2 0.8 sinewave1))
+   |+| (slow 4 $ osc2shape rand)
+   |+| (density 5 $ f1cutoff (scale 0.4 0.8 sinewave1))
+   |+| (density 7 $ f1res (scale 0.4 0.8 sinewave1))
+   |+| lfo1sync rand
+   |+| lfo1shape rand
+   |+| (slow 2 $ lfo2shape rand)
+   |+| (slow 2 $ lfo2sync rand)
+   |+| (slow 3 $ lfo3sync rand)

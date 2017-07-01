@@ -1,0 +1,50 @@
+let ugd = degradeBy 0.5
+
+d1 $ ugd $ sound "loop*5"
+   |+| speed "[1.2]"
+   |+| (slow 8 $ pan sinewave1)
+   |+| delay "0.7"
+   |+| gain "0.61"
+
+d3 $ ugd $ sometimes (density 2) $ sound "loop*2"
+   |+| speed "[0.7]"
+   |+| (slow 3 $ pan sinewave1)
+   |+| delay "0.6"
+   |+| gain "0.57"
+
+d3 $ ugd $ jux (iter 4) $ sound "loop*4"
+   |+| speed "[4]"
+   |+| (slow 21 $ pan sinewave1)
+   |+| delay "0.6"
+   |+| gain "0.71"
+
+d4 $ ugd $ sound "loop*3"
+   |+| speed "[1.7]"
+   |+| delay "0.6"
+   |+| (slow 7 $ pan sinewave1)
+   |+| gain "0.70"
+
+--dubravka session 6/24
+bpm 60
+bpm 90
+bpm 120
+bpm 180
+
+d1 $ foldEvery [2,3] (density 2) $
+     sound "loop"
+   |+| speed "[1, 2]"
+   |+| (slow 15 $ pan sinewave1)
+   |+| gain "0.87"
+
+d2 $ foldEvery [2,3] (density 2) $
+     foldEvery [3, 6] (degradeBy 0.5) $ 
+     sound "loop"
+   |+| speed "[1, 2]"
+   |+| (slow 5 $ pan sinewave1)
+   |+| gain "0.80"
+
+d3 $ foldEvery [2,3] (density 2) $
+     sound "loop"
+   |+| speed "[1, 2]"
+   |+| (slow 3 $ pan sinewave1)
+   |+| gain "0.83"

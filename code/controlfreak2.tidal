@@ -1,0 +1,168 @@
+--assemble -- control/freak n 2
+--
+--
+--
+bpm 20
+
+d1 $ every 2 (|+| speed "{1.5 0.6 1.7 0.8 0.9 1}%8") $
+     sound (samples "click*8" (run 8))
+     |+| cut "2"
+     |+| gain "0.8"
+
+d2 $ swing 3 $ sound (samples "clak*7" (run 8))
+     |+| (slow 3 $ pan (scale 0.2 0.8 sinewave1))
+
+d3 $ every 2 (spin 2 . (|+| speed "[0.8, 2]")) $ 
+     every 3 (jux (iter 2)) $
+     degradeBy 0.5 $ sound (samples "d*8?" (run 8))
+     |+| cut "1"
+
+d4 $ every 2 (0.125 <~) $
+     slow 2 $ sound (samples "chips*8" (run 8))
+     |+| gain "1.1"
+
+d5 $ sometimes (spin 2 . degradeBy 0.4) $
+     every 2 (|+| speed "{0.8 2 1.5 0.5}%4") $
+     sound (samples "chin*7?" (run 8))
+     |+| gain "1.4"
+     |+| (slow 4 $ pan (scale 0 1 sinewave1))
+
+
+--
+d6 $ slow 2 $ sometimes (spin 2 . degradeBy 0.4) $
+     every 2 (|+| speed "{0.8 2 1.5 0.5}%4") $
+     sound (samples "lighter*4?" (run 8))
+     |+| gain "0.8"
+
+bpm 80
+
+--arrangish
+--8s intro
+d1 $ slowcat [every 2 (|+| speed "{1.5 0.6 1.7 0.8 0.9 1}%8") $
+     sound (samples "click*8" (run 8))
+     |+| cut "2"
+     |+| gain "0.8",
+     stack [
+     every 2 (|+| speed "{1.5 0.6 1.7 0.8 0.9 1}%8") $
+     sound (samples "click*8" (run 8))
+     |+| cut "2"
+     |+| gain "0.8",
+     every 2 (0.125 <~) $
+     slow 2 $ sound (samples "chips*8" (run 8))
+     |+| gain "1.1"
+     ]
+     ]
+
+--8s - main
+d1 $ slowcat [
+stack [
+     slowspread ($) [degradeBy 0.2, brak] $ 
+     every 8 (spin 2 . rev) $ 
+     every 2 (|+| speed "{1.5 0.6 1.7 0.8 0.9 1}%8") $
+     sound (samples "click*8" (run 8))
+     |+| cut "2"
+     |+| gain "0.8",
+     every 2 (0.125 <~) $
+     slow 2 $ sound (samples "chips*8" (run 8))
+     |+| gain "1.1"
+     ],
+stack [
+     slowspread ($) [density 2, iter 4] $
+     every 8 (spin 2 . rev) $ 
+     every 2 (|+| speed "{1.4 0.5 1.9 0.6 1.9 1.2}%8") $
+     sound (samples "click*8" (run 8))
+     |+| cut "2"
+     |+| gain "0.8",
+     every 2 (0.125 <~) $
+     sometimes (|+| speed "{1 2 3 2 1 2 0.5 2}%8") $
+     slow 2 $ sound (samples "chips*8" (run 8))
+     |+| gain "1.1"
+     ]
+     ]
+
+--7/5/3
+d2 $ slowcat [
+stack[
+     sometimes (spin 2 . degradeBy 0.4) $
+     every 2 (|+| speed "{0.8 2 1.5 0.5}%4") $
+     sound (samples "chin*7?" (run 8))
+     |+| (density 2 $ pan (scale 0 1 sinewave1)),
+     swing 3 $ sound (samples "clak*7?" (run 8))
+     |+| (slow 4 $ pan (scale 0.2 0.8 sinewave1))
+     ],
+stack[
+     sometimes (spin 2 . degradeBy 0.4) $
+     every 2 (|+| speed "{0.8 2 1.5 0.5}%4") $
+     sound (samples "chin*5?" (irand 8))
+     |+| (density 2 $ pan (scale 0 1 sinewave1)),
+     swing 3 $ sound (samples "clak*5?" (irand 8))
+     |+| (slow 4 $ pan (scale 0.2 0.8 sinewave1))
+     ],
+stack[
+     sometimes (spin 2 . degradeBy 0.4) $
+     every 2 (|+| speed "{0.8 2 1.5 0.5}%4") $
+     sound (samples "chin*3?" (irand 20))
+     |+| (density 2 $ pan (scale 0 1 sinewave1)),
+     swing 3 $ sound (samples "clak*3?" (irand 20))
+     |+| (slow 4 $ pan (scale 0.2 0.8 sinewave1))
+     ]
+     ]
+     --|+| (density 2 $ crush (scale 3 8 sinewave1))
+     |+| (slow 8 $ gain (scale 0.6 1.2 sinewave1))
+
+--clix
+d3 $ slowcat [
+stack [
+     every 2 (spin 2 . (|+| speed "[0.8, 2]")) $ 
+     every 3 (jux (iter 2)) $
+     degradeBy 0.5 $ sound (samples "d*8?" (run 8))
+     |+| cut "1",
+     slow 2 $ sometimes (spin 2 . degradeBy 0.4) $
+     every 2 (|+| speed "{0.8 2 1.5 0.5}%4") $
+     sound (samples "lighter*5?" (run 8))
+     ],
+stack [
+     every 2 (spin 2 . (|+| speed "[0.8, 2]")) $ 
+     every 3 (jux (iter 2)) $
+     degradeBy 0.5 $ sound (samples "d*8?" (irand 20))
+     |+| cut "1",
+     slow 2 $ sometimes (spin 2 . degradeBy 0.4) $
+     every 2 (|+| speed "{0.8 2 1.5 0.5}%4") $
+     sound (samples "lighter*5?" (irand 10))
+     ]
+     ]
+     --|+| gain "0.9"
+
+--8s - randomized
+d1 $ slowcat [
+stack [
+     slowspread ($) [degradeBy 0.2, brak] $ 
+     every 8 (spin 2 . rev) $ 
+     every 2 (|+| speed "{1.5 0.6 1.7 0.8 0.9 1}%8") $
+     sound (samples "click*8" (irand 8))
+     |+| cut "2"
+     |+| gain "0.8",
+     every 2 (0.125 <~) $
+     slow 2 $ sound (samples "chips*8" (irand 8))
+     |+| gain "1.1"
+     ],
+stack [
+     slowspread ($) [density 2, iter 4] $
+     every 8 (spin 2 . rev) $ 
+     every 2 (|+| speed "{1.4 0.5 1.9 0.6 1.9 1.2}%8") $
+     sound (samples "click*8" (irand 8))
+     |+| cut "2"
+     |+| gain "0.8",
+     every 2 (0.125 <~) $
+     sometimes (|+| speed "{1 2 3 2 1 2 0.5 2}%8") $
+     slow 2 $ sound (samples "chips*8" (irand 8))
+     |+| gain "1.1"
+     ]
+     ]
+
+k1 $ stack [
+note "[40 30 20 ~]"
+|+| dur "0.2"
+]
+
+k1 silence

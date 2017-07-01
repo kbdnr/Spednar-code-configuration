@@ -1,0 +1,6 @@
+d1 $ every 2 (density 4) $ every 3 (spin 2 . rev) $ sound "loop*8"
+   |+| gain "0.4"
+   |+| (slow 4 $ crush (scale 2 5 sinewave1))
+   |+| speed "0.9"
+   |+| cut "1"
+   

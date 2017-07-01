@@ -1,0 +1,119 @@
+bpm 80
+
+--main brk
+d1 $ every 4 (|+| speed "0.8") $ sound (samples "goozekutz*4" (run 4))
+   |+| cut "2"
+   |+| gain "1.4"
+
+d2 $ sometimes (density 2) $ 
+   every 8 (spin 2) $ 
+   every 12 (rev) $ 
+   every 2 (0.125 ~>) $ 
+   every 3 (0.25 <~) $ 
+   sometimes (jux (iter 4)) $
+   sound (samples "moogie*8" (irand 50))
+   |+| (slow 4 $ speed (scale 1.1 1.2 sinewave1))
+   |+| cut "3"
+   |+| gain "1.1"
+
+d3 $ stack [
+    sound "[xxlbd:3 ~ ~ xxlbd:4 ~ ~ bd:4 ~, hh:8*8?]" |+| gain "0.9",
+    degradeBy 0.8 $ sound "808rs*32?" |+| delay "0.2" |+| (slow 4 $ pan sinewave1)
+    ]
+
+d1 $ slow 4 $ every 2 (chop 4) $ sound "[sax sax:1, sax:2?]"
+   |+| speed "[1.2, 2.4, 3.6]"
+   |+| gain (scale 0.9 1.2 sine)
+
+d2 $ sound "[xxlbd:4 ~ ~ xxlbd:3 ~ ~ xxlbd:2 ~]"
+
+d3 $ stack [
+   --foldEvery [2,3] (density 2) $ sound (samples "[xxlef xxlef]" (irand 20)) |+| accelerate "-2" |+| (slow 2 $ pan sawwave1) |+| crush (scale 2 3 sine) |+| gain "0.7",
+   sound (samples "[hh ~ xxlsh ~ xxlsh ~ ~ ~ ~]" (irand 7)),
+   degradeBy 0.5 $ sound "[hh27:10*8?, hh27:7*6?, hh27:0*3?, hh27:4*4?]"
+   ]
+
+d3 $ stack [
+   foldEvery [2,3] (density 2) $ sound "[xxlef xxlef:1]" |+| accelerate "-2" |+| (slow 2 $ pan sawwave1) |+| crush (scale 2 3 sine),
+   sound "[xxlbd:5 ~ ~ xxlbd:6 ~ ~ xxlbd:6 ~]",
+   sound "[xxlbd:4 ~ ~ xxlbd:4 ~ ~ ~ ~]",
+   degradeBy 0.5 $ sound "[hh27:10*6?, hh27:7*5?]"
+   ]
+
+--claps n at
+d3 $ stack [
+   sound "[~ 808cp ~ 808cp]",
+   sound "[xxlcp ~ ~ xxlcp ~ ~ xxlcp ~]"
+   ]
+
+d3 $ stack [
+   sound "[~ 808cp ~ 808cp]",
+   sound "[xxlcp ~ ~ xxlcp ~ ~ xxlcp ~]",
+   sound "[~ ~ clap]"
+   ]
+
+d3 $ stack [
+   sound (samples "[~ 808cp ~ 808cp]" (run 8)),
+   sound (samples "[xxlcp ~ ~ xxlcp ~ ~ xxlcp ~]" (run 8)),
+   sound (samples "[~ ~ ~ ~ ~ clap]" (run 8))
+   ]
+
+d3 $ stack [
+   sound (samples "[~ 808cp ~ 808cp]" (irand 8)),
+   sound (samples "[xxlcp ~ ~ xxlcp ~ ~ xxlcp ~]" (irand 8)),
+   sound (samples "[~ ~ ~ ~ ~ clap]" (irand 20))
+   ]
+
+d3 $ stack [
+   sound (samples "[~ 808cp ~ 808cp]" (irand 8)),
+   sound (samples "[xxlcp ~ ~ xxlcp ~ ~ xxlcp ~]" (irand 8)),
+   sound (samples "[~ ~ ~ ~ ~ clap]" (irand 20))
+   ]
+
+d3 $ stack [
+   sound (samples "[~ 808cp ~ 808cp]" (irand 8)),
+   sound (samples "[xxlcp ~ ~ xxlcp ~ ~ xxlcp ~]" (irand 8)),
+   sound (samples "[~ ~ ~ ~ ~ clap]" (irand 20)) |+| accelerate "-0.5",
+   slow 4 $ sound (samples "[xxlcp ~ ~ xxlcp ~ ~ xxlcp ~]" (irand 8)) |+| speed "0.1"
+   ]
+
+d3 $ stack [
+   sound (samples "[~ 808cp ~ 808cp]" (irand 8)),
+   sound (samples "[xxlcp ~ ~ xxlcp ~ ~ xxlcp ~]" (irand 8)),
+   sound (samples "[xxlbd ~ ~ xxlbd ~ ~ xxlbd ~]" (irand 8)),
+   sound (samples "[~ ~ ~ ~ ~ clap]" (irand 20)) |+| accelerate "-0.5",
+   sound "clap:6*8?",
+   slow 4 $ sound (samples "[xxlcp ~ ~ xxlcp ~ ~ xxlcp ~]" (irand 8)) |+| speed "0.1"
+   ]
+
+d1 $ slow 1 $ sound "koy"
+   |+| unit "c"
+
+d1 $ slow 4 $ sound "koy"
+   |+| cut "1"
+
+d2 $ sound (samples "[808ch 808oh, 808bd ~ ~ 808bd ~, xxlbd xxlbd xxlbd xxlbd]" (run 4))
+
+d3 $ stack [
+   sound "[cp:3 cp:3, 808mt 808mt:2 808mt 808mt:4, 808ch 808ch*3]" 
+   |+| gain "1.4"]
+
+d4 $ stack [
+   sound "[xxlbd:4 xxlsn:7 xxlsn:6 ~]"
+   ]
+   |+| gain "0.7"
+
+d2 $ sound (samples "moogie*8" (run 13))
+   |+| cut "3"
+
+d2 $ sometimes (density 2) $ 
+   every 8 (spin 2) $ 
+   every 12 (rev) $ 
+   every 2 (0.125 ~>) $ 
+   every 3 (0.25 <~) $ 
+   sometimes (jux (iter 4)) $
+   sound (samples "moogie*8" (irand 50))
+   |+| cut "3"
+   |+| gain "1.3"
+
+d5 $ swing 3 $ sound "[kickz ~ ~ kickz:3, ~ ~ ~ snarez:4 ~ ~ snarez:2 ~, 808bd:4 ~ ~ 808bd:3 ~ ~ ~]"

@@ -1,0 +1,49 @@
+cps 0.5
+
+d1 $ slow 8 $ (superimpose (slow 1.04 . sometimes(rev))) $ ((|+| cutoff (scale 0.001 0.3 $ density 2 sine1)) $ zoom (0, 0.5) $ striate' 1000 (1/10) $
+sound (samples "keys2*3" (foldEvery [2,3,4] (0.25 ~>) $ run 30)))
+|+| speed (foldEvery [2,3,4] (density 2) $ "[{0.25 1 0.5}%128, {0.5 0.75 1.25 1.75 2.5}%64]")
+|+| delay (scale 0.1 0.5 $ sine1)
+|+| delaytime (scale 0.001 0.4 $ density 1.5 sine1)
+|+| delayfeedback (scale 0.5 0.98 $ density 1.217 sine1)
+|+| resonance "0.5"
+|+| coarse "{0 4 0 2 0 8 12 64 32 16 0}%16"
+|+| crush (sometimes ((negate) <$>) $ scale 1 7 $ density 2.1 sine1)
+|+| shape (scale 0 0.4 $ density 1.23 sine1)
+|+| gain "0.9"
+
+--spednar mix
+cps 0.7
+
+d1 $ stack [sound (samples "keys2*8" (foldEvery [2,3,4] (density 2) 
+   $ every 2 (0.5 ~>) 
+   $ every 5 (0.25 <~) 
+   $ irand 33))
+   |+| (slow 4 $ speed (foldEvery [2,4] (density 2) $ "[{0.25 1 0.75}%64, {0.5 1.25 0.6}%32, 2]"))
+   |+| delay "0.20"
+   |+| delayfeedback "[0.33 0.2, 0.4 0.1]"
+   |+| (slow 2 $ resonance "[1, 0.7 0.4, 0.4]")
+   |+| gain (scale 0.4 0.9 sine1)
+   |+| (slow 4 $ crush (sometimes ((negate) <$>) $ scale 1 5 sine1))
+   |+| gain "1.00"
+   ,
+   sound "[voice:2? voice:3/30 voice:6/5]"
+   |+| (slow 4 $ crush (sometimes ((negate) <$>) $ scale 1 5 $ density 1.5 sine1))
+   |+| (slow 8 $ speed "{0.8 1 2 0.2 0.4, 1, 0.5}%3")
+   |+| delay "0.2"
+   |+| delayfeedback "0.4"
+   ,
+   degradeBy 0.4 $ sound "[voice:7 voice:14? voice:12/5]"
+   |+| (crush "{0.5 0.2 0.3 0.4 0.5 0.6 1}%4")
+   |+| delay "0.5"
+   |+| gain "{0.5 0.8 0.99 0.2 0.99}%3"
+   |+| (slow 2 $ speed "[{0.2 0.3 0.4}%3, 0.4, 2, 1]")
+   ]
+   |+| gain "0.23"
+
+d3 $ sometimes (spin 3) $ sometimes (density 4) $ sound "loop loop loop"
+   |+| speed "0.7"
+
+--gbye
+d2 $ slow 4 $ sound "[voice:1]"
+   |+| gain "1.5"

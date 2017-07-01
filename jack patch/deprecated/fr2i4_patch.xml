@@ -1,0 +1,134 @@
+<!DOCTYPE patchbay>
+<patchbay version="0.3.10" name="fr2i4_patch">
+ <output-sockets>
+  <socket exclusive="off" client="system" type="jack-audio" name="system">
+   <plug>capture_1</plug>
+   <plug>capture_2</plug>
+   <plug>monitor_1</plug>
+   <plug>monitor_2</plug>
+   <plug>monitor_3</plug>
+   <plug>monitor_4</plug>
+  </socket>
+  <socket exclusive="off" client="din" type="jack-audio" name="din">
+   <plug>L</plug>
+   <plug>R</plug>
+  </socket>
+  <socket exclusive="off" client="rakarrack" type="jack-audio" name="rakarrack">
+   <plug>out_1</plug>
+   <plug>out_2</plug>
+  </socket>
+  <socket exclusive="off" client="jack_mixer" type="jack-audio" name="jack_mixer">
+   <plug>MAIN L</plug>
+   <plug>MAIN R</plug>
+   <plug>Monitor L</plug>
+   <plug>Monitor R</plug>
+   <plug>DIRT Out L</plug>
+   <plug>DIRT Out R</plug>
+   <plug>DIN Out L</plug>
+   <plug>DIN Out R</plug>
+   <plug>SCD Out L</plug>
+   <plug>SCD Out R</plug>
+  </socket>
+  <socket exclusive="off" client="jamin" type="jack-audio" name="jamin">
+   <plug>out_L</plug>
+   <plug>out_R</plug>
+  </socket>
+  <socket exclusive="off" client="dirt" type="jack-audio" name="dirt">
+   <plug>output_0</plug>
+   <plug>output_1</plug>
+  </socket>
+  <socket exclusive="off" client="system" type="jack-midi" name="system">
+   <plug>midi_capture_1</plug>
+   <plug>midi_capture_2</plug>
+   <plug>midi_capture_3</plug>
+  </socket>
+  <socket exclusive="off" client="rakarrack" type="jack-midi" name="rakarrack">
+   <plug>MC out</plug>
+  </socket>
+  <socket exclusive="off" client="Midi Through" type="alsa-midi" name="Midi Through">
+   <plug>Midi Through Port-0</plug>
+  </socket>
+  <socket exclusive="off" client="Scarlett 2i4 USB" type="alsa-midi" name="Scarlett 2i4 USB">
+   <plug>Scarlett 2i4 USB MIDI 1</plug>
+  </socket>
+  <socket exclusive="off" client="rakarrack" type="alsa-midi" name="rakarrack">
+   <plug>rakarrack MC OUT</plug>
+  </socket>
+ </output-sockets>
+ <input-sockets>
+  <socket exclusive="off" client="system" type="jack-audio" name="system">
+   <plug>playback_1</plug>
+   <plug>playback_2</plug>
+   <plug>playback_3</plug>
+   <plug>playback_4</plug>
+  </socket>
+  <socket exclusive="off" client="QJackRcd" type="jack-audio" name="QJackRcd">
+   <plug>record_1</plug>
+   <plug>record_2</plug>
+  </socket>
+  <socket exclusive="off" client="rakarrack" type="jack-audio" name="rakarrack">
+   <plug>in_1</plug>
+   <plug>in_2</plug>
+   <plug>aux</plug>
+  </socket>
+  <socket exclusive="off" client="jack_mixer" type="jack-audio" name="jack_mixer">
+   <plug>DIRT L</plug>
+   <plug>DIRT R</plug>
+   <plug>DIN L</plug>
+   <plug>DIN R</plug>
+   <plug>SCD L</plug>
+   <plug>SCD R</plug>
+  </socket>
+  <socket exclusive="off" client="jamin" type="jack-audio" name="jamin">
+   <plug>in_L</plug>
+   <plug>in_R</plug>
+  </socket>
+  <socket exclusive="off" client="dirt" type="jack-audio" name="dirt">
+   <plug>input</plug>
+  </socket>
+  <socket exclusive="off" client="jack_mixer" type="jack-audio" name="jack_mixer 2">
+   <plug>DIN L</plug>
+   <plug>DIN R</plug>
+  </socket>
+  <socket exclusive="off" client="system" type="jack-midi" name="system">
+   <plug>midi_playback_1</plug>
+   <plug>midi_playback_2</plug>
+   <plug>midi_playback_3</plug>
+  </socket>
+  <socket exclusive="off" client="din" type="jack-midi" name="din">
+   <plug>midi</plug>
+  </socket>
+  <socket exclusive="off" client="rakarrack" type="jack-midi" name="rakarrack">
+   <plug>in</plug>
+  </socket>
+  <socket exclusive="off" client="jack_mixer" type="jack-midi" name="jack_mixer">
+   <plug>midi in</plug>
+  </socket>
+  <socket exclusive="off" client="Midi Through" type="alsa-midi" name="Midi Through">
+   <plug>Midi Through Port-0</plug>
+  </socket>
+  <socket exclusive="off" client="Scarlett 2i4 USB" type="alsa-midi" name="Scarlett 2i4 USB">
+   <plug>Scarlett 2i4 USB MIDI 1</plug>
+  </socket>
+  <socket exclusive="off" client="rakarrack" type="alsa-midi" name="rakarrack">
+   <plug>rakarrack IN</plug>
+  </socket>
+  <socket exclusive="off" client="jack_midi" type="alsa-midi" name="jack_midi">
+   <plug>port</plug>
+  </socket>
+ </input-sockets>
+ <slots/>
+ <cables>
+  <cable output="system" input="dirt" type="jack-audio"/>
+  <cable output="din" input="rakarrack" type="jack-audio"/>
+  <cable output="rakarrack" input="jack_mixer 2" type="jack-audio"/>
+  <cable output="jack_mixer" input="system" type="jack-audio"/>
+  <cable output="jack_mixer" input="QJackRcd" type="jack-audio"/>
+  <cable output="jamin" input="jack_mixer" type="jack-audio"/>
+  <cable output="dirt" input="jamin" type="jack-audio"/>
+  <cable output="Midi Through" input="jack_midi" type="alsa-midi"/>
+  <cable output="Scarlett 2i4 USB" input="jack_midi" type="alsa-midi"/>
+  <cable output="rakarrack" input="jack_midi" type="jack-audio"/>
+ </cables>
+</patchbay>
+

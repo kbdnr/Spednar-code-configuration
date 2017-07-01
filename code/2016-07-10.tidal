@@ -1,0 +1,31 @@
+bpm 80
+
+m1 $ every 4 (density 2 . rev) $ foldEvery [2,6] (degradeBy 0.5 . (0.25 <~)) $
+     randcat [note "50 51 52 53 54 55 56 57", 
+     note "50 ~ ~ 50 ~ ~ 52 ~",
+     note "52 ~ ~ 53 ~ ~ 54 ~",
+     note "54 ~ 54 ~ 54 ~",
+     note "55 ~ 56 ~ 50 ~",
+     note "56 57 56 [57 57 57]"]
+
+m1 $ rarely (spin 2) $ every 4 (rev . brak) $ stack [
+     note "[50(3,8), 51(2,4)]",
+     slowcat [note "56(3,8)*2", note "55(3,8)*4?"],
+     randcat [note "[54*4?, 57*5?, 56*4?, ~ 53 ~]"]
+     ]
+
+m1 $ every 8 (density 2) $ 
+   every 3 (degradeBy 0.25) $ 
+   jux (iter 4 . (0.25 ~>)) $ 
+   stack [
+   note "[50, 51 51, 52 52 52, 53 53 53 53]",
+   every 1 (#nudge "0.125") $ note "[54, 55 55, 56 56 56, 57 57 57 57]",
+   every 1 (#nudge "0.3") $ note "[54 [55 55], 55 56, 56 55 53, 57 [55 55] 57 57 57]"
+   ]
+
+d1 $ sound (samples "[xxlbd(3,8)]" (irand 10))
+
+d2 $ slow 2 $ every 1 (#nudge "0.34") $ sound "loop"
+     |+| speed "[1.5, 0.7]"
+     |+| cut "1"
+     |+| gain "0.8"

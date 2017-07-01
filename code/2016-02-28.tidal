@@ -1,0 +1,60 @@
+--new 1
+--
+bpm 80
+
+d1 $ every 2 (jux (#nudge "0.2") . (|+| speed "[0.5, 1.2]")) $ 
+   sound (samples "2001*3?" (run 3)) 
+   |+| cut "2"
+
+d2 $ every 2 (|+| speed "{0.8 0.5 2 0.9}%4") $ 
+   sound (samples "alpkeys*4" (irand 10))
+   |+| (slow 3 $ shape sinewave)
+   |+| gain (scale 0.4 0.8 sinewave1)
+
+--pt 1
+d3 $ stack [slow 2 $ sound (samples "centuries*8" (run 8)),
+   sound (samples "[digimrn, digishake(3,8), digicp*4?, digia*4?]" (run 4)) |+| gain "0.8"
+   ]
+
+d3 $ stack [slow 2 $ sound (samples "centuries*8" (run 10)),
+   sound (samples "[digimrn, digishake(3,8), digicp*4?, digia*4?]" (run 8)) |+| gain "0.8"
+   ]
+
+d3 $ stack [slow 2 $ sound (samples "centuries*8" (run 12)),
+   sound (samples "[digimrn, digishake(3,8), digicp*4?, digia*4?]" (irand 4)) |+| gain "0.8"
+   ]
+
+d3 $ stack [sometimes (density 2) $ 
+   slow 2 $ 
+   sound (samples "centuries*8" (irand 12)) |+| cut "1",
+   every 2 (0.25 ~>) $ rarely (spin 2 . (|+| speed "{1 2 3 4}%4")) $
+   sound (samples "[digimrn, digishake(3,8), digicp*4?, digia*4?]" (irand 4)) |+| gain "0.8"
+   ]
+
+d3 $ stack [rarely (jux (iter 4) . rev) $ 
+   sometimes (density 2) $ 
+   slow 2 $ 
+   sound (samples "infinite*8" (irand 12)) |+| cut "1",
+   every 2 (0.25 ~>) $ rarely (spin 2 . (|+| speed "{1 2 3 4}%4")) $
+   sound (samples "[digimrn(3,8), digishake(3,8), digicp*4?, digia*4?]" (irand 4)) |+| gain "0.8"
+   ]
+
+--old flag yo
+d2 $ every 2 ((0.125 <~) . jux (#nudge "0.15") . (|+| speed "[0.7]") . (|+| cut "1")) $
+   slow 2 $ sound (samples "[grand*16]" (run 16))
+   |+| gain "1.2"
+
+d3 $ every 2 (density 2 . rev) $ 
+   foldEvery [2,3] (density 2 . (|+| speed "[0.6, 2]/2")) $ 
+   sound (samples "ifdrums*4" (run 4)) |+| speed "0.8" |+| cut "1"
+
+d3 $ stack [sometimes (degradeBy 0.25) $ every 2 (density 2 . rev) $ foldEvery [2,3] (density 2 . (|+| speed "[0.6, 2]/2")) $ 
+   sound (samples "ifdrums*4" (run 4)) |+| speed "0.8" |+| cut "1",
+   sound (samples "kickz(3,8)" (run 8)),
+   every 4 (jux (0.25 <~) . (|+| speed "0.8")) $ sound (samples "mp3(2,8)" (run 4)) |+| cut "1" |+| gain "0.8"
+   ]
+
+d2 $ stack [every 4 (|+| gain (scale 0.5 1 sinewave1)) $ 
+   sound (samples "icarus*8?" (run 8)) |+| cut "1",
+   --slow 4 $ sound "fuckable" |+| gain "1.4"
+   ]

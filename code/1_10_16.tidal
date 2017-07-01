@@ -1,0 +1,5 @@
+bpm 80
+
+k1 $ degradeBy 0.7 $ spin 2 $ sometimes (density 2) $ note "[10 14 15,~ ~ ~ 80 ~, ~ ~ ~ 50, ~ 65 ~ ~ ~ ~ ~, 30*9?]"
+
+d1 $ spin 2 $ iter 2 $ sound 

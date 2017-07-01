@@ -1,0 +1,185 @@
+--scratchpad
+--
+bpm 80
+
+d1 $ every 2 (|+| speed "{0.5 0.5 0.5 0.5}%4") $ sound "[loop*4]"
+   |+| gain "1.4"
+
+m1 $ note "[10*2 20*3]"
+
+m1 $ note "[28 30 30 20 ~ ~]"
+
+d1 $ sound "[808bd:4*4, 808cb*8?]"
+
+d1 $ sometimes (degradeBy 0.5 . rev . density 2) $ sound (samples "[xxlbd(3,8), xxlsn(2,5)?, hh:8*16?]" (irand 10))
+   |+| (slow 3 $ crush (scale 3 10 sine))
+   |+| (density 10 $ pan sawwave1)
+   |+| gain "0.8"
+
+d2 $ sound (samples "[dmp*4, dmo*8?]" (irand 20))
+   |+| (slow 3 $ crush (scale 3 5 sine))
+   |+| (density 10 $ pan sawwave1)
+   |+| (slow 4 $ gain (scale 0.1 0.9 sawwave))
+
+--tans tune
+bpm 160
+
+m1 $ every 4 (spin 2 . density 2) $ note "[20 25 25 35]"
+
+--staple
+d1 $ stack [
+   slow 2 $ sound "[808bd:3*4, 808cy]"
+   |+| (slow 2 $ crush (scale 3 5 sine1)),
+   rarely (density 2 . rev) $ every 2 (0.25 <~) $ sound "[xxlbd:7*2?, 808rs*4?, 808oh*4?]"
+   ]
+   |+| (slow 5 $ crush (scale 2 5 saw1))
+
+--weird breakdown 1
+d1 $ every 4 (|+| (slow 2 $ crush (scale 1.5 5 saw1))) $ stack [
+   slow 2 $ sound "[808bd:3*4, 808cy]"
+   |+| (slow 2 $ crush (scale 3 5 sine1)),
+   foldEvery [2,3] (density 1.67) $ rarely (density 2 . rev) $ every 2 (0.25 <~) $ sound "[xxlbd:7*2?, 808rs*2?, 808oh*2?]"
+   ]
+
+--with swing & hats & distorion
+--
+d1 $ stack [
+   slow 2 $ sound "[808bd:3*4, 808cy]"
+   |+| (slow 2 $ crush (scale 3 5 sine1)),
+   swing 0.15 $ degradeBy 0.2 $ rarely (density 2 . rev) $ every 2 (0.25 <~) $ sound "[xxlbd:7*2?, 808rs*4?, 808oh*4?]",
+   sound "808cb*4?" |+| (slow 8 $ delay (scale 0.1 2 sine1)),
+   slow 8 $ sound "[yoga:3]",
+   slow 12 $ sound "[yoga:4]"
+   ]
+   |+| (slow 5 $ crush (scale 2 5 saw1))
+
+--some melody
+d1 $ stack [ 
+     stack [
+            slow 2 $ sound "[808bd:3*4, 808cy]"
+            |+| (slow 2 $ crush (scale 3 5 sine1)),
+            swing 0.15 $ degradeBy 0.2 $ rarely (density 2 . rev) $ every 2 (0.25 <~) $ sound "[xxlbd:7*2?, 808rs*4?, 808oh*4?]",
+            sound "808cb*4?" |+| (slow 8 $ delay (scale 0.1 2 sine1)),
+            slow 8 $ sound "[yoga:3]",
+            slow 12 $ sound "[yoga:4]"
+           ] |+| (slow 5 $ crush (scale 2 5 saw1)),
+     every 4 (|+| speed "[1.5, 2, 3, 0.25]") $ sound "[frgtfx:2 frgtfx:3]"
+           |+| delay "0.3" |+| pan sinewave1
+   ]
+
+--break intro
+d1 $ stack [ 
+     stack [
+            slow 2 $ sound "[808bd:3*4, 808cy]"
+            |+| (slow 2 $ crush (scale 3 5 sine1)),
+            swing 0.15 $ degradeBy 0.2 $ rarely (density 2 . rev) $ every 2 (0.25 <~) $ sound "[xxlbd:7*2?, 808rs*4?, 808oh*4?]",
+            degradeBy 0.5 $ sound "808cb*4?" |+| (slow 8 $ delay (scale 0.1 2 sine1)),
+            slow 8 $ sound "[yoga:3]" |+| gain "1.4" |+| delay "0.2",
+            slow 12 $ sound "[yoga:4]" |+| gain "1.4" |+| delay "0.3"
+           ]
+   ]
+
+--more melody w breaks
+d1 $ stack [ 
+     stack [
+            degradeBy 0.2 $ rarely (density 2 . rev) $ every 2 (0.25 <~) $ sound "[xxlbd:7*2?, 808rs*4?, 808oh*4?]",
+            slow 8 $ sound "[yoga:3]" |+| gain "1.5",
+            slow 12 $ sound "[yoga:4]" |+| gain "1.4"
+           ],
+     every 4 (|+| speed "[1.5, 2, 3, 0.25, 0.1]") $ degradeBy 0.8 $ sound "[frgtfx:2 frgtfx:3]",
+     every 6 (|+| speed "{1 0.8 0.7 2}%4") $ slow 1.5 $ sound "[wheelup wheelup:2]"
+     |+| (slow 2 $ accelerate "-0.1")
+   ]
+
+--hmm
+bpm 140
+
+t1 xfade $ stack [
+   slow 2 $ sound "[xxlbd:3*8?, 808cy*4?]"
+   |+| (slow 2 $ crush (scale 3 5 sine1)),
+   sound "[xxlbd*2?, 808rs*3?]",
+   degradeBy 0.8 $ sound "[808cb*9]"
+]
+
+m1 $ rarely (spin 2)$ 
+   sometimes (rev . slow 2) $
+   rarely (density 2) $ 
+   slow 4 $ note "[15 ~ 23 38, 20 30 35 40 45]"
+
+m1 $ note "[40 50 60 70]"
+
+
+
+
+d1 $ slow 4 $ sound "[xxlbd:3, 808oh*4?, 808rs*16?]"
+
+--27/28
+
+m1 $ slow 4 $ note "[24 ~ 26 ~]"
+
+
+------t#1
+bpm 80
+
+d1 $ stack [
+   sometimes (degradeBy 0.8) $ rarely (jux (iter 4)) $ sometimes (spin 3) $ sound "[chin chin:1 chin:2 chin:3]"
+   |+| gain "1.5"
+   |+| (density 20 $ pan sawwave),
+   every 8 (|+| speed "{0.8 0.7 0.6 0.65}%4") $ sound (samples "lighter*8?" (run 8)) |+| delay "0.1" |+| (slow 4 $ pan sinewave1),
+   every 16 (|+| speed "{0.8 1.2 1.4 0.9}%4") $ degradeBy 0.2 $ sound (samples "hand*8?" (run 8)) |+| gain "1.1" |+| (density 2 $ pan sawwave1) |+| cut "1"
+   ]
+
+d4 $ stack [every 4 (|+| speed "[2, 0.5]") $ 
+   every 7 (|+| speed "{1 0.96 0.92 0.85}%4") $
+   sound (samples "[bamboos*4]" (run 8))
+   |+| cut "1"
+   |+| gain "0.8",
+   slow 3 $ sound (samples "apedrumhats*4?" (run 12)) |+| gain "1.00",
+   every 8 (density 2 . rev) $ slow 2 $ sound (samples "circuitvox*2" (run 4)) |+| cut "1"
+   ]
+
+d3 $ every 8 (|+| accelerate "-0.3") $ every 2 (spin 2) $ sometimes (rev . (0.5 ~>)) $ sound (samples "2002b*8" (run 8))
+   |+| speed "0.8"
+
+d3 $ degradeBy 0.15 $ jux (iter 4) $ every 4 (|+| speed "{0.5 2 3 0.9 0.8 0.95 1}%8") $ every 2 (spin 2) $ sometimes (rev . (0.5 ~>)) $ sound (samples "2002b*8" (run 8))
+   |+| speed "0.8"
+
+--trap
+d2 $ sound "[xxlbd:5 ~ ~ xxlbd:7 ~ ~ xxlbd:8 ~, 808ch*16?, 808cb*2?]" |+| speed "0.8"
+
+d2 $ every 2 (0.25 ~>) $ every 4 (0.5 <~) $ sound "[xxlbd:5 ~ ~ xxlbd:7 ~ ~ xxlbd:8 ~, 808ch*16?, 808cb*2?]" |+| speed "0.8"
+
+d2 $ sometimes (spin 2) $ every 2 (0.25 ~>) $ every 4 (0.5 <~) $ sound "[xxlbd:5 ~ ~ xxlbd:7 ~ ~ xxlbd:8 ~, 808ch*16?, 808cb*2?]" |+| speed "0.8"
+
+d2 $ every 2 (|+| speed "{1 0.95 0.94 0.92 0.9 0.85}%4") $ sometimes (spin 2) $ every 2 (0.25 ~>) $ every 4 (0.5 <~) $ sound "[xxlbd:5 ~ ~ xxlbd:7 ~ ~ xxlbd:8 ~, 808ch*16?, 808cb*2?]" |+| speed "0.8"
+
+d4 $ stack [every 4 (|+| speed "[2, 0.5]") $ 
+   every 7 (|+| speed "{1 0.96 0.92 0.85}%4") $
+   every 8 (spin 2 . rev) $ sound (samples "[bamboos*4]" (run 8))
+   |+| cut "1"
+   |+| gain "0.8",
+   slow 3 $ sound (samples "apedrumhats*4?" (run 12)) |+| gain "1.00",
+   every 4 (jux (#nudge "0.1") . (|+| speed "{0.5 0.8}%2")) $ 
+   every 8 (density 2 . rev) $ 
+   slow 2 $ sound (samples "circuitvox*2" (run 4)) |+| cut "1"
+   ]
+
+d4 $ stack [every 4 (|+| speed "[2, 0.5]") $ 
+   every 7 (|+| speed "{1 0.96 0.92 0.85}%4") $
+   every 8 (spin 2 . rev) $ sound (samples "[bamboos*4]" (run 8))
+   |+| cut "1"
+   |+| gain "0.8",
+   slow 3 $ sound (samples "apedrumhats*4?" (run 12)) |+| gain "1.00",
+   every 4 (jux (#nudge "0.1") . (|+| speed "{0.5 0.8}%2")) $ 
+   every 8 (density 2 . rev) $ 
+   slow 2 $ sound (samples "circuitvox*2" (run 4)) |+| cut "1"
+   --every 3 (0.25 <~) $ sound (samples "[xxlbd(3,8), 808ch*8?]" (run 4)) |+| gain "1"
+  ]
+
+d2 $ every 2 ((|+| speed "{0.9 0.8 0.65 0.5}%2") . spin 2) $ sometimes (degradeBy 0.5 . rev . (0.25 ~>)) $ sound (samples "defdo*4?" (irand 10)) 
+   |+| cut "1"
+
+--whats in da drum sequence
+d3 $ sound (samples "2002b*8" (run 8))
+
+  |+| gain "1"

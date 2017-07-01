@@ -1,0 +1,96 @@
+--sinesine
+d1 $ sometimes (density 2) $ sometimes (spin 2) $ sound "sine sine sine sine"
+   |+| (slow 4 $ speed (scale 0.1 0.8 sine))
+   |+| (slow 4 $ resonance (scale 0.2 0.8 sine))
+   |+| (slow 8 $ delay (scale 0.2 0.4 sine))
+   |+| (slow 8 $ delayfeedback (scale 0.2 0.6 sine))
+   |+| (slow 5 $ pan sawwave1)
+
+d2 $ degradeBy 0.9 $ sometimes (density 3) $ slow 2 $ sound "sine sine sine sine"
+   |+| (slow 4 $ speed (scale 1 2 sine))
+   |+| (slow 4 $ resonance (scale 0.2 0.5 sine))
+   |+| (slow 8 $ delay (scale 0.2 0.7 sine))
+   |+| (slow 8 $ delayfeedback (scale 0.2 0.6 sine))
+   |+| (slow 2 $ pan sinewave)
+
+d3 $ sometimes (degradeBy 0.9) $ every 4 (density 2) $ every 4 (0.25 ~>) $ sometimes (density 2) $ slow 4 $ sound "sine sine [sine sine] sine [sine sine sine] sine sine sine sine sine sine sine"
+   |+| (slow 4 $ speed (scale 0.5 3 sine))
+   |+| (slow 4 $ resonance (scale 0.2 0.8 sine))
+   |+| (slow 8 $ delay (scale 0.2 0.7 sine))
+   |+| (slow 8 $ delayfeedback (scale 0.2 0.3 sine))
+   |+| (slow 3 $ pan sinewave1)
+   |+| gain "0.2"
+
+bpm 180
+
+d2 $ every 4 (0.5 ~>) $ every 7 (jux (iter 2)) $ sometimes (spin 2) $ every 2 (|+| speed "[1,2,0.4 0.8]") $ sound (samples "[sine*8?, notes*4?]" (irand 4))
+
+d1 $ every 4 (0.5 ~>) $ every 7 (jux (iter 2)) $ sometimes (spin 2) $ every 1 (|+| speed "[0.5, 0.2, 0.3]") $ sound (samples "[sine*8?, notes*4?]" (irand 4))
+
+d3 $ every 5 (0.25 ~>) $ every 5 (jux (iter 4)) $ sometimes (spin 3) $ every 1 (|+| speed "[0.5, 0.2, 0.3]") $ sound (samples "[sine*12?, notes*8?]" (irand 4))
+
+d1 $ every 4 (density 2) $ every 7 (0.25 ~>) $ sometimes (spin 2) $ sound (samples "[xxlbd*4, 808oh, 808ch*6?, 808rs*8?, 808mt 808mt 808lt, xxlcp*2?, xxlsn ~ ~ xxlsn ~ ~ xxlsn ~]" (irand 20))
+   |+| gain "0.95"
+   |+| delay "0.2"
+   |+| (slow 5 $ pan sinewave1)
+
+d4 $ every 4 (density 2) $ every 7 (0.25 ~>) $ sometimes (spin 2) $ sound (samples "[xxlbd*4, 808oh, 808ch*6?, 808rs*8?, 808mt 808mt 808lt, xxlcp*2?, xxlsn ~ ~ xxlsn ~ ~ xxlsn ~]" (irand 20))
+   |+| gain "0.95"
+   |+| delay "0.2"
+   |+| (slow 8 $ pan sinewave1)
+
+t1 xfade $ foldEvery [2,3] (density 2) $ sound (samples "[xxlbd ~ ~ xxlbd ~ ~ xxlbd ~, 808ch*8?, 808rs*6?]" (irand 8))
+   |+| gain "0.1"
+
+
+--using live input // contact mic
+d1 $ sometimes (spin 2) $ sometimes (density 2 . rev) $ sound "[loop]"
+  |+| gain "1.5"
+  |+| delay "0.5"
+  |+| (slow 2 $ pan sinewave1)
+
+
+
+
+--dj rapidshare
+bpm 120
+
+--original beat
+d1 $ sound (samples "[xxlbd ~ ~ xxlbd ~ ~ xxlbd ~, 808ch*8?, 808oh*4?, xxlsh ~ ~ xxlcp, ~ ~ ~ ~ ppglove?]" (irand 16))
+
+--next transition
+t1 xfade $ sometimes (0.25 ~>) $ every 4 (spin 2) $ sound (samples "[xxlbd ~ ~ xxlbd ~ ~ xxlbd ~, 808ch*8?, 808oh*4?, xxlsh ~ ~ xxlcp, ~ ~ ~ ~ ppglove?]" (irand 16))
+
+--another
+t1 xfade $ degradeBy 0.5 $ foldEvery [4,8] (density 2) $ every 8 (0.5 <~) $ sometimes (brak) $ sound (samples "[808bd:4 ~ ~ xxlbd ~ ~ 808bd:4 ~, 808ch*16?, 808oh*6?, xxlsh ~ ~ xxlcp*2, ~ ~ ~ ~ ppglove?]" (irand 16))
+
+d6 $ slow 16 $ sometimes (density 2) $ sometimes (spin 2) $ sound "[rapidshare]"
+
+d5 $ sound (samples "[xxlbd:4 ~ ~ xxlbd:3]" (irand 16)) 
+
+d7 $ degradeBy 0.5 $ sometimes (spin 2) $ sound (samples "[malware*4]" (irand 100))
+   |+| gain "1.2"
+   |+| (slow 4 $ pan sinewave1)
+
+d7 $ degradeBy 0.5 $ slow 3 $ every 2 (chop 8) $ sometimes (chop 4) $ jux (iter 2) $ sound (samples "discolady? discolady?" (irand 50))
+   |+| speed "[0.4, 0.5]"
+
+--sine bassline
+d2 $ foldEvery [2,3] (density 4) $ degradeBy 0.1 $ sound "sine ~ ~ sine]"
+   |+| (slow 8 $ speed (scale 0.2 0.4 sine1))
+   |+| shape sawwave1
+   |+| vowel "a e o"
+
+d1 $ sometimes (density 2) $ sound "[xxlbd:3 xxlbd:2 xxlcp, 808rs*6, ~ 808cb]"
+
+--swing
+d1 $ sometimes (density 2) $ swing 2 $ sound "[xxlbd:3 xxlbd:2 xxlcp, 808rs*6, ~ 808cb]"
+
+bpm 116
+
+d2 $ slow 2 $ sound "[808bd, ~ 808cb?, ~ xxlsh ~ ~ xxlsh]"
+
+t2 xfade $ slow 2 $ sometimes (degradeBy 0.5) $ every 2 (0.25 ~>) $ sound (samples "[xxlbd*2, 808cb*4?, xxlsh*3?]" (run 8))
+
+t2 xfade $ slow 2 $ degradeBy 0.8 $ sometimes (density 4) $ sound (samples "[808bd, ~ 808cb?, ~ xxlsh ~ ~ xxlsh ~ ~ ~ xxlcp]" (irand 8))
+   |+| speed "[1,2, 0.5]"

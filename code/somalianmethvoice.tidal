@@ -1,0 +1,7 @@
+bpm 20
+
+d1 $ slowspread ($) [(|+| speed "[0.8, 0.5, 1]"), degradeBy 0.5, iter 2] $ 
+   sound "loop*4?"
+   |+| gain "1.3"
+   |+| crush "5"
+   |+| cut "1"

@@ -1,0 +1,31 @@
+d2 $ every 4 (|+| speed "{1 0.9 0.8 0.85 0.92}%8") $ sometimes (spin 2) $ 
+   sound (samples "ywamen2*8" (irand 8))
+   |+| cut "1"
+
+d3 $ slow 2 $ sound (samples "fvox1*8" (run 8))
+
+d4 $ slow 4 $ sound (samples "ywsb*2" (run 2))
+   |+| cut "3"
+
+d5 $ sound (samples "[808bd(3,8)?, 808rs*12?, 99ch*8?]" (irand 5))
+   |+| speed "0.8"
+
+
+m1 $ every 2 (density 2 . degradeBy 0.4) $ 
+   sometimes (density 2 . rev . degradeBy 0.4) $ 
+   note "[28*4?, 40*8?]"
+   |=| osc1shape rand
+   |=| osc1param rand
+   |=| osc2param rand
+   |=| (slow 4 $ osc2shape rand)
+   |=| (density 5 $ f1cutoff (scale 0.5 0.8 saw))
+   |=| (slow 5 $ f1res (scale 0.4 0.7 saw))
+   |=| osc1detune rand
+   |=| (slow 10 $ osc2detune (scale 0.2 0.5 sinewave1))
+   |=| lfo1sync rand
+   |=| lfo2shape rand
+   |=| lfo1shape rand
+   |=| lfo2sync rand
+   |=| lfo3rate rand
+
+m1 silence

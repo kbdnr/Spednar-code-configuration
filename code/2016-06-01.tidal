@@ -1,0 +1,14 @@
+--1 cut amens
+--
+
+bpm 80
+
+d1 $ stack [
+   sound (samples "[99r(1,2), 808rs(1,2)]" (irand 10)),
+   sound (samples "xxlbd ~ xxlbd ~ ~ ~ ~ ~ ~ ~ xxlbd xxlbd ~ ~ ~ ~]" (irand 10))
+   |+| cut "1",
+   every 4 (spin 2) $ sometimes (|+| speed "{0.8 2 0.7 0.5}%16") $
+   sound (samples "[~ ~ ~ ~ 99sn ~ ~ 99sn ~ 99sn ~ ~ 99sn ~ ~ 99sn, ~ ~ ~ ~ xxlsn ~ ~ xxlsn ~ xxlsn ~ ~ xxlsn ~ ~ xxlsn]" (irand 10))
+   |+| cut "2"
+   |+| (slow 4 $ pan sinewave1)
+   ]

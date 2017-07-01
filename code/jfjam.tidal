@@ -1,0 +1,20 @@
+bpm 90
+
+d1 $ sound (samples "lighter*8?" (irand 10))
+
+d3 $ sound (samples "fur3*4" (run 4)) |+| cut "1"
+
+d3 $ sometimes (density 2) $ rarely (spin 2) 
+   $ sound (samples "fur3*4" (irand 4)) |+| cut "1"
+   |+| (slow 4 $ gain (scale 0.5 0.7 sinewave1))
+
+d4 $ sometimes (|+| speed "{1 0.8 0.7 0.5}%4") $ 
+   sound (samples "feelfx*4" (irand 4)) |+| cut "2"
+   |+| (slow 8 $ gain (scale 0.7 0.9 sinewave1))
+
+d5 $ sometimes (|+| speed "{1 0.8 0.7 0.5}%4") $ 
+   sound (samples "infinite*4" (irand 4)) |+| cut "2"
+   |+| (slow 8 $ gain (scale 0.9 1.0 sinewave1))
+
+d6 $ sound (samples "handdrum*8?" (run 8)) |+| cut "3"
+   |+| (slow 4 $ gain (scale 0.5 0.7 sinewave1))

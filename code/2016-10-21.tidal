@@ -1,0 +1,8 @@
+bpm 87.5
+
+m1 $ note "[30 40 ~ 50, 30(3,8)]"
+   |+| (slow 4 $ dur (scale 0.1 0.8 sinewave1))
+   |+| (slow 4 $ vel (scale 0.1 0.8 sawwave))
+
+d1 $ sound "xxlbd:5(3,8)"
+   |+| gain "0.7"

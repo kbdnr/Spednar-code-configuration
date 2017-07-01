@@ -1,0 +1,9 @@
+bpm 121.1
+
+
+--live coded MF piece
+d1 $ rarely (density 2) $ sometimes (|+| speed "{2 1.4 1.2 0.8}%4") $
+   sound "loop"
+
+d1 $ rarely (density 2) $ sometimes (|+| speed "{0.8 1.6 2 4}%4") $
+   sound "loop"

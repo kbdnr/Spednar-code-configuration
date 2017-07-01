@@ -1,0 +1,56 @@
+--dj download service file yeeeeerrrryyaaayay
+--
+bpm 82
+
+--softies
+d1 $ slow 2 $ sound (samples "blue*8" (run 8))
+
+d1 $ slow 2 $ sound (samples "blue*8" (irand 16))
+
+d1 $ slow 4 $ sound (samples "bpbrk*16" (run 16))
+
+d1 $ slow 4 $ sound (samples "bpbrk*16" (irand 16))
+
+--breaks
+d1 $ sound (samples "atlantis*4" (run 4))
+
+d1 $ sound (samples "atlantis*4" (irand 8))
+
+d1 $ sound (samples "session*4" (run 4))
+
+d1 $ sound (samples "session*4" (run 4))
+
+--hardies
+d1 $ slow 2 $ sound (samples "arson*8" (run 8))
+   |+| accelerate "-1"
+
+d7 $ slow 2 $ sound (samples "arson*8" (irand 16))
+   |+| accelerate "-1"
+
+d7 $ slow 2 $ sound (samples "bulldozer*8" (run 8))
+   |+| (slow 2 $ accelerate (scale 0.1 0.9 sine))
+   |+| speed "0.99"
+   |+| cut "1"
+
+d7 $ slow 2 $ every 4 (density 2 . rev . (|+| speed "0.09") $ sound (samples "bulldozer*8" (irand 8))
+   |+| cut "1"
+
+d2 $ slow 2 $ sound (samples "centuries*8" (run 8))
+   |+| speed "0.992"
+   |+| gain "0.90"
+
+d1 $ slow 2 $ sound (samples "centuries*8" (irand 8))
+   |+| (slow 4 $ accelerate (scale 0.1 0.9 sine))
+   |+| speed "0.99"
+
+d1 $ slow 2 $ sound (samples "war*8" (run 8))
+
+d1 $ slow 2 $ sound (samples "war*8" (irand 8))
+
+d3 $ slow 4 $ sound "rapidshare"
+   |+| accelerate "-0.2"
+   |+| gain "1.3"
+
+
+d5 $ sometimes (chop 8) $ sound "[basses:29]"
+   |+| accelerate "-0.2"

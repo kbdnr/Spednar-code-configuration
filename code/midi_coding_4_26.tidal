@@ -1,0 +1,37 @@
+--midi coding
+
+m1 $ slowcat [
+   note "40 [42 ~ 43] ~",
+   note "40 [42 43 45 47 ~] 50",
+   note "~ 30 [32 35] 40 50"
+   ]
+   |+| (slow 4 $ vel (scale 0.1 0.3 sinewave1))
+   |+| (slow 3 $ dur (scale 0.01 0.03 sawwave1))
+
+m1 silence
+
+k1 silence
+
+k1 $ slowcat [
+   slow 2 $ note "22",
+   slow 2 $ note "22 24",
+   slow 2 $ note "22 18"
+   ]
+   |+| (slow 4 $ vel (scale 0.02 0.2 sinewave1))
+   |+| (slow 3 $ dur (scale 0.3 0.6 sawwave1))
+
+d2 $ slow 2 $ jux (#nudge "0.36") $ sound "loop*4?"
+
+d2 $ slow 2 $ slowspread ($) [
+   (|+| speed "{1 2 1 0.5}%4"),
+   (|+| speed "{1 2 0.8 1.2}%4")
+   ] $ jux (#nudge "0.34") $ sound "loop*4?" |+| cut "1"
+
+--
+d3 $ spin 2 $
+   sound "[bonarp:0 bonarp:3 ~ bonarp:9]" 
+   |+| speed "[0.6 0.9 ~ 0.3]"
+   |+| begin "0.0"
+   |+| end "0.5"
+   |+| cut "2"
+   |+| gain "0.5"

@@ -1,0 +1,53 @@
+bpm 140
+
+m1 $ slow 2 $ sometimes (degradeBy 0.5) $ every 4 (spin 2) $ note "[27]"
+m1 silence
+
+m1 $ slow 2 $ every 4 (density 3 . rev . (|+| dur "0.02")) $ slowcat [note "[72 65]", note "[75 70]", note "[80 ~ 85]"]
+   |+| (slow 12 $ vel (scale 0.02 0.3 sinewave1))
+   |+| (slow 7 $ attack (scale 0.02 0.6 sinewave1))
+   |+| (slow 5 $ breath (scale 0.02 0.9 sinewave1))
+   |+| (slow 3 $ balance (scale 0.02 0.6 sinewave1))
+
+k1 $ slow 8 $ every 2 ((|+| dur "0.20") . rev . brak) $ every 3 (|+| dur "0.5") $ 
+   slowcat [note "~ 32 28 20", swing 3 $ note "20 ~ 18 ~ 29"]
+
+k1 silence
+
+d1 $ slow 2 $ every 8 (degradeBy 0.5) $ every 4 (density 2 . rev . (|+| speed "2")) $ sometimes (swing 0.4 . (|+| speed "[0.5]")) $ every 2 (jux (iter 4)) $
+   sound "[kickz:1 ~ ~ kickz:0?, ~ drumsd1:11 ~, ~ ~ drumsd2:12 ~, ~ ~ bassdm:1]"
+
+d2 $ slow 2 $ sound "[sndz:3]" |+| cut "2"
+   |+| speed "0.77"
+   |+| accelerate "0.02"
+   |+| gain "0.9"
+
+d3 $ slow 2 $ sound "[sndz:2]" |+| cut "1"
+   |+| speed "0.72"
+   --|+| (slow 4 $ crush (scale 1 8 sinewave1))
+   |+| gain "0.7"
+
+d2 $ every 2 (|+| speed "[0.5 0.6 0.75 0.8, 2 1.8 1.6 1.5, 3 4 3 4]") $ rarely (spin 2) $ 
+   every 4 (jux (#nudge "0.05")) $ 
+   |+| gain "1.2"
+
+d5 $ degradeBy 0.2 $ 
+   every 6 (spin 2 . degradeBy 0.25 . jux (iter 4) . (|+| speed "{1 2 0.8 0.4}%4")) $ 
+   every 4 (brak . rev . degradeBy 0.25) $ stack [
+   every 4 (|+| speed "0.4") $ sound "[drumbd1]", 
+   every 6 (jux (iter 2)) $ density 8 $ degradeBy 0.4 $ sound "[drumsd2:25?]" |+| (slow 8 $ speed "{1 2 3 4 5 4 3 2}%8")
+     |+| (slow 8 $ delay (scale 0.02 0.2 sinewave1)),
+   every 2 (jux (iter 2)) $ sound "[drumch*8?]" |+| (slow 4 $ speed "{1 0.8 0.6 0.5 0.4}%4")
+   ]
+
+bpm 128
+
+t5 anticipate $ sound (samples "[drumlt drumht]" (irand 20))
+
+d6 $ foldEvery [2,3] (density 2 . spin 2 . (|+| speed "[0.8,1.2]")) $ 
+   sound (samples "[drumch drumoh]" (irand 20))
+
+d7 $ every 4 (jux (iter 2 . (#nudge "0.05"))) $ 
+     every 2 ((|+| speed "0.8") . (|+| accelerate "-0.25")) $ 
+     sound "discolady:7" |+| cut "1"
+

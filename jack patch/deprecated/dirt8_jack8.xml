@@ -1,0 +1,59 @@
+<!DOCTYPE patchbay>
+<patchbay version="0.3.10" name="dirt8_jack8">
+ <output-sockets>
+  <socket exclusive="off" client="dirt" type="jack-audio" name="Dirt8">
+   <plug>output_0</plug>
+   <plug>output_1</plug>
+   <plug>output_2</plug>
+   <plug>output_3</plug>
+   <plug>output_4</plug>
+   <plug>output_5</plug>
+   <plug>output_6</plug>
+   <plug>output_7</plug>
+   <plug>output_8</plug>
+   <plug>output_9</plug>
+   <plug>output_10</plug>
+   <plug>output_11</plug>
+   <plug>output_12</plug>
+   <plug>output_13</plug>
+   <plug>output_14</plug>
+   <plug>output_15</plug>
+  </socket>
+  <socket exclusive="off" client="jack_mixer" type="jack-audio" name="Jack Mix Master Out (2ch)">
+   <plug>MAIN L</plug>
+   <plug>MAIN R</plug>
+  </socket>
+ </output-sockets>
+ <input-sockets>
+  <socket exclusive="off" client="jack_mixer" type="jack-audio" name="JackMixer">
+   <plug>d1 L</plug>
+   <plug>d1 R</plug>
+   <plug>d2 L</plug>
+   <plug>d2 R</plug>
+   <plug>d3 L</plug>
+   <plug>d3 R</plug>
+   <plug>d4 L</plug>
+   <plug>d4 R</plug>
+   <plug>d5 L</plug>
+   <plug>d5 R</plug>
+   <plug>d6 L</plug>
+   <plug>d6 R</plug>
+   <plug>d7 L</plug>
+   <plug>d7 R</plug>
+   <plug>d8 L</plug>
+   <plug>d8 R</plug>
+  </socket>
+  <socket exclusive="off" client="system" type="jack-audio" name="Output">
+   <plug>playback_1</plug>
+   <plug>playback_2</plug>
+   <plug>playback_3</plug>
+   <plug>playback_4</plug>
+  </socket>
+ </input-sockets>
+ <slots/>
+ <cables>
+  <cable output="Dirt8" input="JackMixer" type="jack-audio"/>
+  <cable output="Jack Mix Master Out (2ch)" input="Output" type="jack-audio"/>
+ </cables>
+</patchbay>
+

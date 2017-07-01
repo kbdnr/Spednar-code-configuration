@@ -1,0 +1,4 @@
+bpm 300
+
+d2 $ sound "loop*8"
+   |+| cut "1"

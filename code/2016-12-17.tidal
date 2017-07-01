@@ -1,0 +1,179 @@
+bpm 128
+
+m1 $ 
+   --tidal lifting
+   --every 4 (density 2 . degradeBy 0.4 . rev) $
+   --tidal param overrides
+   sometimes (|=| osc2range "0.8") $ sometimes (|=| osc1range "0.8") $
+   sometimes (|=| osc2shape "0.3 0.8") $ every 4 (|=| osc1shape "0.85 0.2") $
+   every 4 (|=| xmodtype "0.8") $
+   every 4 (|=| dur "0.4") $
+   --notes
+   slowcat [note "[40*4 50*4]", note "[20 25 30 40 20 25 30 40]"]
+   --default params
+   --oscillators
+   |=| osc1range "0.4"
+   |=| osc2range "0.5"
+   |=| osc1shape "0.38"
+   |=| osc2shape "0.49"
+   |=| (slow 12 $ osc1param (scale 0.1 0.8 sinewave1))
+   |=| (slow 12 $ osc2param (scale 0.6 0.2 sinewave1))
+   |=| (slow 14 $ osc1detune (scale 0.45 0.55 sinewave1))
+   |=| (slow 6 $ osc2detune (scale 0.3 0.8 sinewave1))
+   --mixer
+   |=| subshape "0.5"
+   |=| sublevel "0.8"
+   |=| xmodtype "0.50" --ring
+   -- ~ sustain
+   |=| dur "0.06"
+   --filters
+   |=| f2mode "0.6"
+   |=| (slow 8 $ f1cutoff (scale 0.3 0.8 sinewave1))
+   |=| (slow 8 $ f2cutoff (scale 0.2 0.5 sinewave1))
+   |=| (slow 2 $ f1res (scale 0.6 0.4 sawwave1))
+   |=| (slow 2 $ f2res (scale 0.2 0.3 sawwave1))
+   --lfo/env
+   |=| (slow 4 $ lfo1sync (scale 0.4 0.8 sawwave1))
+   |=| (slow 4 $ lfo1shape (scale 0.4 0.8 sawwave1))
+   |=| (slow 4 $ lfo2sync (scale 0.1 0.3 tri))
+   |=| (slow 4 $ env1a (scale 0.1 0.8 sinewave1))
+   |=| (slow 7 $ env1d (scale 0.1 0.7 sinewave1))
+   |=| (slow 12 $ env1s (scale 0.1 0.8 sinewave1))
+   |=| (slow 2 $ env1r (scale 0.1 0.8 sinewave1))
+   |=| polymode "0.5"
+
+m1 $ silence
+
+m1 $ slowcat [
+   stack [
+    slowcat [
+      --bass
+      note "[30]", note "[25]", note "32", note ""
+      ]
+      |=| dur "0.5",
+      --melody
+      slowcat [
+      note "[70 ~ 72, ~ 53? ~]", note "[65 70 ~ 72 ~ 75, ~ ~ 51? ~ 49? ~]"
+      ]
+      |=| osc2shape "0.32"
+      |=| dur "0.01"
+    ],
+    stack [
+    note "[50*8?, 35*8?]"
+    ]
+    |=| osc1shape rand
+    |=| osc2shape rand
+    |=| dur "0.04"
+  ]
+
+m1 $ sometimes (|+| note "[~ 82 84 86]") $ note "[40? 42? 43? 45? 46? 48? 50? 51?, 35*8?]"
+   |=| osc1range rand
+   |=| osc1detune rand
+   |=| osc2range rand
+   |=| osc2param rand
+   |=| osc1shape rand
+   |=| subshape rand
+   |=| growl rand
+   |=| fuzz rand
+   |=| parttuning rand
+
+bpm 40
+
+m1 $ every 4 (slow 100 . (|+| note "70 80 90")) $ sometimes (density 2 . spin 3 . degradeBy 0.3) $ slowspread ($) [
+    sometimes (|+| osc1shape "0.5"), sometimes (|-| lfo1sync "0.1"), sometimes (|+| legato "0.1"), sometimes (|-| osc2shape "0.2"),
+    sometimes (|+| lfo2sync "0.1"), sometimes (|+| f1res "0.5")
+    ] $ 
+    every 2 (|+| osc2shape rand) $
+    every 3 (|+| osc1param rand) $
+    every 4 (|+| osc1range rand) $
+    every 6 (|+| osc2shape rand) $
+    every 4 (|+| osc2param rand) $
+    every 8 (|+| osc2range rand) $
+    every 12 (|=| osc2detune rand) $ 
+    every 12 (|-| osc1detune rand) $ 
+    sometimes (|=| f1cutoff rand) $
+    sometimes (|=| legato rand) $
+    note "[56*12?, 40? 38? 42? 43? 45? 48? 40?]"
+    |=| osc1shape rand
+    |=| osc2shape rand
+    |=| osc1param rand
+    |=| osc2param rand
+    |=| lfo1sync rand
+    |=| lfo1rate rand
+    |=| lfo1shape rand
+    |=| lfo2sync rand
+    |=| lfo2rate rand
+    |=| lfo2shape rand
+    |=| lfo3sync rand
+    |=| lfo3rate rand
+    |=| lfo3shape rand
+    |=| env1a rand
+    |=| env1d rand
+    |=| env1s rand
+    |=| env1r rand
+    |=| env2a rand
+    |=| env2d rand
+    |=| env2s rand
+    |=| env2r rand
+    |=| env3a rand
+    |=| env3d rand
+    |=| env3s rand
+    |=| env3r rand
+    |=| tuningspread rand
+    |=| dur (scale 0.01 0.4 rand)
+
+d2 $ every 1 ((0.25 ~>) . spin 3 . degradeBy 0.7 . (|+| speed "0.6")) $ 
+   retrig $ sound (samples "amencutup*8" (irand 8))
+   |+| cut "3"
+   |+| gain "0.9"
+
+do 
+  d1 $ sometimes (density 2 . degradeBy 0.3) $ sound "[99hh*3?, xxlsn(3,8)?]"
+   |+| cut "1" 
+  d3 $ sound (samples "[xxlbd(3,8)?]" (irand 10))
+   |+| gain "0.6"
+
+d4 $ every 1 (|=| speed "0.3 0.5") $
+   sometimes (density 2 . degradeBy 0.3) $ sound (samples "[hand*8?, glitch*16?, lighter*12?, branch*4?, ppstick*5?]" (irand 10))
+   |+| cut "4"
+   |+| (density 12 $ pan (scale 0.1 0.9 sawwave1))
+   |+| gain "0.90"
+
+bpm 50
+
+m1 $ sometimes (|+| f1cutoff rand) $ slowcat [
+   note "[40*8?, 50*8?, 62*8?]",
+   note "[38*8?, 52*8?, 62*8?]",
+   note "[41*8?, 52*8?, 64*8?]",
+   note "[35*8?, 48*8?, 58*8?]"
+   ]
+   |=| osc1range rand
+   |=| osc1param rand
+   |=| osc2detune rand
+   |=| osc2shape rand
+   |=| f1cutoff "0.5"
+   |=| f1res "0.5"
+   |=| xmodtype rand
+   |=| bal rand
+   |=| vol rand
+   |=| lfo1sync rand
+   |=| lfo1rate rand
+   |=| lfo1shape rand
+   |=| lfo2sync rand
+   |=| lfo2rate rand
+   |=| lfo2shape rand
+   |=| lfo3sync rand
+   |=| lfo3rate rand
+   |=| lfo3shape rand
+   |=| env1a rand
+   |=| env1d rand
+   |=| env1s rand
+   |=| env1r rand
+   |=| env2a rand
+   |=| env2d rand
+   |=| env2s rand
+   |=| env2r rand
+   |=| env3a rand
+   |=| env3d rand
+   |=| env3s rand
+   |=| env3r rand

@@ -1,0 +1,3 @@
+d1 $ sometimes (spin 3) $ every 2 (|+| speed "{1 2 3 4 5 0.8 0.4 0.6 0.3}%8") $ 
+   sound "[loop*8?]"
+   |+| (density 4 $ crush (scale 2 6))

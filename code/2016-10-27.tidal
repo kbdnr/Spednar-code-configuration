@@ -1,0 +1,8 @@
+m1 $ sometimes (density 2 . degradeBy 0.5) $ note "[30*8, ~ 40 ~ 45 ~ 40]"
+   |+| dur "0.4"
+   |+| (slow 4 $ osc1range (scale 0.1 0.9 tri))
+   |+| (slow 4 $ osc1shape (scale 0.1 0.9 saw))
+   |+| (slow 7 $ osc2range (scale 0.4 0.7 tri))
+   |+| (slow 7 $ osc2shape (scale 0.1 0.9 tri))
+   |+| (slow 7 $ f1res (scale 0.1 0.9 sinewave1))
+   |+| (slow 12 $ f1cutoff (scale 0.5 0.8 sinewave1))

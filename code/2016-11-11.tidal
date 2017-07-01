@@ -1,0 +1,5 @@
+m1 $ sometimes (density 2 . degradeBy 0.6) $ 
+   every 4 (spin 2 . rev) $ 
+   every 2 (0.25 ~>) $ 
+   note "[40 ~ [39? 38] 20? [36 ~ 70?] 34 ~ 30]"
+   |+| (slow 4 $ dur (scale 0.01 0.5 sinewave1))

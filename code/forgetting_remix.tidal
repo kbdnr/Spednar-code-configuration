@@ -1,0 +1,104 @@
+--frgtngrmx
+--spdnr4!@#$%
+--
+--syn1pt1
+d1 $ sound (samples "frgtsyn1*4" (run 4))
+
+--syn1pt2
+t1 xfade $ slow 2 $ sound (samples "frgtsyn1*8" (run 8))
+
+--syn1pt3
+t1 xfade $ slow 3 $ sound (samples "frgtsyn1*12" (run 12))
+
+d1 $ slow 4 $ sound (samples "frgtsyn1*16" (irand 16))
+
+--syn2pt1
+d2 $ sound (samples "frgtsyn2*4" (run 4))
+   |+| gain "0.98"
+
+t2 xfade $ slow 2 $ sound (samples "frgtsyn2*8" (run 8))
+
+t2 xfade $ slow 3 $ sound (samples "frgtsyn2*12" (run 12))
+
+d2 $ slow 4 $ sound (samples "frgtsyn2*16" (irand 16))
+
+--syn3pt1
+d3 $ sound (samples "frgtsyn3*4" (run 4))
+   |+| gain "0.98"
+
+t3 xfade $ slow 2 $ sound (samples "frgtsyn3*8" (run 8))
+
+t3 xfade $ slow 2 $ sound (samples "frgtsyn3*12" (run 12))
+
+--syn3pt2
+t3 xfade $ slow 2 $ sound (samples "frgtsyn3*8" (run 8))
+
+--syn3pt3
+d3 $ slow 3 $ sound (samples "frgtsyn3*12" (run 12))
+
+
+bpm 80
+
+--fx-pt1
+d4 $ slow 2 $ sound (samples "frgtvfx*5" (run 5))
+   |+| pan sinewave1
+   |+| unit "c" 
+   |+| gain "0.9"
+
+--fxpt2
+t4 xfade $ sometimes (degradeBy 0.4) $ sound "frgtfx:6 frgtfx:3 frgtfx:2 frgtfx:7"
+   |+| gain "0.9"
+
+--bass
+d5 $ degradeBy 0.4 $ sound (samples "frgtsb*4" (run 4))
+   |+| gain "0.6"
+
+d5 $ degradeBy 0.4 $ sound (samples "frgtsb*4" (irand 20))
+   |+| gain "0.6"
+
+--bd
+d6 $ degradeBy 0.2 $ sound (samples "frgtbd*4" (irand 20))
+   |+| gain "0.6"
+
+--sn
+d7 $ degradeBy 0.2 $ sound (samples "[frgtsn*4, frgtsn2*4]/2" (irand 20))
+   |+| gain "0.4"
+
+d8 $ sound (samples "frgtnoise*2" (irand 20))
+   |+| gain "1.0"
+
+--remix2
+bpm 80
+
+--fx-pt1
+d4 $ slow 2 $ sound (samples "frgtvfx*5" (run 5))
+   |+| pan sinewave1
+   |+| unit "c" 
+   |+| gain "0.9"
+
+--fxpt2
+t4 xfade $ slow 2 $ rarely (degradeBy 0.8) $ sound (samples "frgtvfx*4" (run 10))
+   |+| pan sinewave1
+   |+| speed "{1 1.4 0.7 0.5}%4"
+   |+| gain "0.70"
+
+t4 xfade $ sometimes (degradeBy 0.4) $ sound "frgtfx:6 frgtfx:3 frgtfx:2 frgtfx:7"
+   |+| gain "0.8"
+
+d3 $ slowcat [sound (samples "frgtsyn1*4" (run 4)), sound (samples "frgtsyn1*4" (run 8))]
+
+d1 $ sound (samples "session*4" (run 4))
+   |+| gain (scale 0.9 1 sine)
+
+d1 $ sound (samples "session*4" (irand 4))
+   |+| gain (scale 0.9 1 sine)
+
+d2 $ slow 4 $ sound (samples "bpbrk*16" (run 16))
+   |+| gain (scale 1 0.9 sine)
+
+d2 $ slow 4 $ sound (samples "bpbrk*16" (irand 16))
+   |+| gain (scale 1 0.9 sine)
+
+d7 $ rarely (|+| speed "{1.2 2 0.6}%3") $ sometimes (spin 2) $ sound "[frgtnoise:8 [frgtnoise:7 ~]]"
+   |+| speed "[0.90 , 0.4]"
+   |+| gain "0.8"

@@ -1,0 +1,15 @@
+m1 $ slowspread ($) [sometimes (density 2), rev, palindrome, brak, striate 4] $
+   note "[20 30 40 30 30]"
+   |+| (slow 4 $ osc1param (scale 0.2 0.8 $ density 5 sinewave1))
+   |+| (slow 4 $ osc1shape (scale 0.2 0.8 $ density 5 sinewave1))
+   |+| (slow 4 $ osc2param (scale 0.2 0.8 $ density 5 sinewave1))
+   |+| (slow 4 $ osc2shape (scale 0.4 0.6 $ density 5 sinewave1))
+   |+| (slow 7 $ osc2range (scale 0.4 0.6 $ slow 5 sinewave1))
+
+d1 $ every 3 (0.20 ~>) $ stack [
+     sound (samples "808rs*5?" (run 1))
+     |+| speed "1 0.8 0.4 2"
+     ,
+     sound (samples "amencutup(4,10)" (run 9)) 
+     |+| gain "1.0"
+     ]

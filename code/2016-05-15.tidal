@@ -1,0 +1,13 @@
+bpm 200
+
+d1 $ every 2 (#nudge "0.22") $ sound "[loop]"
+   |+| (slow 4 $ gain (scale 0.4 0.9 sinewave1))
+
+d1 $ rarely (spin 2 . degradeBy 0.2) $ every 2 (#nudge "0.23") $ sound "[loop]"
+   |+| (slow 4 $ gain (scale 0.4 0.9 sinewave1))
+
+d1 $ rarely (spin 2 . rev) $ sound "[loop loop?]"
+   |+| (slow 2 $ delay (scale 0.1 0.3 sinewave1))
+   |+| (slow 2 $ delayfeedback (scale 0.1 0.3 sinewave1))
+   |+| speed "[0.5, 0.75, 1, 1.25 1.5]"
+   |+| (slow 4 $ gain (scale 0.6 0.9 sinewave1))

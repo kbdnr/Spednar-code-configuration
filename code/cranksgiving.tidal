@@ -1,0 +1,329 @@
+--spednar // cranksgiving
+
+bpm 80
+
+d5 silence
+
+d1 $ sound (samples "winston*2?" (irand 3)) |+| cut "1"
+   |+| gain "1.2"
+
+d1 $ slow 2 $ stack [
+   every 2 (0.5 <~) $ sometimes (density 2) $ sound (samples "pebbles*4" (run 4))
+   ]
+
+--t1
+--4ish
+d5 $ slow 2 $ stack [sound "[hh27:0*16, hh27:2*6, hh27:4*11?, hh27:7*27?, hh27:8*12]",
+    sound (samples "hh27*8" (run 8)), every 4 (spin 2 . density 2) $ sound (samples "notes*8" (irand 12))
+    --sound "[~ numbers:0? numbers:1 numbers:2? numbers:3 numbers:4? numbers:5]"
+   |+| gain "1.2"
+   ]
+
+d5 $ slow 2 $ stack [sound "[hh27:0*16?, hh27:2*6?, hh27:4*11?, hh27:7*27?, hh27:8*12]",
+    sound (samples "hh27*8" (run 8)), every 4 (spin 2 . density 2) $ sound (samples "notes*8" (irand 12))
+    --degradeBy 0.5 $ sound "[~ numbers:0? numbers:1 numbers:2? numbers:3 numbers:4? numbers:5]"
+   |+| gain "1.2"
+   ]
+
+--5ish
+d5 $ slow 2 $ stack [sound "[hh27:0*20?, hh27:2*5, hh27:4*12?, hh27:7*20?, hh27:8*10]",
+    sound (samples "hh27*10" (run 12)), every 4 (spin 2 . density 2) $ sound (samples "notes*8" (irand 12)) |+| speed (scale 0.4 3 sine),
+    --sound "[numbers:0? numbers:1 numbers:2? numbers:3 numbers:4?]",
+    sound "xxlbd:4 ~ ~ xxlbd:3 ~"
+   |+| gain "1.1"
+   ]
+
+--ftwrk w it
+d5 $ slow 2 $ stack [sound "[hh27:0*16, hh27:2*6, hh27:4*11?, hh27:7*27?, hh27:8*12]",
+    sound (samples "hh27*8" (run 8)), every 4 (spin 2 . density 2) $ sound (samples "notes*8" (run 8)),
+    slow 2 $ sound (samples "bleep*4" (run 4)) |+| speed "1 2 0.7 0.8" |+| gain "0.8",
+    --sound "[~ numbers:0? numbers:1 numbers:2? numbers:3 numbers:4? numbers:5]"
+    foldEvery [2,3] (density 2) $ sound (samples "xxlsh ~ ~ xxlsh ~ ~ xxlsh ~" (irand 10)), sound (samples "xxlbd ~ ~ xxlbd ~ ~ xxlbd ~" (irand 4))
+   ]
+   |+| accelerate "0.5"
+
+--mit snare
+d5 $ slow 2 $ stack [sound "[hh27:0*16, hh27:2*6, hh27:4*11?, hh27:7*27?, hh27:8*12]",
+    sound (samples "hh27*8" (run 8)), every 4 (spin 2 . density 2) $ sound (samples "notes*8" (run 8)),
+    slow 2 $ sound (samples "bleep*4" (irand 8)) |+| speed "1 2 0.7 0.8" |+| gain "0.8",
+    --sound "[~ numbers:0? numbers:1 numbers:2? numbers:3 numbers:4? numbers:5]"
+    foldEvery [2,3] (density 2) $ sound (samples "xxlsh ~ ~ xxlsh ~ ~ xxlsh ~" (irand 10)), sound (samples "xxlbd ~ ~ xxlbd ~ ~ xxlbd ~" (irand 4)) |+| accelerate "-0.2",
+    every 4 (0.5 ~>) $ sometimes (density 2) $ foldEvery [4,6] (density 2) $ sound (samples "xxlsn ~ xxlsn ~ xxlsn ~ ~ xxlsn" (irand 10)),
+    every 2 (0.25 <~) $ sound "808rs*16?" |+| gain "1.1"
+   ]
+   |+| accelerate "0.5"
+   |+| gain "0.2"
+
+--t2
+d1 $ slow 3 $ sound "[vocad, cingui]"
+
+d2 $ slow 3 $ stack [sound "gabbalouder:0 if:1", sound (samples "flick*8" (run 10)), sound (samples "lighter*12" (irand 12))]
+
+--low
+d2 $ slow 3 $ stack [sound "gabbalouder:0 if:1" |+| speed "0.7", sound (samples "flick*8" (run 10)) |+| speed "0.5", sound (samples "lighter*12" (irand 12))]
+
+d2 $ slow 3 $ stack [
+   sound "gabbalouder:0 if:1" |+| speed "0.7", 
+   sound (samples "flick*8" (run 10)) |+| speed "0.5", 
+   sound (samples "lighter*12" (irand 12)),
+   sound (samples "invaders ~ invaders" (irand 20)) |+| gain "1.1"
+   ]
+
+d2 $ slow 3 $ stack [
+   sound "gabbalouder:0 if:1" |+| speed "0.7", 
+   sound (samples "flick*8" (run 10)) |+| speed "0.5", 
+   sound (samples "lighter*12" (irand 12)),
+   sound (samples "invaders ~ invaders" (irand 20)) |+| gain "1.1",
+   foldEvery [2,3] (density 2) $ sound "[~ haw:0, haw:1 ~ haw:1, ~ ~ haw:2]" |+| gain "1.2"
+   ]
+
+d3 $ rarely (density 3) $ sound (samples "[dmo*8, ppstick*4]/2" (run 8)) |+| speed (scale 0.2 2 sine)
+   |+| cut "1"
+   |+| gain "1.0"
+
+d4 $ rarely (density 2) $  sound (samples "dmp*4" (run 6)) |+| speed (scale 3 0.5 sine)
+   |+| (slow 4 $ pan sinewave1)
+   |+| gain "1.1"
+   |+| cut "2"
+
+--t3
+--sitar jam
+d2 $ stack [slowcat [
+   sound "hh*64", 
+   sound "hh*63", 
+   sound "hh*32", 
+   sound "hh*15", 
+   sound "hh*12", 
+   sound "hh*7", 
+   sound "hh*5", 
+   sound "hh*3", 
+   sound "hh*2", 
+   sound "hh*1",
+   sound "hh*2",
+   sound "hh*3", 
+   sound "hh*5", 
+   sound "hh*7", 
+   sound "hh*12", 
+   sound "hh*15", 
+   sound "hh*32", 
+   sound "hh*63"
+   ],
+   slowcat [
+   sound "rm*64", 
+   sound "rm*63", 
+   sound "rm*32", 
+   sound "rm*15", 
+   sound "rm*12", 
+   sound "rm*7", 
+   sound "rm*5", 
+   sound "rm*3", 
+   sound "rm*2", 
+   sound "rm*1",
+   sound "rm*2",
+   sound "rm*3", 
+   sound "rm*5", 
+   sound "rm*7", 
+   sound "rm*12", 
+   sound "rm*15", 
+   sound "rm*32", 
+   sound "rm*63"
+   ]
+   ]
+   |+| delay (scale 0.1 0.7 sine)
+   |+| delayfeedback (scale 0.1 0.7 sine)
+
+d3 $ slowcat [
+     sometimes (density 2) $ sound (samples "amencutup*8" (irand 8)),
+     sometimes (density 2) $ sound (samples "amencutup*8" (run 8)),
+     sometimes (density 2) $ sound (samples "amencutup*8" (run 8)) |+| (speed (scale 0.5 3 sine)),
+     sound (samples "amencutup*8" (run 8)) |+| (speed (scale 3 0.5 sine)),
+     sound (samples "atlantis*4" (run 4)) |+| gain "0.6",
+     sound (samples "atlantis*4" (irand 4)) |+| gain "0.6",
+     sound (samples "amencutup*8" (run 8)) |+| (speed (scale 1 1.5 tri)),
+     sound (samples "amencutup*8" (irand 8))
+     ]
+     |+| gain "1.2"
+     --|+| (slow 4 $ crush (scale 3 4 sine)) 
+     --
+m1 $ swing 2  $ spin 5 $ note "[60 70 40]"
+
+d4 $ slow 8 $ sound "[sitar:2, ~ sitar:3]"
+   |+| gain "1.2"
+
+t4 xfade $ slow 8 $ rarely (density 2) $ rarely (spin 2) $ sound "[sitar:2, ~ sitar:3]"
+   |+| gain "1.2"
+   |+| speed "[1, 1.24, 0.87, 0.75, 3]"
+
+--t4
+--pads first
+bpm 80
+
+d2 $ slow 4 $ sound (samples "sea*4" (run 4))
+   |+| speed "0.2"
+
+d1 $ sound (samples "teeny1*8" (run 8))
+
+d1 $ slowcat [
+   sound (samples "teeny1*8" (run 8)), 
+   sound (samples "teeny2*8" (run 8))]
+
+d1 $ slowcat [
+   sound (samples "teeny1*8" (run 8)), 
+   sound (samples "teeny2*8" (run 8)), 
+   sound (samples "teeny3*8" (run 8)), 
+   sound (samples "teeny4*8" (run 8))]
+
+--breakss
+d1 $ slow 2 $ slowcat [
+   sound (samples "teeny1*16" (run 16)), 
+   sound (samples "teeny2*16" (run 16)), 
+   sound (samples "teeny3*16" (run 16)), 
+   sound (samples "teeny4*16" (run 16))]
+
+d1 $ slow 2 $ slowcat [
+   sound (samples "teeny1*16" (irand 16)), 
+   sound (samples "teeny2*16" (irand 16)), 
+   sound (samples "teeny3*16" (irand 16)), 
+   sound (samples "teeny4*16" (irand 16))]
+
+--pads w bass
+d2 $ slow 4 $ stack [
+   sound (samples "sea*4" (run 4)),
+   sound (samples "d4*4" (run 4))
+   ]
+
+--pan that shit
+d1 $ slow 2 $ sometimes (density 2) $ rarely (spin 2) $ randcat [
+   sound (samples "teeny1*16" (run 16)), 
+   sound (samples "teeny2*16" (run 16)), 
+   sound (samples "teeny3*16" (run 16)), 
+   sound (samples "teeny4*16" (run 16))]
+   |+| accelerate "-0.25"
+
+--2x
+d1 $ rarely (spin 2) $ randcat [sound (samples "teeny1*16" (run 16)), sound (samples "teeny2*16" (run 16)), sound (samples "teeny3*16" (run 16)), sound (samples "teeny4*16" (run 16))]
+   |+| accelerate "-0.5"
+
+d1 $ rarely (spin 2) $ randcat [
+   sound (samples "teeny1*16" (irand 16)), 
+   sound (samples "teeny2*16" (irand 16)), 
+   sound (samples "teeny3*16" (irand 16)), 
+   sound (samples "teeny4*16" (irand 16))]
+   |+| accelerate "-0.25"
+
+--w sub
+d2 $ slow 4 $ stack [
+   sound (samples "sea*4" (run 4)),
+   sound (samples "d4*4" (run 4)),
+   sound (samples "beacsub*8" (run 4))
+   ]
+
+--breakdownsss
+d1 $ sound (samples "session*4" (run 4))
+
+d1 $ sometimes (density 2 . rev . (|+| speed "0.8") . jux (iter 2)) $ sound (samples "session*4" (irand 4))
+
+d1 $ slow 2 $ sound (samples "arson*8" (run 8))
+   |+| accelerate "-1"
+
+d7 $ slow 2 $ sound (samples "arson*8" (irand 16))
+   |+| accelerate "-1"
+
+d7 $ slow 2 $ sound (samples "bulldozer*8" (run 8))
+   |+| (slow 2 $ accelerate (scale 0.1 0.9 sine))
+
+d7 $ slow 2 $ sound (samples "bulldozer*8" (irand 8))
+   |+| (slow 2 $ accelerate (scale 0.1 0.9 sine))
+
+d1 $ slow 2 $ sound (samples "centuries*8" (run 8))
+
+d1 $ slow 2 $ sound (samples "centuries*8" (irand 8))
+   |+| (slow 4 $ accelerate (scale 0.1 0.9 sine))
+
+d1 $ slow 2 $ sound (samples "war*8" (irand 8))
+
+d2 $ slow 4 $ stack [
+   sound (samples "sea*4" (run 4)),
+   sound (samples "d4*4" (run 4)),
+   sound (samples "beacsub*8" (run 4))
+   --sound (samples "spednar" (irand 4)) |+| gain "1.3"
+   ]
+
+--t5 ----- footwork
+d1 $ sound (samples "teachtalk ~ ~ teachtalk ~ ~ teachtalk ~" (run 4))
+
+d1 $ sound (samples "teachtalk ~ ~ teachtalk ~ ~ teachtalk ~" (irand 26))
+
+--get weird on dem letters
+d1 $ sometimes (density 2) $ rarely (|+| speed "0.5 1 2 3") $ sound (samples "teachtalk ~ ~ teachtalk ~ ~ teachtalk ~" (irand 26))
+   |+| gain "1.2"
+
+--bass
+d2 $ sound (samples "xxlbd ~ ~ xxlbd ~ ~ xxlbd ~" (run 4))
+
+d2 $ sound (samples "xxlbd ~ ~ xxlbd ~ ~ xxlbd ~" (irand 16))
+
+--sn
+d3 $ sound (samples "xxlsn*8?" (run 4))
+
+d3 $ sometimes (spin 2) $ sound (samples "xxlsn*8?" (irand 10))
+
+--hats n rimz
+d4 $ stack [
+   sound (samples "808rs*16?" (run 1)),
+   sound (samples "[808oh*8?, 808ch*8?]/2" (run 8))
+   ]
+
+--t6
+d1 $ slow 2 $ sound (samples "drumfx*2" (run 2))
+
+d1 $ slow 2 $ stack [
+   sound (samples "drumfx*2" (run 2)),
+   sound "~ drumfx:7 ~ drumfx:8"
+   --sound "drumfx:9 drumfx:10"
+   ]
+
+--w amen
+d1 $ slow 2 $ stack [
+   sound (samples "drumfx*2" (run 2)),
+   sound "~ drumfx:9 ~ drumfx:10",
+   sound (samples "bpbrk*8" (run 8)) |+| gain "1.15"
+   ]
+
+--breaks
+d1 $ slow 2 $ stack [
+   sound (samples "drumfx*2" (run 2)),
+   sound "~ drumfx:3 ~ drumfx:4",
+   sound (samples "bpbrk*8" (irand 16)) |+| gain "1.15"
+   ]
+
+--t7
+bpm 120
+
+d1 $ slow 8 $ slowcat [
+   sound "pipa:0", sound "pipa:1", sound "pipa:2"
+   ]
+   |+| speed (scale 0.5 0.85 sine)
+
+d5 $ slow 4 $ sound "paigu"
+   |+| unit "c" |+| speed "0.25"
+   --|+| gain (scale 0.6 1.1 sine)
+
+d2 $ slow 8 $ sound "paiban:0"
+   |+| unit "c" |+| speed "0.125"
+   --|+| gain (scale 0.6 1.1 sine)
+
+d3 $ slow 4 $ sound (samples "muyui" (run 3))
+   |+| unit "c" |+| speed "0.20"
+   --|+| gain (scale 0.6 1.1 sine)
+
+d4 $ slow 4 $ sound "[tabla:3 [tabla:4 tabla:4] tabla2:0 ~, ~ tabla2:1 tabla2:2]"
+   |+| gain "1.15"
+   --|+| gain (scale 0.6 1.1 sine)
+
+--morgan intro
+d1 $ slow 2 $ 
+   chop 4 $ 
+   jux (iter 2) $ 
+   sometimes (spin 2) $ sound "morgantics"
+   |+| accelerate "-0.5"

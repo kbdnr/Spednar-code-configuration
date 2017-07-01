@@ -1,0 +1,13 @@
+bpm 90
+
+d3 $ sometimes (density 2 . degradeBy 0.2) $ 
+   every 2 (jux (iter 4)) $ sometimes (0.25 ~>) $ 
+   sound "[99k*4?, 808bd(3,8)?,~ 808rs]"
+
+d5 $ slow 2 $ sound (samples "tentex*4?" (run 4))
+   |+| cut "5"
+
+m1 $ sometimes (density 2) $ note "[28*4?, 40*4?]"
+   |+| osc1param rand
+   |+| osc1detune rand
+   |+| osc1shape rand

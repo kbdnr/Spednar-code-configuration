@@ -1,0 +1,10 @@
+bpm 80
+
+m1 $ slow 4 $ sometimes (density 8 . rev) $ 
+   every 2 (0.25 ~>) $ sometimes (spin 2) $ 
+   every 3 (0.25 <~) $ sometimes (spin 2 . density 2) $ 
+   note "[30 ~ ~ 30? ~ ~ 50 ~, 40? 55 ~ 40? 30 ~ 40 ~, 20 ~ 24?]"
+   |+| (slow 4 $ dur (scale 0.01 0.4 sinewave1))
+   |+| (slow 5 $ vel (scale 0.2 0.8 sawwave1))
+
+m1 silence
