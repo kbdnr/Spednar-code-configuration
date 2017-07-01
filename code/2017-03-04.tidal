@@ -1,0 +1,22 @@
+import Sound.Tidal.Scales
+import Sound.Tidal.Chords
+
+bpm 20
+
+m1 $ sometimes (degradeBy 0.25) $ every 2 (spin 2 . jux (iter 4)) $ 
+     sometimes (density 2 . rev) $ 
+     slowcat [
+      n "[10 10 10 10 10 10 10]" # n ((+) <$> "[20 18 15 10 20]" <*> (listToPat Sound.Tidal.Scales.minor))
+     ]
+   |+| hold "1"
+   |+| (slow 4 $ fuzz (scale 0.1 0.5 tri))
+   |+| (slow 4 $ crush (scale 0.1 0.6 tri))
+   |+| (slow 8 $ osc1shape rand)
+   |+| (slow 8 $ osc1range rand)
+   |+| (slow 4 $ osc2range rand)
+   |+| (slow 2 $ osc1param rand)
+   |+| (slow 4 $ osc2param rand)
+   |=| (slow 2 $ f1cutoff rand)
+   |=| (density 4 $ f1res rand)
+   |=| (density 7 $ f2res rand)
+   |=| (slow 7 $ f2cutoff rand)

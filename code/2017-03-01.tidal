@@ -1,0 +1,25 @@
+m1 silence
+
+
+d1 $ stack [
+   sometimes (density 2 . rev . degradeBy 0.4) $ 
+   sound "[gab:1*2? ~, gab:3*4]",
+   slowcat [
+    every 3 (|+| accelerate "-1") $ sound "amencutup*8", 
+    sound (samples "amencutup*8" (run 8))
+    ] |+| gain "1.2"
+   ]
+
+d1 $ stack [
+   sometimes (density 2 . rev . degradeBy 0.4) $ 
+   randcat [sound "[gab:1*2? ~, gab:3*4]",
+            sound "[gabbalouder*4]"],
+   slowcat [
+    every 3 (|+| (slow 4 $ accelerate "-1")) $ sound "amencutup*16?", 
+    sound (samples "amencutup*8" (irand 8))
+    ] |+| gain "1.2"
+   ]
+
+m1 $ n "40*4 50*4"
+   |+| osc1shape rand
+   |+| osc2shape rand

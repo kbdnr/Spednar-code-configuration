@@ -1,0 +1,1 @@
+/usr/bin/jackd -dalsa -dhw:USB -r44100 -p1024 -n2 -Xseq

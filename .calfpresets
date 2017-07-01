@@ -1,0 +1,24 @@
+<presets>
+<preset bank="0" program="0" plugin="crusher" name="din cruasher -6db">
+  <param name="bypass" value="0" />
+  <param name="level_in" value="0.497235" />
+  <param name="level_out" value="1" />
+  <param name="meter_inL" value="0.917443" />
+  <param name="meter_inR" value="0.92047" />
+  <param name="meter_outL" value="0.410134" />
+  <param name="meter_outR" value="0.413165" />
+  <param name="clip_inL" value="0" />
+  <param name="clip_inR" value="0" />
+  <param name="clip_outL" value="0" />
+  <param name="clip_outR" value="0" />
+  <param name="bits" value="1" />
+  <param name="morph" value="0.5" />
+  <param name="mode" value="0" />
+  <param name="dc" value="1" />
+  <param name="anti_aliasing" value="0.5" />
+  <param name="samples" value="1" />
+  <param name="lfo" value="1" />
+  <param name="lforange" value="1" />
+  <param name="lforate" value="0.01" />
+</preset>
+</presets>

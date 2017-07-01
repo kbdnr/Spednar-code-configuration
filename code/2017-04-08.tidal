@@ -1,0 +1,87 @@
+import Sound.Tidal.Scales
+import Sound.Tidal.Chords
+
+bpm 120
+
+m1 $ every 4 ((stut' 4 2 (0.25 ~>)) . rev) $ sometimes (degradeBy 0.2 . rev) $ 
+     slowcat [n "c c c c c" # n ((+) <$> "c c c c c" <*> (listToPat Scales.yu)),
+              n "c c c c" # n ((+) <$> "c c c c" <*> (listToPat sus4)),
+              n "c c c c" # n ((+) <$> "c c c c" <*> (listToPat maj9))]
+
+m1 silence
+
+--3 alt
+d3 $ sometimes (0.33 ~>) $ s "[fk ~ fk:3 fbd:3?]"
+   |+| cut "1"
+
+d3 $ sound "[gab:3, ~ gab:7]"
+   |+| speed "0.8"
+   |+| gain "1.3"
+   |+| cut "1"
+
+d2 $ slow 4 $ s "[jungbass:5 ~ ~ feel*3]"
+
+d1 $ slow 7 $ s "~ folder*3"
+   # n (choose([1,2]++[2..4]))
+   # cut "1"
+   # gain "0.8"
+
+--spednar does freejazz
+d2 $ stack [ sometimes (density 2 . rev) $ 
+   every 8 ((0.25 <~) . rev) $ every 3 (jux (|+| speed "1 0.7 0.4")) $ 
+   sometimes ((|+| speed "0.6") . slow 4) $ density 8 $ sound "[foo]"
+   --# n (choose([1,2..8]))
+   |+| begin rand
+   |+| cut "4",
+   s (samples "lighter*7? fest" (run 5))
+   |+| gain (scale 0.5 0.7 tri)
+   |+| speed rand
+   |+| cut "1"
+   ]
+
+d4 $ sometimes (|*| speed "[1, 1.2, 0.84]") $ every 2 (degradeBy 0.7) $ sometimes ((0.5 ~>) . (|*| begin "0.2")) $ every 7 (rev . stut 3 0.5 0.25) $ 
+     sometimes (slow 10 . degradeBy 0.4) $ 
+     every 4 ((|*| speed "1.2 0.8") . (stut' 4 5 (gap 4 . jux (|+| crush "4")))) $ 
+     s "[ades2*4, sax*6, ades4*10?]"
+     # n (choose([1,2..5]++[5,9,13]))
+     |+| (slow 4 $ gain (scale 0.6 0.8 sinewave))
+     |+| cut "-1 ~ ~ ~ 1"
+
+--modified karlsson
+d1 $ every 8 ((stut 8 0.5 0.25) . rev . striate 12) $ every 8 (density 1.4) $ superimpose(#coarse(irand 5)) $ every 18(rev) $ 
+   every 4 (slow 2) $ s "flick ~ ~ drum glasstap feel"
+   # n (choose([1,2]++[5..7]))
+   #cut"{1,0}"
+   #pan saw1
+
+d3 $ slow 3 $ s "jungbass"
+   # n (choose([1..3]++[4..8]))
+
+d2 $ every 2 (0.15 ~>) $ s "flute*3? ~ fall"
+   # n (choose([1,3]++[1..8]))
+   # cut "8"
+   # gain "0.7"
+
+--push 1
+d4 $ every 4 (chop 4 . rev . striate 8) $ rarely (superimpose (|+| speed rand)) $ 
+   every 12 ((stut' 4 2 (0.1 ~>)) . rev)  $ s (samples "[fvox1*12, 808bd(3,8), [808lt*3?] 808oh ~ 808rs]" (irand 16))
+   # n (choose([1..7]))
+   |+| cut "1"
+
+d2 $ s "[feel*2, beakr?]"
+
+d3 $ slow 4 $ s "[ywamen2*16]" 
+   # n (irand 16)
+   |+| cut "1"
+
+d4 $ slow 2 $ sometimes (jux (iter 4 . (#nudge "0.2"))) $ every 2 (stut 8 0.8 3) $ every 4 (chop 4 . rev) $ s "[glitch2*4]"
+   # n (choose([1..8]))
+   |+| cut "2"
+   |+| speed "[1.2, 0.5]"
+
+--da works
+
+d1 $ s "[ywsb]"
+   # n (choose([1..5]))
+   |+| cut "2"
+   |+| (slow 5 $ speed "[1 0.8 0.6]")
